@@ -12,32 +12,48 @@
 
 }
 
+.conteneurProjets1 {
+
+    height : 50vh;
+    width : 90%;
+    margin-left : 5%;
+    margin-right : 5%;
+    margin-top : 1vh;
+    display : flex;
+    flex-direction : row;   
+    align-items : center;
+    justify-content : space-around;
+}
+
+.carteProjet1 {
+    height : 95%;
+    width : 23%;
+}
+
+.titreSection1 {
+    margin-top: 17vh;
+    color: white;
+    font-family: Candara;
+    font-size: 5vh;
+    margin-left: 6%;
+}
+
 .msgTemporaire {
     margin-top: 10vh;
-
-    width : 70%;
-    margin-left : 15%;
-    margin-right : 15%;
-
-    height : 15vh;
-
-    color : white;
-    font-family : Candara;
-
-    padding : 3vh;
-    
-    font-size : 2.6vh;
-
-    display : flex;
-    flex-direction : row;
-    align-items : center;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 15vh;
+    color: white;
+    font-family: Candara;
+    padding: 3vh;
+    font-size: 2.6vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
-
-
-
-    border-radius : 20px;
-
+    border-radius: 20px;
     background: #2b5876;
     background: -webkit-linear-gradient(to right, #4e4376, #2b5876);
-    background: linear-gradient(to right, #4e4376, #2b5876); 
+    background: linear-gradient(to right, #4e4376, #2b5876);
 }

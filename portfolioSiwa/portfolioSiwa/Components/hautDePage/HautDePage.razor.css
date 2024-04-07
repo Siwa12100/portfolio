@@ -1,5 +1,4 @@
 ﻿.profile-container {
-
     color: white;
     background-color: black;
     display: flex;
@@ -8,27 +7,21 @@
 }
 
 .nomEtTexte {
-
     height : 100%;
     width : 50%;
 }
 
 .profile-container h1 {
-
     font-family : Candara;
     margin-bottom : 0%;
-    font-size: 8vh;
+    font-size: 9.4vh;
 }
 
 .profile-container p {
-
     margin-top : 0%;
     font-family : Candara;
     font-size : 2.7vh;
     font-weight : 100;
-
-
-
 }
 
 .profile-image-container {
@@ -39,7 +32,6 @@
 }
 
 .profile-image {
-
     border-radius: 50%;
     border : 10px #1e1e1e solid;
     width: 35vh; 
