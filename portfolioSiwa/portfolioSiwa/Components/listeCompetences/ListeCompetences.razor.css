@@ -1,4 +1,4 @@
-﻿.listeCompetences {
+﻿.listeCompetences{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -6,6 +6,34 @@
     gap: 1vh; 
     font-family : Candara;
     color : white;
+}
+
+/*.liste1 {
+
+    display : flex;
+    flex-direction : row;
+    justify-content  : space-around;
+    align-items : center;
+}*/
+
+.colonnesListe {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+/*    border : 3px yellow solid;*/
+}
+
+.colonneGauche, .colonneDroite {
+
+/*    border : 3px red solid;*/
+    margin-right : 8%;
+
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
 }
 
 h3 {
@@ -19,7 +47,7 @@ p {
     font-weight : 100;
 }
 
-.liste {
+.liste1, .liste2 {
     flex: 1; 
 }
 
@@ -29,10 +57,10 @@ p {
     gap: 1vh; /* Espace entre l'icône et le texte */
 }
 
-    .elementListe img {
-        width: 24px; /* ou toute autre taille appropriée */
-        height: auto;
-    }
+.elementListe img {
+    width: 24px; /* ou toute autre taille appropriée */
+    height: auto;
+}
 
 
 

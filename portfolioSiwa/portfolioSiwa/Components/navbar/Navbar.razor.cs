@@ -10,10 +10,18 @@ namespace portfolioSiwa.Components.navbar
         [Parameter]
         public String cheminImageGithub { get; set; }
 
+        [Inject]
+        private NavigationManager navigationManager {  get; set; }
+
         protected override void OnInitialized()
         {
             this.cheminProfilGithub = "https://github.com/Siwa12100";
             this.cheminImageGithub = "/icones/iconeGithub.png";
+        }
+
+        public void retourAccueil()
+        {
+            this.navigationManager.NavigateTo("/");
         }
     }
 }
