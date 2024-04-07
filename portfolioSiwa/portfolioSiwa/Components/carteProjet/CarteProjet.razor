@@ -9,6 +9,15 @@
 
     </div>
 
+    @if (redirectionGithub != "invisible")
+    {
+        <div class="redirectionsCarte">
+            <a href="@redirectionGithub" class="navbar-item">
+                <img src="/icones/iconeGithub.png" alt="GitHub" id="github">
+            </a>
+        </div>
+    }
+
     <div class="tag">@texteTag</div>
 
 </div>

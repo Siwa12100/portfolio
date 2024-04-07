@@ -1,8 +1,12 @@
 ﻿body {
-
     background-color : red;
-
     color : green;
+}
+
+.listeCompetences {
+
+    margin-left : 6%;
+    margin-right : 6%;
 }
 
 
@@ -13,7 +17,6 @@
 }
 
 .conteneurProjets1 {
-
     height : 50vh;
     width : 90%;
     margin-left : 5%;
@@ -23,7 +26,6 @@
     flex-direction : row;   
     align-items : center;
     justify-content : space-around;
-
     margin-bottom : 5vh;
 }
 
@@ -35,7 +37,7 @@
 .carteProjet2 {
 
     height : 95%;
-    width : 35%;
+    width : 22%;
 }
 
 .titreSection1 {

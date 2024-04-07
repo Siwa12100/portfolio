@@ -17,10 +17,24 @@ namespace portfolioSiwa.Components.carteProjet
         [Parameter]
         public String texteTag { get; set; }
 
+        [Parameter]
+        public String redirectionGithub { get; set; }
+
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
+
+
+        public CarteProjet()
+        {
+            Console.WriteLine("Construction d'une carte");
+        }
 
         public void CardCliquee()
         {
 
+            Console.WriteLine("Passage dans le Card cliqué ! ");
+
+            this.navigationManager.NavigateTo("https://github.com/Siwa12100");
         }
     }
 }
