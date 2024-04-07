@@ -13,10 +13,16 @@
     transition: background-color 0.3s ease;
 }
 
+.redirectionsCarte {
+
+    width : 10vh;
+    height :4.7vh;
+}
+
 .redirectionsCarte img {
 
-    width : 6%;
-    height : 6%;   
+    width : 40%;
+    height : 90%;   
 }
 
 .card:hover {
@@ -62,5 +68,45 @@
     height : 35%;
     padding-left : 1vh;
     padding-right : 1vh;
+}
+
+
+.informations {
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : space-around;
+    height : 10%;
+}
+
+.btn-discover {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    font-family: Candara;
+    transition: background-color 0.3s ease;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    margin-bottom: 3%;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    width : 40%;
+}
+
+.btn-discover:hover {
+    background-color: #0d1117;
+}
+
+
+.icon {
+    width: 14%;
+    margin-right : 3%;
+    height: auto; 
 }
 

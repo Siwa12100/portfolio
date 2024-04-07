@@ -20,6 +20,9 @@ namespace portfolioSiwa.Components.carteProjet
         [Parameter]
         public String redirectionGithub { get; set; }
 
+        [Parameter]
+        public String cheminPageAssociee { get; set; }
+
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
@@ -29,12 +32,11 @@ namespace portfolioSiwa.Components.carteProjet
             Console.WriteLine("Construction d'une carte");
         }
 
-        public void CardCliquee()
+        public void redirectionBouton()
         {
-
-            Console.WriteLine("Passage dans le Card cliqué ! ");
-
-            this.navigationManager.NavigateTo("https://github.com/Siwa12100");
+            String chemin = "/" + this.cheminPageAssociee;
+            Console.WriteLine("Passage dans le Card cliqué !  : " + chemin);
+            this.navigationManager.NavigateTo(chemin);
         }
     }
 }

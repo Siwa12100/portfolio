@@ -1,4 +1,4 @@
-﻿<div class="card" @onclick="CardCliquee">
+﻿<div class="card">
 
     <img src="@cheminImage" alt="Image" class="card-image" />
 
@@ -9,14 +9,27 @@
 
     </div>
 
-    @if (redirectionGithub != "invisible")
-    {
-        <div class="redirectionsCarte">
-            <a href="@redirectionGithub" class="navbar-item">
-                <img src="/icones/iconeGithub.png" alt="GitHub" id="github">
-            </a>
-        </div>
-    }
+   <div class="informations">
+
+        @if (redirectionGithub != "invisible")
+        {
+            <div class="redirectionsCarte">
+                <a href="@redirectionGithub" class="navbar-item">
+                    <img src="/icones/iconeGithub.png" alt="GitHub" id="github">
+                </a>
+            </div>
+
+            @if (cheminPageAssociee != null)
+            {
+                <button type="button" class="btn-discover" @onclick="@redirectionBouton">
+                    <img src="/icones/iconeParchemin.png" alt="Icône Parchemin" class="icon">
+                    Découvrir le projet
+                </button>
+
+            }
+        }
+
+    </div>
 
     <div class="tag">@texteTag</div>
 
