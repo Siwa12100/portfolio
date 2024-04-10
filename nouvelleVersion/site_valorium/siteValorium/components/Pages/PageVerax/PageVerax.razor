@@ -1,0 +1,56 @@
+﻿@page "/verax"
+@using siteValorium.components.navbar
+@using siteValorium.components.blocImageTexteV1
+@using siteValorium.components.blocImageTexteV2
+@using siteValorium.components.piedDePage
+
+<Navbar/>
+
+<div class="blocContenu">
+    <BlocImageTexteV1 titre="Le projet Verax"
+                      cheminImage="/images/verax/planSae.png"
+                      texte="@texteIntro" />
+</div>
+
+<div class="blocContenu">
+    <BlocImageTexteV2 titre="Un site Web"
+                      cheminImage="/images/verax/verax.png"
+                      texte="@texteSite" />
+</div>
+
+<div class="blocContenu">
+    <BlocImageTexteV1 titre="Une application mobile"
+                      cheminImage="/images/verax/application.png"
+                      texte="@texteApplication" />
+</div>
+
+<div class="blocContenu">
+    <BlocImageTexteV2 titre="VeraxShield"
+                      cheminImage="/images/verax/veraxshield.png"
+                      texte="@texteShield" />
+</div>
+
+    @code {
+    MarkupString texteIntro = new MarkupString("Verax est un projet réalisé par une équipe de six personnes, dont moi-même, tout au long de notre seconde année de BUT.<br /><br />" +
+    "Il s'agissait de réaliser une application mobile et web dans l'optique de rédiger des articles démontant des fake news, de manière à lutter contre la désinformation en ligne, enjeu majeur de notre époque.");
+
+    MarkupString texteApplication = new MarkupString("Une application mobile Android a aussi été réalisée. Elle se charge également de récupérer les données depuis notre API Rest et d'afficher les articles." + 
+        "<br> <br>Les technologies utilisées sont Android, ainsi que Jetpack Compose et Kotlin en tant que langage de programmation.");
+
+
+    MarkupString texteSite = new MarkupString("Le cœur du projet s'articule autour d'un site web, où sont affichés et triés par thème l'ensemble des articles. <br> <br>" + 
+        "Ce site a été réalisé par l'ensemble de l'équipe, en utilisant le langage PHP et le patron d'architecture MVC. Interagissant dans un premier temps directement avec" + 
+        " une base de données relationnelle, il a par la suite été relié à l'API Rest de notre projet pour interagir avec les données du projet.");
+
+        MarkupString texteShield = new MarkupString("Pour finir, une application web réalisée en .NET Blazor par notre équipe permet d'administrer les utilisateurs de l'application. " + 
+        "Elle interagit directement avec l'API Rest du projet, pour effectuer des opérations CRUD sur les utilisateurs du site Verax.");
+}
+
+
+<PiedDePage/>
+
+
+
+
+
+

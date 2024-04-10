@@ -1,4 +1,6 @@
-﻿<div class="card">
+﻿@rendermode InteractiveServer
+
+<div class="card">
 
     <img src="@cheminImage" alt="Image" class="card-image" />
 
@@ -21,7 +23,7 @@
 
             @if (cheminPageAssociee != null)
             {
-                <button type="button" class="btn-discover" @onclick="@redirectionBouton">
+                <button type="button" class="btn-discover" @onclick="redirectionBouton">
                     <img src="/icones/iconeParchemin.png" alt="Icône Parchemin" class="icon">
                     Découvrir le projet
                 </button>

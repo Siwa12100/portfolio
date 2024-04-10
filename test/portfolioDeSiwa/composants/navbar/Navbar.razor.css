@@ -1,0 +1,184 @@
+﻿.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #121212;
+    height: 9vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-family: Candara;
+    border-bottom: 0.1vh solid #1e2031; /* Correction: ajouté "solid" */
+}
+
+.logo {
+    height: 100%;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row; /* Horizontalement par défaut */
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    width: 33%;
+}
+
+    .navigation a {
+        color: white;
+        font-size: 126%;
+        text-decoration: none;
+        font-family: Candara;
+        font-weight: bold;
+    }
+
+.navbar .navigation a:hover {
+    text-decoration: none;
+}
+
+.gradient-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    font-family: Candara;
+    padding: 10px 25px;
+    font-size: 2.2vh;
+    border: none;
+    color: white;
+    background: linear-gradient(273deg, rgba(111,191,237,1) 16%, rgba(34,37,80,1) 83%);
+    border-radius: 45px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    outline: none;
+    width: auto;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    background-size: 200% auto;
+    transition: background-position 0.5s, opacity 0.3s, box-shadow 0.3s;
+}
+
+.button-icon {
+    height: 1em;
+    width: auto;
+}
+
+/* Styles ajoutés pour les écrans de moins de 1024px */
+@media (max-width: 1024px) {
+    .navigation {
+        flex-direction: column; /* Changement pour superposition verticale */
+        width: 40%; /* Prend toute la largeur disponible */
+
+    }
+
+    nav {
+
+        width : 100%;
+    }
+
+        .navigation a {
+            text-align: center; /* Centrer le texte des liens */
+
+            font-size : 2.5vh;
+            /*padding: 10px 0;*/ /* Ajuster le padding pour espacer verticalement */
+        }
+
+        .navbar {
+
+            height : 22vh;
+        }
+
+        img {
+
+            height : 50%;
+        }
+
+
+}
+
+
+
+
+
+
+
+
+.gradient-button::after {
+    content: '';
+    background: linear-gradient(90deg, rgba(111,191,237,1) 16%, rgba(34,37,80,1) 83%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 45px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s; 
+}
+
+.gradient-button:hover::after {
+    opacity: 1; 
+}
+
+.gradient-button:hover {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.gradient-button:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-effect {
+    padding: .5em .8em;
+    color: rgba(255,255,255,.5);
+    position: relative;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all .35s ease;
+}
+
+.nav-effect::before,
+.nav-effect::after {
+    content: '';
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    transition: all .35s ease;
+    opacity: 0;
+}
+
+.nav-effect::before {
+    right: 0;
+    top: 0;
+    border-top: 3px solid #268de0;
+    border-right: 3px solid #165487;
+    transform: translate(-100%, 50%);
+}
+
+.nav-effect::after {
+    left: 0;
+    bottom: 0;
+    border-bottom: 3px solid #268de0;
+    border-left: 3px solid #165487;
+    transform: translate(100%, -50%);
+}
+
+.nav-effect:hover::before,
+.nav-effect:hover::after {
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+.nav-effect:hover {
+    color: #268de0; 
+    background-color: transparent;
+}
+
+

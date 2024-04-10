@@ -1,0 +1,18 @@
+﻿<nav class="navbar">
+
+    <div class="navbar-brand" @onclick="retourAccueil">
+        <img src="/icones/iconeHtml.png" alt="Jean Marcillac" class="ichtml" onclick="retourAccueil">
+        <span>Jean Marcillac</span>
+    </div>
+
+    <div class="navbar-menu">
+        <p>Portfolio réalisé par mes soins, à l'aide du framework .NET Blazor.</p>
+    </div>
+
+    <div class="redirectionCode">
+        <button type="button" class="btn-discover" @onclick="@redirectionBouton" target="_blank">
+            <img src="/icones/iconeGithub.png" alt="Icône Parchemin" class="icon">
+            Découvrir le projet
+        </button>
+    </div>
+</nav>

@@ -1,0 +1,45 @@
+﻿.profile-container {
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content : space-around;
+    align-items : center;
+}
+
+a {
+    color: #a937df;
+    text-decoration : none;
+}
+
+.nomEtTexte {
+    height : 100%;
+    width : 50%;
+}
+
+.profile-container h1 {
+    font-family : Candara;
+    margin-bottom : 0%;
+    font-size: 9.4vh;
+}
+
+.profile-container p {
+    margin-top : 0%;
+    font-family : Candara;
+    font-size : 2.7vh;
+    font-weight : 100;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.profile-image {
+    border-radius: 50%;
+    border : 10px #1e1e1e solid;
+    width: 35vh; 
+    height: 35vh; 
+    object-fit: cover; 
+}

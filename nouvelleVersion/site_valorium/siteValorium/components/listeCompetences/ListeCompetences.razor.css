@@ -1,0 +1,66 @@
+﻿.listeCompetences{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start; 
+    gap: 1vh; 
+    font-family : Candara;
+    color : white;
+
+    margin-top : 5.6vh;
+
+/*    border : orange solid 3px;*/
+}
+
+
+
+.listeColonnes{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+/*    border : 3px yellow solid;*/
+}
+
+.colonne {
+
+/*    border : 3px red solid;*/
+    margin-right : 13%;
+    display : flex;
+    flex-direction : column;
+    justify-content : space-around;
+    align-items : flex-start;
+}
+
+h3 {
+    font-size: 3.5vh;
+    margin-bottom: 2vh;
+    background: linear-gradient(90deg, rgba(19,75,150,1) 16%, rgba(94,40,120,1) 97%);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+p {
+    font-size : 2.7vh;
+    font-weight : 100;
+}
+
+.liste {
+    flex: 1; 
+}
+
+.elementListe {
+    display: flex;
+    align-items: center;
+    gap: 1vh; 
+
+    margin-bottom : 2vh;
+}
+
+.elementListe img {
+    width: 3.2vh; 
+    height: auto;
+}
+

@@ -1,0 +1,81 @@
+﻿.card {
+    width: 26%;
+    height: 60%;
+    padding: 1%;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: Candara;
+}
+
+    .card h3 {
+        font-size: 3vh;
+        margin-top: 3%;
+        margin-bottom: 6%;
+        color: initial; /* Assurez-vous que la couleur par défaut est définie */
+    }
+
+    .card p {
+        margin-top: 1%;
+        margin-bottom: 0%;
+        font-size: 2vh;
+        color: initial; /* Assurez-vous que la couleur par défaut est définie */
+    }
+
+/* Media query pour les écrans de moins de 1024 pixels */
+@media (max-width: 1024px) {
+    .card {
+        width: 90%;
+        height: 30%;
+        /* Ajout de la couleur de texte pour tout le contenu de .card */
+        color: white;
+    }
+
+        /* Optionnel : Si les éléments enfants de .card ne prennent pas la couleur du parent */
+        .card h3, .card p {
+            color: white; /* Assure la couleur blanche pour le texte */
+        }
+}
+
+
+
+/*.card {
+    width : 26%;
+    height : 60%;
+
+
+    padding: 1%;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.2);
+
+    -webkit-backdrop-filter: blur(5px);
+
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    font-family : Candara;
+}
+
+.card h3 {
+
+    font-size : 3vh;
+    margin-top : 3%;
+    margin-bottom : 6%;
+
+}
+
+.card p {
+
+    margin-top : 1%;
+    margin-bottom : 0%;
+
+    font-size : 2vh;
+}
+
+
+*/

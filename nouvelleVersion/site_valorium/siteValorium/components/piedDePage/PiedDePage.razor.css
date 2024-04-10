@@ -1,0 +1,75 @@
+﻿.navbar {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+    align-items: center;
+    font-family: Candara;
+    height: 10vh;
+    border-top: #1e1e1e solid 1px;
+    margin-top : 10vh;
+}
+
+.navbar-brand {
+    display: flex;
+    font-family: Candara;
+    font-size: 2.7vh;
+    font-weight: bold;
+    height: 100%;
+    width: 15%;
+    align-items: center;
+    cursor: pointer;
+}
+
+.redirectionCode {
+    width : 15%;
+}
+
+.ichtml {
+    height: 50%;
+}
+
+.navbar-brand img {
+    margin-right: 0.5rem;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items : center;
+    height: 100%;
+    width: 50%;
+}
+
+.navbar-menu p{
+    font-size : 2.4vh;
+    font-family : Candara;
+}
+
+.btn-discover {
+    background: linear-gradient(90deg, rgba(19,75,150,1) 16%, rgba(94,40,120,1) 97%);
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    font-family: Candara;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 0.8vh;
+    padding-right: 0.8vh;
+    font-size: 2.1vh;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+.icon {
+    width: 14%;
+    margin-right: 3%;
+    height: auto;
+}
+
+

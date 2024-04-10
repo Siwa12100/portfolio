@@ -1,0 +1,136 @@
+﻿@* @page "/" *@
+
+@using siteValorium.composants.navbar
+@using siteValorium.composants.hautDePage
+@using siteValorium.composants.blocImageTexteV1
+@using siteValorium.composants.carteOpaque
+@using siteValorium.composants.blocVideoTexteV1
+@using siteValorium.composants.blocImageTexteV2
+@using siteValorium.composants.blocTexteSurGradient
+
+@using siteValorium.composants.anchorNavigation
+
+<div class="contenuPage">
+
+    <AnchorNavigation/>
+
+    <Navbar />
+
+    <div class="blocContenu1">
+
+        <div class="HautDePage">
+            <HautDePage />
+        </div>
+
+        <div id="presentation" class="BlocVideo1">
+
+            <BlocImageTexteV1 cheminImage="https://elendilmc.fr/wp-content/uploads/2023/04/lab-1536x864.png"
+                              titre="Notre projet"
+                              texte="@texteVision" />
+        </div>
+
+
+        <div id="actualites" class="grandTitre">
+
+            <h2>Actualités</h2>
+
+        </div>
+
+        <div class="degrade1 BlocVideo1 ajustement1">
+
+
+
+            <CarteOpaque titre="Première grande assemblée"
+                         contenu="D'ici quelques semaines, se rassembleront autour d'une même table de premiers acteurs influents dans la communauté francophone, pour discuter d'un avenir commun ainsi que du début d'une collaboration active autour de projets prometteurs." />
+
+            <CarteOpaque titre="Sortie du Discord officiel"
+                         contenu="Après plusieurs mois de réflexion et de préparation, ce n'est plus qu'une question de jours avant que le discord officiel du Valorium, point central et fédérateur de notre communauté, n'ouvre au public !" />
+
+            <CarteOpaque titre="Développement du site"
+                         contenu="Toujours en cours de développement, la version finale du site viendra replacer l'actuelle au cours du Printemps à venir." />
+
+        </div>
+
+
+        <div class="BlocVideo1">
+            <BlocVideoTexteV1 titre="Minecraft : un support de création"
+                              cheminVideo="https://www.youtube.com/embed/UtTOK15RBrk?si=1KyRJktM7nLUg4E9&autoplay=1&mute=1&loop=1&playlist=UtTOK15RBrk"
+                              texte="@texteMinecraft" />
+        </div>
+
+        <div id="emrub"  class="BlocVideo1">
+
+            <BlocImageTexteV1 cheminImage="https://cdn.discordapp.com/attachments/1095449595892478093/1095449688267837450/2023-04-11_22.41.14.png?ex=6615a906&is=66033406&hm=87f542073fdaad0b8c2da9fc69ab5f3d825f1e2f348d66a461e737fa16ae5066&"
+                              titre="Emrub : Notre univers en jeu"
+                              texte="@texteEmrub" />
+
+
+        </div>
+
+        <div class="BlocVideo1">
+
+            <BlocTexteSurGradient titre="Mettre en valeur le travail bénévole."
+                                  contenu="@texteAssos" />
+
+        </div>
+
+
+                          
+
+    </div>
+
+    
+
+
+    <div class="finDePage">
+
+
+    </div>
+
+</div>
+
+
+
+
+@code {
+
+    private MarkupString texteVision = new MarkupString(
+    "Le cœur nos travaux consiste en la création d'échange et de collaboration entre des acteurs du Minecraft francophone. Nous oeuvrons ainsi à : " +
+
+        "<br /><br />" +
+
+        "- Favoriser le partage d'expérience et de ressources entre acteurs, dans l'optique de perdurer et de se développer durablement dans le temps.<br /><br />" +
+
+        "- Créer un support propice à la collaboration entre différents acteurs pour monter des projets techniques et communautaires conséquents.<br /><br />" +
+
+        "- inscrire nos communautés et serveurs dans une vision d'univers virtuel, prémisses des lointains métavers."
+    );
+
+
+    private MarkupString texteMinecraft = new MarkupString(
+
+        "Du fait de l'ampleur et du dynamisme de sa communauté, la plus grande au monde autour d'un jeu vidéo, Minecraft a été choisi " +
+        "comme support principal de création du Valorium. <br><br> Des API sophistiquées, en continuelle amélioration, nous permettent de " +
+        "développer des solutions techniques particulièrement poussées, telles que des mods ou encore des plugins. <br> <br> Fruits d'immenses " +
+        "travaux menés par de nombreux développeurs dans les domaines des calculs de lumières et de la distance de rendu, les graphismes du jeu " +
+        "viennent dorénavant toucher du doigt ceux des plus grands mondes ouverts, connus et reconnus."
+
+    );
+
+    private MarkupString texteAssos = new MarkupString(
+
+        "En créant l'association du Valorium, notre volonté est de valoriser et faire reconnaître le travail " +
+        "bénévole, tant en développement informatique, qu'en level design ou bien encore en community management " +
+        ", mené depuis plusieurs années déjà au sein de notre communauté."
+    );
+
+    private MarkupString texteEmrub = new MarkupString(
+    
+        "Emrub est l'un des projets principaux du Valorium. Il consiste à relier, depuis le jeu via des portails, une multitude de serveurs de manière  " + 
+        "à ce qu'ils deviennent des régions d'un grand monde uni et cohérent." + 
+        " <br> <br> L'élaboration du réseau d'Emrub et sa capacité à transférer des joueurs entre des serveurs restant autonomes dans leur administration " + 
+        " est l'un des travaux centraux du Valorium d'un point de vue technique. <br><br> Emrub, c'est aussi la volonté de créer une immersion forte du joueur dans le monde, de créer une " + 
+        " nouvelle façon de jouer au jeu, en multijoueur."
+    );
+
+}
