@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace siteValorium.components.carteProjet
+namespace portfolioSiwa.components.carteProjet
 {
     public partial class CarteProjet
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace siteValorium.components.hautDePage
+namespace portfolioSiwa.components.hautDePage
 {
     public partial class HautDePage
     {

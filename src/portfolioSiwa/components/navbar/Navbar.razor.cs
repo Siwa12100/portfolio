@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace siteValorium.components.navbar
+namespace portfolioSiwa.components.navbar
 {
     public partial class Navbar
     {
@@ -23,7 +23,7 @@ namespace siteValorium.components.navbar
 
         public void retourAccueil()
         {
-            this.navigationManager.NavigateTo("/");
+            navigationManager.NavigateTo("/");
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

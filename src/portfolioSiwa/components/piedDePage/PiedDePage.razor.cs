@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace siteValorium.components.piedDePage
+namespace portfolioSiwa.components.piedDePage
 {
     public partial class PiedDePage
     {
@@ -9,12 +9,12 @@ namespace siteValorium.components.piedDePage
 
         public void retourAccueil()
         {
-            this.navigationManager.NavigateTo("/");
+            navigationManager.NavigateTo("/");
         }
 
         public void redirectionBouton()
         {
-            this.navigationManager.NavigateTo("https://github.com/Siwa12100/portfolio");
+            navigationManager.NavigateTo("https://github.com/Siwa12100/portfolio");
         }
     }
 }
