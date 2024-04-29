@@ -15,7 +15,7 @@ namespace siteValorium.components.hautDePage
 
         protected override void OnInitialized()
         {
-            cheminImage = "/images/photoProfil.png";
+            cheminImage = "/images/photoProfil.webp";
             titre = "Jean Marcillac";
 
             MarkupString msgHautDePage = new MarkupString("Passionné par l'informatique et le numérique depuis " +
