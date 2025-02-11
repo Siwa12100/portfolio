@@ -1,0 +1,75 @@
+.contenu {
+    width: 100%;
+}
+
+.texte p, .texte-haut p {
+
+    word-wrap: break-word;
+    font-family: var(--police-texte);
+    font-size: var(--taille-texte);
+}
+
+h3 {
+    font-size: var(--h3-taille-texte);
+    font-family: var(--police-grand-titre) !important; 
+    font-weight: var(--poids-police-grand-titre) !important;
+    font-style: var(--font-style-grand-titre) !important;
+}
+
+.texte {
+    padding : 1rem;
+}
+
+.media {
+    height: auto;
+}
+
+.sous-texte {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.partie-gauche, .partie-droite {
+    width: 95%;
+}
+
+.partie-droite {
+    margin-left: 5%;
+}
+
+.bas-page {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+
+    .partie-droite, .partie-gauche {
+        
+        width: 100%;
+    }
+
+    .partie-droite {
+        margin-left: 0%;
+    }
+
+    .media {
+
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sous-texte {
+
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.2rem;
+    }
+}

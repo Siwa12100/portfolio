@@ -1,0 +1,9 @@
+@if (this.Texte != null && this.CheminRedirection != null)
+{
+    <button class="bouton" @onclick="() => Rediriger()">
+        <img src="@Icone" alt="@Alt">
+        <p>@Texte</p>
+    </button>
+}
+
+

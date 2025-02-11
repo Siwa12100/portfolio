@@ -1,0 +1,12 @@
+@namespace portfolio_siwa.Composants.Global.BlocsContenu.Titre1
+
+<div class="icone-et-titre">
+    @if (this.CheminIconeTitre != null)
+    {
+        <img src="@this.CheminIconeTitre" alt="@this.TexteTitre" />
+    }
+    <div class="separation-et-titre">
+        <h3>@this.TexteTitre</h3>
+        <div class="separateur"></div>
+    </div>
+</div>

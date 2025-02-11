@@ -1,0 +1,33 @@
+.separation-contenu {
+    margin-top : 7rem;
+}
+
+.separation-contenu-legere {
+    margin-top : 2rem;
+}
+
+.marge-pages {
+    padding-left: var(--padding-marges-page);
+    padding-right: var(--padding-marges-page);
+
+}
+
+.test {
+    font-family:var(--police-sous-titre);
+    font-weight: var(--poids-police-sous-titre);
+    font-style: var(--font-style-sous-titre);
+    font-size: calc(var(--taille-texte) * 1.2);
+
+
+
+}
+
+.effecte-escura {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+#presentation p {
+    display: none;
+}

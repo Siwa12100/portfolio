@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 928 656">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3d3a39;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #161412;
+      }
+
+      .cls-3 {
+        fill: #242221;
+      }
+
+      .cls-4 {
+        fill: #b5348b;
+      }
+
+      .cls-5 {
+        fill: #322f2e;
+      }
+
+      .cls-6 {
+        fill: #ed6fa7;
+      }
+
+      .cls-7 {
+        fill: #e95297;
+      }
+
+      .cls-8 {
+        fill: #f4f2f2;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-2" points="624 256 624 192 592 192 592 160 592 128 560 128 560 96 528 96 496 96 496 64 432 64 432 96 368 96 368 128 336 128 336 192 304 192 304 256 272 256 272 288 272 320 272 352 304 352 304 416 336 416 336 448 400 448 400 480 432 480 496 480 528 480 560 480 560 448 592 448 592 416 624 416 624 352 656 352 656 256 624 256"/>
+    <g>
+      <polygon class="cls-1" points="624 192 624 128 592 128 592 64 560 64 560 32 496 32 496 0 432 0 432 32 368 32 368 64 336 64 336 128 304 128 304 192 272 192 272 288 304 288 304 352 336 352 336 384 400 384 400 416 528 416 528 384 592 384 592 352 624 352 624 288 656 288 656 192 624 192"/>
+      <polygon class="cls-4" points="432 64 432 32 368 32 368 64 336 64 336 128 368 128 368 96 400 96 400 64 432 64"/>
+      <polygon class="cls-7" points="368 160 368 96 400 96 400 64 464 64 464 128 432 128 432 160 368 160"/>
+      <rect class="cls-6" x="432" y="64" width="32" height="64"/>
+      <rect class="cls-6" x="368" y="128" width="64" height="32"/>
+      <rect class="cls-3" x="432" width="64" height="32"/>
+      <rect class="cls-3" x="496" y="32" width="64" height="32"/>
+      <rect class="cls-3" x="336" y="352" width="64" height="32"/>
+      <rect class="cls-3" x="304" y="288" width="32" height="64"/>
+      <rect class="cls-3" x="304" y="128" width="32" height="64"/>
+      <rect class="cls-3" x="560" y="64" width="32" height="64"/>
+      <rect class="cls-3" x="592" y="128" width="32" height="64"/>
+      <rect class="cls-3" x="592" y="288" width="32" height="64"/>
+      <rect class="cls-3" x="272" y="192" width="32" height="96"/>
+      <rect class="cls-3" x="624" y="192" width="32" height="96"/>
+      <rect class="cls-3" x="528" y="352" width="64" height="32"/>
+      <rect class="cls-3" x="400" y="384" width="128" height="32"/>
+      <rect class="cls-4" x="528" y="32" width="32" height="32"/>
+      <rect class="cls-4" x="560" y="64" width="32" height="32"/>
+      <rect class="cls-4" x="560" y="320" width="32" height="64"/>
+      <rect class="cls-4" x="432" y="320" width="32" height="32"/>
+      <rect class="cls-4" x="432" y="384" width="64" height="32"/>
+      <rect class="cls-4" x="272" y="256" width="32" height="32"/>
+      <rect class="cls-4" x="272" y="224" width="32" height="32"/>
+      <rect class="cls-4" x="528" y="160" width="32" height="64"/>
+      <rect class="cls-4" x="592" y="288" width="32" height="64"/>
+      <rect class="cls-4" x="464" y="288" width="32" height="64"/>
+      <rect class="cls-7" x="528" y="64" width="32" height="32"/>
+      <rect class="cls-7" x="496" y="160" width="32" height="32"/>
+      <rect class="cls-7" x="560" y="288" width="32" height="32"/>
+      <rect class="cls-7" x="592" y="256" width="32" height="32"/>
+      <rect class="cls-7" x="528" y="288" width="32" height="64"/>
+      <rect class="cls-7" x="432" y="288" width="32" height="32"/>
+      <rect class="cls-7" x="400" y="288" width="32" height="32"/>
+      <rect class="cls-7" x="400" y="320" width="32" height="32"/>
+      <rect class="cls-7" x="368" y="192" width="32" height="32"/>
+      <rect class="cls-7" x="304" y="256" width="32" height="32"/>
+      <rect class="cls-6" x="528" y="96" width="32" height="32"/>
+      <rect class="cls-6" x="496" y="192" width="32" height="32"/>
+      <rect class="cls-6" x="400" y="192" width="32" height="32"/>
+      <rect class="cls-6" x="432" y="256" width="32" height="32"/>
+      <rect class="cls-6" x="368" y="224" width="32" height="32"/>
+      <rect class="cls-6" x="304" y="224" width="32" height="32"/>
+      <polygon class="cls-5" points="464 288 496 288 496 352 400 352 400 384 528 384 528 288 592 288 592 256 624 256 624 192 592 192 592 128 560 128 560 160 560 160 560 224 464 224 464 288"/>
+      <polygon class="cls-5" points="336 288 368 288 368 320 400 320 400 352 336 352 336 288"/>
+      <rect class="cls-5" x="464" y="32" width="32" height="32"/>
+      <rect class="cls-5" x="496" y="64" width="32" height="32"/>
+      <rect class="cls-6" x="432" y="96" width="32" height="32"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-8" d="m704,432h-160v32h-32v192h64v-80h96v80h64v-192h-32v-32Zm-128,80v-16h96v16h-96Z"/>
+    <polygon class="cls-8" points="416 480 384 480 384 512 320 512 320 432 256 432 256 512 256 576 256 656 320 656 320 576 384 576 384 608 416 608 416 656 480 656 480 576 448 576 448 512 480 512 480 432 416 432 416 480"/>
+    <polygon class="cls-8" points="32 464 0 464 0 512 0 576 0 624 32 624 32 656 224 656 224 592 64 592 64 576 192 576 192 512 64 512 64 496 224 496 224 432 32 432 32 464"/>
+    <rect class="cls-8" x="768" y="432" width="64" height="224"/>
+    <rect class="cls-8" x="864" y="432" width="64" height="224"/>
+  </g>
+</svg>

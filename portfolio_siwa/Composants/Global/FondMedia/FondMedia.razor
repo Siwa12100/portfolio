@@ -1,0 +1,18 @@
+<div class="background-container">
+    <div class="background">
+        @if (BackgroundContent != null)
+        {
+            @BackgroundContent
+        }
+        else
+        {
+            <p>Le contenu de fond est vide.</p>
+        }
+    </div>
+    <div class="foreground">
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
+    </div>
+</div>

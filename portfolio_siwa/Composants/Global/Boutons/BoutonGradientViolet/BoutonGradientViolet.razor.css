@@ -1,0 +1,59 @@
+.bouton {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+    width: auto;
+    font-weight: var(--poids-police-texte);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    color: var(--couleur-texte);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bouton p {
+    margin: 0;
+    font-size: var(--taille-texte-boutons);
+}
+
+.bouton img {
+    width: auto;
+    object-fit: cover;
+    height: calc(var(--taille-texte-boutons) * 1.5);
+    margin-right: 0.7rem;
+}
+
+button {
+    transition: var(--transition-grossissement);
+    background: var(--gradient-violet-rose-peche);
+}
+
+.bouton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: white;
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: inherit;
+    transition: width 0.14s ease-in-out;
+}
+
+.bouton:hover::before {
+    width: 100%;
+}
+
+.bouton:hover {
+    font-weight: 500;
+    transform: scale(1.04);
+}
+
+@media (max-width: 1024px) {
+
+}

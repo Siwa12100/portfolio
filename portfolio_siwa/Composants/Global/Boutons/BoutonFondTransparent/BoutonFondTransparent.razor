@@ -1,0 +1,15 @@
+@if (this.Texte != null)
+{
+    <button class="bouton @(this.FondBlanc ? "style-blanc" : "style-transparent") @(this.EffetHalo ? " halo" : "")" @onclick="() => Rediriger()">
+        @if (this.Icone != null)
+        {
+            <img src="@Icone" alt="@Alt">
+        }
+        <p>@Texte</p>
+    </button>
+}
+
+<MudSnackbarProvider />
+
+
+

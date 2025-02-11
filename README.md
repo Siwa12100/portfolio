@@ -1,3 +1,3 @@
-# portfolio
+# Portfolio
 
-Code de mon portfolio personnel, réalisé à l'aide du framework .NET(9) Blazor Server.
+Code de mon portfolio, réalisé en .NET 9 Blazor server.

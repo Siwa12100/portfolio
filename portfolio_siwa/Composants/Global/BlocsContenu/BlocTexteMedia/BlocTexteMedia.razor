@@ -1,0 +1,103 @@
+@using portfolio_siwa.Composants.Global.BlocsContenu.BlocContenuGaucheDroite
+@using portfolio_siwa.Composants.Global.BlocsContenu.Titre1
+<div class="contenu">
+    <BlocContenuGaucheDroite CentrageMilieu="@this.CentrageMilieu">
+    <ContenuHaut>
+        @if (this.TexteEnHaut != null)
+        {
+            <Titre1
+                TexteTitre="@this.TexteTitre"
+                CheminIconeTitre="@this.CheminIconeTitre"
+            />
+
+            <div class="texte-haut">
+                <p>@this.TexteEnHaut</p>
+            </div>
+        }
+    </ContenuHaut>
+
+    <ContenuGauche>
+        @if (this.PositionMedia == PositionMedia.Gauche)
+        {
+            @if (this.Media != null)
+            {
+                <div class="media partie-gauche">
+                    @this.Media
+                </div>
+            }
+        }
+        else
+        {
+            @if (this.Texte != null)
+            {
+                @if (this.TexteTitre != null && this.TexteEnHaut == null)
+                {
+                    <Titre1
+                        TexteTitre="@this.TexteTitre"
+                        CheminIconeTitre="@this.CheminIconeTitre"/>
+                }
+
+                <div class="texte partie-gauche">
+                    <p>@this.Texte</p>
+                    @if (this.SousTexte != null)
+                    {
+                        <div class="sous-texte">@this.SousTexte</div> 
+                    }
+                </div>
+            }
+        }
+    </ContenuGauche>
+
+    <ContenuDroite>
+        @if (this.PositionMedia == PositionMedia.Droite)
+        {
+            @if (this.Media != null)
+            {
+                <div class="media partie-droite">
+                    @this.Media
+                </div>
+            }
+        }
+        else
+        {
+            @if (this.Media2 != null)
+            {
+                <div class="media partie-droite">
+                    @this.Media2
+                </div>
+            }
+            else
+            {
+                @if (this.Texte != null)
+                {
+                    @if (this.TexteTitre != null && this.TexteEnHaut == null)
+                    {
+                        <div class="partie-droite">
+                            <Titre1
+                                TexteTitre="@this.TexteTitre"
+                                CheminIconeTitre="@this.CheminIconeTitre"/>
+                        </div>
+                    }
+
+                    <div class="texte partie-droite">
+                        <p>@this.Texte</p>
+                        @if (this.SousTexte != null)
+                        {
+                        <div class="sous-texte">@this.SousTexte</div> 
+                        }
+                    </div>
+                }
+            }
+        }
+    </ContenuDroite>
+
+    <ContenuBas>
+        @if (this.BasPage != null)
+        {
+            <div class="bas-page">
+                @this.BasPage
+            </div>
+        }
+    </ContenuBas>
+</BlocContenuGaucheDroite>
+</div>

@@ -1,0 +1,9 @@
+@if (this.Texte != null && this.Lien != null && this.CheminIcone != null)
+{
+    <button class="bouton" @onclick="() => Rediriger()">
+        <img src="@CheminIcone" alt="Bouton Discord">
+        <p>@Texte</p>
+    </button>
+}
+
+

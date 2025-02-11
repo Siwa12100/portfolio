@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  site_alliance_elendil:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "38009:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      VIRTUAL_HOST: elendil-mc.fr
+      VIRTUAL_PORT: 8080
+      LETSENCRYPT_HOST: elendil-mc.fr
+      LETSENCRYPT_EMAIL: admin@valorium-mc.fr
+    container_name: site-elendil-conteneur
+    restart: unless-stopped
+    networks:
+      - nginx-proxy-network
+
+networks:
+  nginx-proxy-network:
+    external: true

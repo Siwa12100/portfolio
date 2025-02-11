@@ -1,0 +1,257 @@
+nav {
+    position: absolute;
+    border-radius: var(--force-bordures);
+    margin-top: 3.3vh;
+    margin-left: 18%;
+    width: 64%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.8rem;
+    background: none;
+    border-bottom: 1px solid #1e2031;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--couleur-fond-navbar);
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.bouton-discord {
+    color: white;
+    font-size: var(--taille-texte);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    font-weight: var(--poids-police-texte);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--gradient-bleu-fonce);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0;
+    transition: transform 0.4s ease, background 1s ease;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    cursor: pointer;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+.bouton-discord p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--taille-texte-boutons);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    transition: var(--transition-grossissement);
+}
+
+.bouton-discord:hover {
+    background: linear-gradient(127deg, rgba(1,33,74,1) 7%, rgba(3,63,101,1) 34%, rgba(2,29,50,1) 86%);
+    transform: scale(1.03);
+}
+
+.bouton-discord img {
+    width: auto;
+    height: calc(var(--taille-texte-boutons));
+    margin-right: 0.7rem;
+    transition: var(--transition-grossissement);
+}
+
+.bouton-discord:hover img {
+    transform: rotate(-12deg);
+}
+
+.partie-gauche,
+.centre,
+.partie-droite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.partie-gauche {
+    width: 10%;
+}
+
+.partie-gauche img {
+    max-height: 83%;
+    object-fit: contain;
+    cursor: pointer;
+    transition: var(--transition-grossissement);
+}
+
+.partie-gauche img:hover {
+    transform: scale(1.1);
+}
+
+.centre {
+    width: 55%;
+    justify-content: space-around;
+}
+
+.partie-droite {
+    width: 20%;
+    text-align: right;
+}
+
+ul {
+
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+li {
+    position: relative;
+    color: var(--couleur-texte);
+    font-size: var(--taille-texte);
+    padding-left: 2.1rem;
+    transition: transform 0.4s ease;
+}
+
+li:hover {
+    transform: scale(1.1);
+}
+
+li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.9rem;
+    height: 1.9rem;
+    background-image: url('/Images/ItemsMinecraft/Nether_Star.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.4s ease;
+}
+
+li:hover::before {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+li::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 2.1rem;
+    width: 0%;
+    height: 2px;
+    background-color: var(--couleur-texte);
+    transition: width 0.3s ease;
+}
+
+li:hover::after {
+    width: calc(100% - 2.1rem);
+}
+
+.menu-burger {
+    display: none; 
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--couleur-texte);
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.menu-burger:hover {
+    transform: scale(1.2);
+}
+
+
+@media (max-width: 1024px) {
+
+    .menu-burger {
+        display: block; 
+    }
+
+    nav {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    ul {
+        display: none; 
+    }
+
+    .partie-gauche {
+        width: 20%;
+        padding-left: 1rem;
+    }
+
+    .partie-droite {
+        width: 39%;
+    }
+
+    .centre {
+        width: 20%;
+    }
+
+    .navbar-menu {
+        padding-top: 1rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: calc(4.7rem + 0.5rem);
+        background: none;
+        border-radius: 10px;
+        width: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .navbar-menu::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--couleur-fond-navbar);
+        opacity: 0.5;
+        z-index: -1;
+        border-radius: inherit;
+    }
+
+    .navbar-menu.open {
+        display: flex; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+    }
+
+    li {
+        margin-bottom: 1.3rem;
+    }
+
+    li::before {
+        display: inline-block;
+    }
+
+    .partie-droite {
+        margin-right: 1rem;
+    }
+}

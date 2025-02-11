@@ -1,0 +1,59 @@
+.bouton {
+    position: relative;
+    overflow: hidden;
+    border-radius: 13px;
+    font-size: 170%;
+    font-weight: var(--poids-police-texte);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    color: var(--couleur-texte);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.bouton img {
+    width: auto;
+    object-fit: cover;
+    height: calc(var(--taille-texte-boutons) * 1.5);
+    margin-right: 0.7rem;
+}
+
+.bouton p {
+    margin: 0;
+    font-size: var(--taille-texte-boutons);
+    font-style: var(--font-style-texte);
+    font-weight: var(--poids-police-texte);
+    font-family: var(--police-texte);
+
+}
+
+button {
+    transition: var(--transition-grossissement);
+    background: var(--gradient-discord);
+}
+
+.bouton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: white;
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: inherit;
+    transition: width 0.14s ease-in-out;
+}
+
+.bouton:hover::before {
+    width: 100%;
+}
+
+.bouton:hover {
+    font-weight: 500;
+    transform: scale(1.04);
+}
+

@@ -1,0 +1,22 @@
+﻿@inherits LayoutComponentBase
+
+@using portfolio_siwa.Composants.Global.NavBar;
+@using portfolio_siwa.Composants.Global.Footer;
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+@* Needed for dialogs *@
+<MudDialogProvider />
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<MudScrollToTop>
+    <MudFab Color="Color.Dark" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+</MudScrollToTop>
+
+<div class="contenu">
+    <NavBar/>
+    @Body
+    <Footer/>
+</div>

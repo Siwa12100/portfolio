@@ -1,0 +1,31 @@
+<div class="contenu">
+
+    <div class="contenu-haut">
+        @if (this.ContenuHaut != null)
+        {
+            @this.ContenuHaut
+        }
+    </div>
+
+    <div class="centre @(this.CentrageMilieu ? "centrage-milieu" : "centrage-haut-div")">
+        <div class="contenu-gauche">
+            @if (this.ContenuGauche != null)
+            {
+                @this.ContenuGauche
+            }
+        </div>
+        <div class="contenu-droite">
+            @if (this.ContenuDroite != null)
+            {
+                @this.ContenuDroite
+            }
+        </div>
+    </div>
+
+    <div class="contenu-bas">
+        @if (this.ContenuBas != null)
+        {
+            @this.ContenuBas
+        }    
+    </div>
+</div>
