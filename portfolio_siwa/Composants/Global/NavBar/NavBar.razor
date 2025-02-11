@@ -1,49 +1,4 @@
 <nav>
-    <div class="partie-gauche">
-        <img src="/Images/Elendil/logoElendil.png" alt="Logo Elendil" @onclick='() => NavigationManager?.NavigateTo("/")'>
-    </div>
 
-    <div class="centre">
-        <button class="menu-burger" @onclick="ToggleMenu">
-            ☰
-        </button>
-        <ul class="navbar-menu @(isMenuOpen ? "open" : "closed")">
-            <li @onclick="ToggleMenu"><NavLink href="/presentation" class="nav-link" ActiveClass="active">Présentation</NavLink></li>
-            <li @onclick="ToggleMenu"><NavLink href="/serveurs" class="nav-link" ActiveClass="active">Serveurs</NavLink></li>
-            <li @onclick="ToggleMenu"><NavLink href="/agora" class="nav-link" ActiveClass="active">Agora</NavLink></li>
-        </ul>
-    </div>
-
-    <div class="partie-droite">
-        <button class="bouton-discord" @onclick="Rediriger">
-            <img src="Images/Icones/discord_pixel_art.svg" alt="Discord Icon">
-            <p>Discord</p>
-        </button>
-    </div>
 </nav>
 
-@code {
-    private bool isMenuOpen = false;
-
-    private void ToggleMenu()
-    {
-        isMenuOpen = !isMenuOpen;
-        Console.WriteLine("ToggleMenu, isMenuOpen = " + isMenuOpen);
-
-    }
-}
-
-
-    @* .navbar-menu {
-        /* display: none; 
-        display: block; */
-        flex-direction: column;
-        position: absolute;
-        /* top: calc(4.7rem + 0.5rem); */
-        background-color: var(--couleur-fond-navbar);
-        border-radius: 10px;
-        width: auto;
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    } *@

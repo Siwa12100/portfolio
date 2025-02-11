@@ -1,10 +1,10 @@
 :root {
-    --couleur-de-fond: #17152D;
+    --couleur-de-fond: #CAD2C5;
     --couleur-fond-navbar: black;
 
 
     --police-texte: 'Lato', serif;
-    --couleur-texte: white;
+    --couleur-texte: #2F3E46;
 
     --h1-taille-texte: 7rem;
     --h2-taille-texte: 2.2rem;
