@@ -1,2 +1,4 @@
 # portfolio
-Code de mon portfolio personnel, réalisé à l'aide du framework .NET Blazor.
+
+
+Ancienne version de mon portfolio (plus d'actualité...). 
