@@ -6,14 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "38009:8080"
+      - "38011:8080"
     environment:
       ASPNETCORE_ENVIRONMENT: Production
-      VIRTUAL_HOST: elendil-mc.fr
+      VIRTUAL_HOST: jean-marcillac.fr
       VIRTUAL_PORT: 8080
-      LETSENCRYPT_HOST: elendil-mc.fr
-      LETSENCRYPT_EMAIL: admin@valorium-mc.fr
-    container_name: site-elendil-conteneur
+      LETSENCRYPT_HOST: jean-marcillac.fr
+      LETSENCRYPT_EMAIL: jean.marcillac12@gmail.com
+    container_name: portfolio-siwa
     restart: unless-stopped
     networks:
       - nginx-proxy-network
