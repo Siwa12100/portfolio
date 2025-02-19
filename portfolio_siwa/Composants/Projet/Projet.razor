@@ -1,0 +1,16 @@
+@namespace portfolio_siwa.Composants.Projet
+
+@using portfolio_siwa.Composants.Global.BlocsContenu.BlocTexteMedia
+@using portfolio_siwa.Composants.Global.Images.ImageDimensionee
+
+<div class="contenu">
+    <BlocTexteMedia TexteTitre="@Titre" CheminIconeTitre="@CheminIcone"
+                    PositionMedia="PositionMedia.Gauche" Texte="@Texte">
+        <Media>
+            <ImageDimensionee
+                CheminImage="@ImagePrincipale"
+                TexteAlternatif="Image du portfolio"
+                BordureArrondie="true"/>
+        </Media>
+    </BlocTexteMedia>
+</div>

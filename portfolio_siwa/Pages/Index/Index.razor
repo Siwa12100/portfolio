@@ -6,9 +6,26 @@
 @using portfolio_siwa.Composants.Global.AnchorNavigation
 @using portfolio_siwa.Composants.Global.Boutons.BoutonGradientViolet
 @using portfolio_siwa.Composants.Global.BlocsContenu.Bloc3Contenu
+@using portfolio_siwa.Composants.Projet
 
 @page "/"
 
 <AnchorNavigation />
 
-<h2>Pitié marche</h2>
+<div class="contenu">
+    <section class="separation-contenu marge-pages">
+        <Projet
+            Titre="@Titre"
+            ImagePrincipale="@ImagePrincipale"
+            Texte="@Texte"/>
+    </section>
+</div>
+
+@code {
+    private string Titre => "Siwa";
+    private string ImagePrincipale => "Images/agora1.png";
+
+    MarkupString? Texte => new MarkupString(
+        "Siwa est une application web de gestion de projets. Elle permet de suivre l'avancement des projets, de gérer les tâches, les ressources et les coûts. Elle est développée en C# avec le framework ASP.NET Core et utilise une base de données SQL Server."
+    );
+}

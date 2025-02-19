@@ -17,9 +17,6 @@
     font-weight: var(--poids-police-sous-titre);
     font-style: var(--font-style-sous-titre);
     font-size: calc(var(--taille-texte) * 1.2);
-
-
-
 }
 
 .effecte-escura {
