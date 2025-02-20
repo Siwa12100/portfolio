@@ -10,6 +10,8 @@
     padding-right: 1.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
 }
 
 .bouton p {
@@ -19,7 +21,7 @@
 
 .style-blanc {
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 .style-blanc p {
@@ -76,11 +78,5 @@ button {
 }
 
 @media (max-width: 1024px) {
-    /* .bouton {
-        font-size: 170%;
-    }
 
-    .bouton img {
-        height: 70%;
-    } */
 }

@@ -18,5 +18,11 @@ namespace portfolio_siwa.Composants.Projet
 
         [Parameter]
         public MarkupString? Texte { get; set; }
+
+        [Parameter]
+        public string? LienGithub { get; set; }
+
+        [Parameter]
+        public RenderFragment? BasPage { get; set; }
     }
 }

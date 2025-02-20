@@ -7,6 +7,7 @@
 @using portfolio_siwa.Composants.Global.Boutons.BoutonGradientViolet
 @using portfolio_siwa.Composants.Global.BlocsContenu.Bloc3Contenu
 @using portfolio_siwa.Composants.Projet
+@using portfolio_siwa.Composants.Global.Techno
 
 @page "/"
 
@@ -17,7 +18,18 @@
         <Projet
             Titre="@Titre"
             ImagePrincipale="@ImagePrincipale"
-            Texte="@Texte"/>
+            Texte="@Texte">
+        <BasPage>
+            <div class="technos">
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            </div>
+        </BasPage>    
+        </Projet>
     </section>
 </div>
 

@@ -2,6 +2,8 @@
 
 @using portfolio_siwa.Composants.Global.BlocsContenu.BlocTexteMedia
 @using portfolio_siwa.Composants.Global.Images.ImageDimensionee
+@using portfolio_siwa.Composants.Global.Boutons.BoutonDiscord
+@using portfolio_siwa.Composants.Global.Boutons.BoutonBlanc
 
 <div class="contenu">
     <BlocTexteMedia TexteTitre="@Titre" CheminIconeTitre="@CheminIcone"
@@ -12,5 +14,17 @@
                 TexteAlternatif="Image du portfolio"
                 BordureArrondie="true"/>
         </Media>
+        <SousTexte>
+            <div class="sous-texte">
+                <BoutonGithub Lien="@LienGithub" Texte="Code du projet"/>
+                <BoutonBlanc Texte="Schéma d'architecture" Lien="..."/>
+            </div>
+        </SousTexte>
+        <BasPage>
+            @if (this.BasPage != null)
+            {
+                @BasPage
+            }
+        </BasPage>
     </BlocTexteMedia>
 </div>

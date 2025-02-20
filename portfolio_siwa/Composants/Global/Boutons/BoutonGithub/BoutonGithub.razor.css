@@ -1,0 +1,46 @@
+button {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+    width: auto;
+    font-weight: var(--poids-police-texte);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+}
+
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+button p {
+    margin: 0;
+    font-size: var(--taille-texte-boutons);   
+    color : white;
+}
+
+button img {
+    width: auto;
+    object-fit: cover;
+    height: calc(var(--taille-texte-boutons) * 1.5);
+    margin-right: 0.7rem;
+}
+
+button {
+    transition: var(--transition-grossissement);
+}
+
+button:hover {
+    font-weight: 500;
+    transform: scale(1.04);
+    background-color: black;
+}

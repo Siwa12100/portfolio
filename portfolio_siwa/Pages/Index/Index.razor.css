@@ -60,12 +60,20 @@ section {
     width: 100%;
 }
 
-@media (max-width: 1024px) {
+.technos {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 
+@media (max-width: 1024px) {
     .interieur {
         margin: 0.7rem;
     }
-    
 }
 
 
