@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using portfolio_siwa.Composants.Global.BlocsContenu.BlocTexteMedia;
 
 namespace portfolio_siwa.Composants.Projet
 {
@@ -24,5 +25,8 @@ namespace portfolio_siwa.Composants.Projet
 
         [Parameter]
         public RenderFragment? BasPage { get; set; }
+
+        [Parameter]
+        public PositionMedia PositionMedia { get; set; }
     }
 }

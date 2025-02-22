@@ -3,11 +3,11 @@
 @using portfolio_siwa.Composants.Global.BlocsContenu.BlocTexteMedia
 @using portfolio_siwa.Composants.Global.Images.ImageDimensionee
 @using portfolio_siwa.Composants.Global.Boutons.BoutonDiscord
-@using portfolio_siwa.Composants.Global.Boutons.BoutonBlanc
+@using portfolio_siwa.Composants.Global.Boutons.BoutonFondTransparent
 
 <div class="contenu">
     <BlocTexteMedia TexteTitre="@Titre" CheminIconeTitre="@CheminIcone"
-                    PositionMedia="PositionMedia.Gauche" Texte="@Texte">
+                    PositionMedia="@PositionMedia" Texte="@Texte">
         <Media>
             <ImageDimensionee
                 CheminImage="@ImagePrincipale"
@@ -17,7 +17,8 @@
         <SousTexte>
             <div class="sous-texte">
                 <BoutonGithub Lien="@LienGithub" Texte="Code du projet"/>
-                <BoutonBlanc Texte="Schéma d'architecture" Lien="..."/>
+                <BoutonFondTransparent Texte="Détails sur le projet"
+                    Icone="/Images/logos/logoLampe.png" FondBlanc="true"/>
             </div>
         </SousTexte>
         <BasPage>

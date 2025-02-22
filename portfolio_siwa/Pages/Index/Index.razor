@@ -18,7 +18,8 @@
         <Projet
             Titre="@Titre"
             ImagePrincipale="@ImagePrincipale"
-            Texte="@Texte">
+            Texte="@Texte"
+            PositionMedia="PositionMedia.Gauche">
         <BasPage>
             <div class="technos">
                 <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
@@ -30,6 +31,24 @@
         </BasPage>    
         </Projet>
     </section>
+
+    <section class="separation-contenu marge-pages">
+    <Projet
+        Titre="@Titre"
+        ImagePrincipale="@ImagePrincipale"
+        Texte="@Texte"
+        PositionMedia="PositionMedia.Droite">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
 </div>
 
 @code {

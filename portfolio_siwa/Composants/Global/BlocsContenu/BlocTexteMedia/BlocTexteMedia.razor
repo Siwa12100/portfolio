@@ -9,13 +9,11 @@
                 TexteTitre="@this.TexteTitre"
                 CheminIconeTitre="@this.CheminIconeTitre"
             />
-
             <div class="texte-haut">
                 <p>@this.TexteEnHaut</p>
             </div>
         }
     </ContenuHaut>
-
     <ContenuGauche>
         @if (this.PositionMedia == PositionMedia.Gauche)
         {
@@ -47,7 +45,6 @@
             }
         }
     </ContenuGauche>
-
     <ContenuDroite>
         @if (this.PositionMedia == PositionMedia.Droite)
         {
@@ -83,7 +80,7 @@
                         <p>@this.Texte</p>
                         @if (this.SousTexte != null)
                         {
-                        <div class="sous-texte">@this.SousTexte</div> 
+                            <div class="sous-texte">@this.SousTexte</div> 
                         }
                     </div>
                 }
