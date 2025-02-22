@@ -1,15 +1,27 @@
 <nav>
-    <div class="contenu">
-        <ul>
-            <li id="accueil">Accueil</li>
-            <li id="travaux">Travaux</li>
-            <li id="propos">À propos</li>
-        </ul>
-
-        <button class=".bouton-cv">
-            <img src="Images/logos/logocv.svg" alt="cv">
-            <p>CV</p>
-        </button>
-    </div>
+  <div class="contenu-nav">
+    <ul class="menu-principal">
+      <li id="accueil">Accueil</li>
+      <li id="travaux">Travaux</li>
+      <li id="propos">À propos</li>
+    </ul>
+    <button class="bouton-burger" @onclick="ToggleMenu">☰</button>
+    <ul class="menu-mobile @(menuVisible ? "ouvert" : "ferme")">
+      <li @onclick="ToggleMenu" id="accueil-mobile">Accueil</li>
+      <li @onclick="ToggleMenu" id="travaux-mobile">Travaux</li>
+      <li @onclick="ToggleMenu" id="propos-mobile">À propos</li>
+    </ul>
+    <button class="bouton-cv">
+      <img src="Images/logos/logocv.svg" alt="cv">
+      <p>CV</p>
+    </button>
+  </div>
 </nav>
 
+@code {
+    private bool menuVisible = false;
+    private void ToggleMenu()
+    {
+        menuVisible = !menuVisible;
+    }
+}

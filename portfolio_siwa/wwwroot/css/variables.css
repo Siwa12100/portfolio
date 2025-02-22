@@ -1,9 +1,7 @@
 :root {
     --couleur-de-fond: #25274d;
-    --couleur-fond-navbar: black;
-
-
-    --police-texte: 'Lato', serif;
+    --bleu-fonce: #25274D;
+    /* --police-texte: 'Lato', serif; */
     --couleur-texte: white;
 
     --h1-taille-texte: 7rem;
@@ -11,18 +9,24 @@
     --h3-taille-texte: 1.5rem;
     --taille-texte: 1.1rem;
 
-
-    --police-grand-titre: "Uncial Antiqua", serif;
+    /* --police-grand-titre: "Uncial Antiqua", serif; */
+    --police-grand-titre: 'Lato', serif;
     --poids-police-grand-titre: 400;
     --font-style-grand-titre: normal;
 
-    --police-sous-titre : "Cardo", serif;
+    /* --police-sous-titre : "Cardo", serif; */
+    --police-sous-titre: 'Lato', serif;
     --poids-police-sous-titre: 400;
     --font-style-sous-titre: normal;
 
-    --police-texte: "Source Code Pro", serif;
+    /* --police-texte: "Source Code Pro", serif; */
+    --police-texte: "Roboto Slab", serif;
+
+
     --poids-police-texte: 400;
     --font-style-texte: normal;
+
+    --gradient-violet-orange: linear-gradient(159deg, rgba(95,81,149,1) 6%, rgba(131,97,120,1) 32%, rgba(167,113,90,1) 59%, rgba(255,153,19,1) 100%);
 
     --taille-texte-boutons: calc(var(--taille-texte) * 1.1);
     --force-bordures: 20px;

@@ -2,17 +2,15 @@ nav {
     position: fixed;
     width: 100%;
     z-index: 1000;
+    height: 4.8rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 4.8rem;
+    justify-content: flex-end;
     background: none;
-    /* border-bottom: 1px solid #1e2031; */
+    padding-right: 1rem;
+  }
 
-    border : 3px solid red;
-}
-
-nav::before {
+  nav::before {
     content: '';
     position: absolute;
     top: 0;
@@ -23,113 +21,41 @@ nav::before {
     opacity: 0.2;
     z-index: -1;
     border-radius: inherit;
-}
+  }
 
-.bouton-cv {
-    color: white;
-    font-size: var(--taille-texte);
-    font-family: var(--police-texte);
-    font-style: var(--font-style-texte);
-    font-weight: var(--poids-police-texte);
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--gradient-bleu-fonce);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 0;
-    transition: transform 0.4s ease, background 1s ease;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-    cursor: pointer;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-}
-
-.bouton-cv p {
-    margin: 0;
-    padding: 0;
-    font-size: var(--taille-texte-boutons);
-    font-family: var(--police-texte);
-    font-style: var(--font-style-texte);
-    transition: var(--transition-grossissement);
-}
-
-.bouton-cv:hover {
-    background: linear-gradient(127deg, rgba(1,33,74,1) 7%, rgba(3,63,101,1) 34%, rgba(2,29,50,1) 86%);
-    transform: scale(1.03);
-}
-
-.bouton-cv img {
-    width: auto;
-    height: calc(var(--taille-texte-boutons));
-    margin-right: 0.7rem;
-    transition: var(--transition-grossissement);
-}
-
-.bouton-cv:hover img {
-    transform: rotate(-12deg);
-}
-
-.partie-gauche,
-.contenu,
-.partie-droite {
+  .contenu-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.partie-gauche {
-    width: 10%;
-}
-
-.partie-gauche img {
-    max-height: 83%;
-    object-fit: contain;
-    cursor: pointer;
-    transition: var(--transition-grossissement);
-}
-
-.partie-gauche img:hover {
-    transform: scale(1.1);
-}
-
-.contenu {
+    justify-content: flex-end;
+    gap: 2rem;
     width: 55%;
-    justify-content: space-around;
-}
+    margin-right: 7rem;
+  }
 
-.partie-droite {
-    width: 20%;
-    text-align: right;
-}
-
-ul {
-
+  .menu-principal {
     list-style: none;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
     padding: 0;
     margin: 0;
-    width: 100%;
-}
+  }
 
-li {
+  .menu-principal li {
     position: relative;
     color: var(--couleur-texte);
     font-size: var(--taille-texte);
-    padding-left: 2.1rem;
+    font-family: var(--police-texte);
+    padding-left: 2.6rem;
+    margin-left: 3.3rem;
     transition: transform 0.4s ease;
-}
+  }
 
-li:hover {
+  .menu-principal li:hover {
     transform: scale(1.1);
-}
+  }
 
-li::before {
+  .menu-principal li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -137,29 +63,26 @@ li::before {
     transform: translateY(-50%);
     width: 1.9rem;
     height: 1.9rem;
-    /* background-image: url('/Images/ItemsMinecraft/Nether_Star.gif'); */
     background-size: contain;
     background-repeat: no-repeat;
     transition: transform 0.4s ease;
-}
+  }
 
-#accueil::before {
+  #accueil::before {
     background-image: url('/Images/logos/logoHome.svg');
-}
-
-#travaux::before {
+  }
+  #travaux::before {
     background-image: url('/Images/logos/logobuild.svg');
-}
-
-#propos::before {
+  }
+  #propos::before {
     background-image: url('/Images/logos/logogredon.svg');
-}
+  }
 
-li:hover::before {
-    transform: translateY(-50%) rotate(45deg);
-}
+  .menu-principal li:hover::before {
+    transform: translateY(-50%) rotate(20deg);
+  }
 
-li::after {
+  .menu-principal li::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -168,100 +91,170 @@ li::after {
     height: 2px;
     background-color: var(--couleur-texte);
     transition: width 0.3s ease;
-}
+  }
 
-li:hover::after {
+  .menu-principal li:hover::after {
     width: calc(100% - 2.1rem);
-}
+  }
 
-.menu-burger {
-    display: none; 
+  .bouton-cv {
+    color: white;
+    font-size: var(--taille-texte);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    font-weight: var(--poids-police-texte);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-violet-orange);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0.3rem 0.8rem;
+    transition: transform 0.4s ease, background 1s ease;
+    cursor: pointer;
+    margin-left: 2.2rem;
+  }
+
+  .bouton-cv p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--taille-texte-boutons);
+    font-family: var(--police-texte);
+    font-style: var(--font-style-texte);
+    transition: var(--transition-grossissement);
+  }
+
+  .bouton-cv:hover {
+    transform: scale(1.03);
+  }
+
+  .bouton-cv img {
+    width: auto;
+    height: calc(var(--taille-texte-boutons));
+    margin-right: 0.7rem;
+    transition: var(--transition-grossissement);
+  }
+
+  .bouton-cv:hover img {
+    transform: rotate(-12deg);
+  }
+
+  .bouton-burger {
+    display: none;
     font-size: 2rem;
     background: none;
     border: none;
     color: var(--couleur-texte);
     cursor: pointer;
     transition: transform 0.4s ease;
-}
+  }
 
-.menu-burger:hover {
+  .bouton-burger:hover {
     transform: scale(1.2);
-}
+  }
 
+  .menu-mobile {
+    display: none;
+  }
 
-@media (max-width: 1024px) {
-
-    .menu-burger {
-        display: block; 
-    }
+  @media (max-width: 1024px) {
 
     nav {
-        width: 80%;
-        margin-left: 10%;
+      padding-right: 0;
     }
 
-    ul {
-        display: none; 
+    .contenu-nav {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
     }
 
-    .partie-gauche {
-        width: 20%;
-        padding-left: 1rem;
+    .menu-principal {
+      display: none;
     }
 
-    .partie-droite {
-        width: 39%;
+    .bouton-burger {
+      display: block;
     }
 
-    .centre {
-        width: 20%;
+    .menu-mobile {
+      list-style: none;
+      padding: 1rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: calc(4.8rem + 0rem);
+      background-color: var(--bleu-fonce);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .navbar-menu {
-        padding-top: 1rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: calc(4.7rem + 0.5rem);
-        background: none;
-        border-radius: 10px;
-        width: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
+    .menu-mobile.ouvert {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
-    .navbar-menu::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: var(--couleur-fond-navbar);
-        opacity: 0.5;
-        z-index: -1;
-        border-radius: inherit;
+    .menu-mobile.ferme {
+      transform: translateY(-10px);
     }
 
-    .navbar-menu.open {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: start;
+    .menu-mobile li {
+      position: relative;
+      color: var(--couleur-texte);
+      font-size: var(--taille-texte);
+      font-family: var(--police-texte);
+      padding: 0.5rem 1rem;
+      transition: transform 0.4s ease;
+      margin: 0.5rem 0;
     }
 
-    li {
-        margin-bottom: 1.3rem;
+    .menu-mobile li:hover {
+      transform: scale(1.05);
     }
 
-    li::before {
-        display: inline-block;
+    .menu-mobile li::before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
-    .partie-droite {
-        margin-right: 1rem;
+    #accueil-mobile::before {
+      background-image: url('/Images/logos/logoHome.svg');
     }
-}
+
+    #travaux-mobile::before {
+      background-image: url('/Images/logos/logobuild.svg');
+    }
+
+    #propos-mobile::before {
+      background-image: url('/Images/logos/logogredon.svg');
+    }
+
+    .menu-mobile li::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      background: var(--couleur-texte);
+      margin-top: 0.5rem;
+      opacity: 0.5;
+    }
+
+    .bouton-cv {
+      margin-left: 1rem;
+    }
+  }
+  
