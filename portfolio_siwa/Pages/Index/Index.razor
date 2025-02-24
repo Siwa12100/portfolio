@@ -8,12 +8,19 @@
 @using portfolio_siwa.Composants.Global.BlocsContenu.Bloc3Contenu
 @using portfolio_siwa.Composants.Projet
 @using portfolio_siwa.Composants.Global.Techno
+@using portfolio_siwa.Composants.Global.HautPage
 
 @page "/"
 
 <AnchorNavigation />
 
 <div class="contenu">
+
+    <div class="haut-page separation-contenu marge-pages">
+        <HautPage />
+    </div>
+        
+
     <section class="separation-contenu marge-pages">
         <Projet
             Titre="@Titre"

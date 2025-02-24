@@ -6,6 +6,10 @@
     overflow: hidden;
 }
 
+.haut-page {
+    margin-top: 17vh;
+}
+
 #presentation p {
     color : red;
     display: none;
