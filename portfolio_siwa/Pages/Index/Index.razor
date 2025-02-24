@@ -9,6 +9,7 @@
 @using portfolio_siwa.Composants.Projet
 @using portfolio_siwa.Composants.Global.Techno
 @using portfolio_siwa.Composants.Global.HautPage
+@using portfolio_siwa.Composants.Global.BasPage
 
 @page "/"
 
@@ -17,11 +18,17 @@
 <div class="contenu">
 
     <div class="haut-page separation-contenu marge-pages">
+        <div id="home">
+            <p>coucou</p>
+        </div>
         <HautPage />
     </div>
         
 
-    <section class="separation-contenu marge-pages">
+    <section class="separation-contenu-legere marge-pages">
+        <div id="travaux">
+            <p>coucou</p>
+        </div>
         <Projet
             Titre="@Titre"
             ImagePrincipale="@ImagePrincipale"
@@ -40,22 +47,29 @@
     </section>
 
     <section class="separation-contenu marge-pages">
-    <Projet
-        Titre="@Titre"
-        ImagePrincipale="@ImagePrincipale"
-        Texte="@Texte"
-        PositionMedia="PositionMedia.Droite">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
-            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
-            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
-            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
-            <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+        <Projet
+            Titre="@Titre"
+            ImagePrincipale="@ImagePrincipale"
+            Texte="@Texte"
+            PositionMedia="PositionMedia.Droite">
+        <BasPage>
+            <div class="technos">
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+                <Techno Nom="ASP.NET Core" Description="Framework de développement web" Logo="Images/technos/csharp.png" />
+            </div>
+        </BasPage>    
+        </Projet>
+    </section>
+
+    <div class="bas-page separation-contenu marge-pages">
+        <div id="propos">
+            <p>coucou</p>
         </div>
-    </BasPage>    
-    </Projet>
-</section>
+        <BasPage />
+    </div>
 </div>
 
 @code {

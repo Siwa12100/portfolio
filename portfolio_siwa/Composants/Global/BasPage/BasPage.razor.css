@@ -1,0 +1,41 @@
+.contenu {
+    height: 47vh;
+    width: 93%;
+    background: linear-gradient(150deg, #2b2e4a, #3e345e, #57386e, #723b78, #903c7a, #af3d73, #cd3f63, #e84545);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+
+
+h2 {
+    font-family: var(--police-grand-titre);
+    font-size: var(--h2-taille-texte);
+    font-weight: var(--poids-police-grand-titre);
+    font-style: var(--font-style-grand-titre);
+    color: var(--couleur-texte);
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+p {
+    font-family: var(--police-texte);
+    font-size: var(--taille-texte);
+    font-weight: var(--poids-police-texte);
+    font-style: var(--font-style-texte);
+    color: var(--couleur-texte);
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.reseaux {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
