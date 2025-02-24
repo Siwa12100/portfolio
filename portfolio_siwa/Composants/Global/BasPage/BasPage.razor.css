@@ -1,7 +1,8 @@
 .contenu {
     height: auto;
     width: 93%;
-    background: linear-gradient(150deg, #2b2e4a, #3e345e, #57386e, #723b78, #903c7a, #af3d73, #cd3f63, #e84545);
+    /* background: linear-gradient(150deg, #2b2e4a, #3e345e, #57386e, #723b78, #903c7a, #af3d73, #cd3f63, #e84545); */
+    background: var(--gradient-violet-orange);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
     margin-bottom: 2rem;
