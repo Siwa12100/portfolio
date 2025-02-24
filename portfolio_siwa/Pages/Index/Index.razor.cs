@@ -13,7 +13,7 @@ namespace portfolio_siwa.Pages.Index
         protected string? GeneSenseDescriptionBlazor;
         protected string? GeneSenseDescriptionDocker;
         protected string? GeneSenseDescriptionYolo;
-        protected string? GenseSenseGithub;
+        protected string? GenseSenseGithub = "https://github.com/Siwa12100/projet-ia";
         protected MarkupString? GenseSenseTextePresentation;
         protected DetailsProjet? DetailsProjetGenseSense;
 
