@@ -23,13 +23,3 @@ window.copyToClipboard = (text) => {
         window.copyToClipboardFallback(text);
     }
 };
-
-
-
-// window.copyToClipboard = (text) => {
-//     navigator.clipboard.writeText(text).then(() => {
-//         console.log("Texte copié avec succès !");
-//     }).catch(err => {
-//         console.error("Erreur lors de la copie : ", err);
-//     });
-// };
