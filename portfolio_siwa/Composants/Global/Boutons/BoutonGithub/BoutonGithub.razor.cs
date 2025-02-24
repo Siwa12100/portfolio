@@ -14,11 +14,28 @@ namespace portfolio_siwa.Composants.Global.Boutons.BoutonDiscord
         [Inject]
         public NavigationManager? NavigationManager { get; set; }
 
-        private void OuvrirLien()
+        [Inject]
+        public IJSRuntime? JSRuntime { get; set; }
+
+        private async Task OuvrirLien()
         {
-            if (Lien != null && this.NavigationManager != null)
+            if (this.NavigationManager is null) {
+                Console.WriteLine("NavigationManager est null");
+                return;
+            }
+            if (this.Lien is null) {
+                Console.WriteLine("Lien est null");
+                return;
+            }
+
+            var url = NavigationManager.ToAbsoluteUri(this.Lien).ToString();
+            if (this.JSRuntime is not null)
             {
-                this.NavigationManager.NavigateTo(Lien);
+                await this.JSRuntime.InvokeVoidAsync("window.open", url, "_blank");
+            }
+            else
+            {
+                Console.WriteLine("Impossible d'ouvrir le lien");
             }
         }
     }
