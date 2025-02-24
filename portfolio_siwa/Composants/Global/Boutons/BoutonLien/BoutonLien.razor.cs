@@ -15,10 +15,10 @@ namespace portfolio_siwa.Composants.Global.Boutons.BoutonLien
         [Parameter]
         public bool? ModeCopierColler { get; set; }
 
-        [Parameter]
+        [Inject]
         public NavigationManager? NavigationManager { get; set; }
 
-        [Parameter]
+        [Inject]
         public IJSRuntime? JSRuntime { get; set; }
 
         [Parameter]
@@ -32,17 +32,23 @@ namespace portfolio_siwa.Composants.Global.Boutons.BoutonLien
 
         protected async Task BoutonClique()
         {   
-
+            Console.WriteLine("Bouton cliqué");
             if (this.ModeCopierColler != null && this.ModeCopierColler == true) {
+                Console.WriteLine("Copie du contenu");
                 await this.CopierContenuCoordonnees();
             } else {
+                Console.WriteLine("Redirection vers le lien");
                 await this.RedirigerVersLien();
             }
         }
 
         protected async Task CopierContenuCoordonnees()
         {
-            if (this.JSRuntime is null) return;
+            if (this.JSRuntime is null) {
+                Console.WriteLine("JSRuntime est null");
+                return;
+            }
+            
             await JSRuntime.InvokeVoidAsync("copyToClipboard", this.Texte); 
 
             if (this.TypeLien == 1){
@@ -56,8 +62,15 @@ namespace portfolio_siwa.Composants.Global.Boutons.BoutonLien
 
         protected async Task RedirigerVersLien()
         {
-            if (this.NavigationManager is null) return;
-            if (this.Lien is null) return;
+            if (this.NavigationManager is null) {
+                Console.WriteLine("NavigationManager est null");
+                return;
+            }
+            if (this.Lien is null) {
+                Console.WriteLine("Lien est null");
+                return;
+            }
+
             var url = NavigationManager.ToAbsoluteUri(this.Lien).ToString();
             if (this.JSRuntime is not null)
             {
@@ -71,6 +84,7 @@ namespace portfolio_siwa.Composants.Global.Boutons.BoutonLien
 
         private void AfficherMessage(string message, Severity niveau)
         {
+            Console.WriteLine("Affichage du msg : " + message);
             Snackbar?.Add(message, niveau);
         }
     }
