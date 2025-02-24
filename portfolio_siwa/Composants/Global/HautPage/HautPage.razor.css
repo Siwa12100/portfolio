@@ -36,3 +36,13 @@ h1 {
     text-align: start;
     margin-bottom: 1.5rem;
 }
+
+.reseaux {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}

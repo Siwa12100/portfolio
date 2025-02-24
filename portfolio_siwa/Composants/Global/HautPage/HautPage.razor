@@ -2,6 +2,7 @@
 
 @using portfolio_siwa.Composants.Global.BlocsContenu.BlocContenuGaucheDroite
 @using portfolio_siwa.Composants.Global.Boutons.BoutonValorium
+@using portfolio_siwa.Composants.Global.Boutons.BoutonLien
 
 <BlocContenuGaucheDroite>
     <ContenuGauche>
@@ -16,6 +17,11 @@
     <ContenuDroite>
         <div class="image">
             <img src="Images/PhotoProfil.png" alt="Photo de profil" />
+            <div class="reseaux">
+                <BoutonLien Icone="/Images/logos/logoDiscord.svg" Lien="..." />
+                <BoutonLien Icone="/Images/logos/logoMail.svg" Lien="..." />
+                <BoutonLien Icone="/Images/logos/logoGithub.svg" Lien="..." />
+            </div>
         </div>
     </ContenuDroite>
 </BlocContenuGaucheDroite>

@@ -1,0 +1,12 @@
+img {
+    height: 6vh;
+    width: auto;
+    transition: transform 0.2s ease;
+
+}
+
+img:hover {
+    transform: scale(1.1);
+    transform: rotate(17deg);
+}
+
