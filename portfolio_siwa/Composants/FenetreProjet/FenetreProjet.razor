@@ -1,0 +1,24 @@
+@namespace portfolio_siwa.Composants.FenetreProjet
+
+<MudDialog FullScreen="true" MaxWidth="MaxWidth.Large" Class="dialog-style">
+    <MudDialogTitle>@DetailsProjet?.Titre</MudDialogTitle>
+    
+    <MudDialogContent>
+        <MudCard Class="image-container">
+            <MudCardMedia Image="@DetailsProjet?.CheminImage" Class="image-style" />
+        </MudCard>
+        
+        <MudCard Class="text-container">
+            <MudCardContent>
+                @if (DetailsProjet?.Texte != null)
+                {
+                    @((MarkupString)DetailsProjet.Texte.ToString())
+                }
+            </MudCardContent>
+        </MudCard>
+    </MudDialogContent>
+
+    <MudDialogActions>
+        <MudButton OnClick="FermerFenetre" Color="Color.Primary" Variant="Variant.Filled">Fermer</MudButton>
+    </MudDialogActions>
+</MudDialog>

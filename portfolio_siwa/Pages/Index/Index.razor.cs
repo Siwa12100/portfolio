@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using portfolio_siwa.Modeles;
 
 
 namespace portfolio_siwa.Pages.Index
@@ -13,6 +14,8 @@ namespace portfolio_siwa.Pages.Index
         protected string? GeneSenseDescriptionDocker;
         protected string? GeneSenseDescriptionYolo;
         protected string? GenseSenseGithub;
+        protected MarkupString? GenseSenseTextePresentation;
+        protected DetailsProjet? DetailsProjetGenseSense;
 
         protected override void OnInitialized()
         {
@@ -24,6 +27,20 @@ namespace portfolio_siwa.Pages.Index
             this.GeneSenseDescriptionDocker = "Utilisation pour le déploiement de l'ensemble du projet dans un environnement homogène.";
             this.GeneSenseDescriptionYolo = "Bibliothèque utilisée pour détecter et segmenter les visages dans les images. Elle fournit des performances rapides et précises pour l'extraction des zones d'intérêt.";
 
+            this.GenseSenseTextePresentation = new MarkupString("GenseSense repose sur trois modules : segmentation, classification par genre et reconnaissance de personnes. " + 
+                "La segmentation utilise Ultralytics/YOLO pour détecter et isoler automatiquement les visages dans les images. " + 
+                "La classification par genre s’appuie sur un dataset équilibré (99% pour les hommes, 95% pour les femmes). " +
+                "La reconnaissance de personnes identifie des individus spécifiques de ma promotion avec une précision d’environ 85 %.  " + 
+                "Les modèles sont développés en Python 3 et intégrés dans une API Flask assurant la communication avec l’interface web.  " + 
+                "Le panel interactif, conçu en Blazor Server, permet aux utilisateurs de charger des images et d’obtenir des résultats en temps réel. " +  
+                "L’ensemble est conteneurisé avec Docker pour garantir un déploiement stable et reproductible sur un serveur.");
+
+            this.DetailsProjetGenseSense = new DetailsProjet
+            {
+                Titre = "GenseSense IA - Détails",
+                Texte = this.GenseSenseTextePresentation,
+                CheminImage = "images/projets/schemaGenseSense.png"
+            };
         }
     }
 }

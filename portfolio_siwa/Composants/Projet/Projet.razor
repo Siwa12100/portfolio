@@ -16,9 +16,18 @@
         </Media>
         <SousTexte>
             <div class="sous-texte">
-                <BoutonGithub Lien="@LienGithub" Texte="Code du projet"/>
-                <BoutonFondTransparent Texte="Détails sur le projet"
-                    Icone="/Images/logos/logoLampe.png" FondBlanc="true"/>
+                @if (this.LienGithub != null)
+                {
+                    <BoutonGithub Lien="@LienGithub" Texte="Code du projet"/>
+                }
+
+                @if (this.Details != null)
+                {
+                    <BoutonFondTransparent Texte="Détails sur le projet"
+                                           Icone="/Images/logos/logoLampe.png" FondBlanc="true"
+                                           DetailsProjet="@Details"/>
+                }
+
             </div>
         </SousTexte>
         <BasPage>
