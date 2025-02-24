@@ -46,3 +46,13 @@ h1 {
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+@media (max-width: 1024px) {
+    img {
+        height: 30vh;
+    }
+
+    p {
+
+    }
+}

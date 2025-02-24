@@ -10,21 +10,6 @@
     margin-top: 17vh;
 }
 
-#presentation p {
-    color : red;
-    display: none;
-}
-
-#propos p {
-    color : red;
-    display: none;
-}
-
-#home p {
-    color : red;
-    display: none;
-}
-
 .bas-page {
     width: 100%;
     display: flex;

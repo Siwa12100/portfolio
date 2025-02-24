@@ -16,19 +16,12 @@
 <AnchorNavigation />
 
 <div class="contenu">
-
-    <div class="haut-page separation-contenu marge-pages">
-        <div id="home">
-            <p>coucou</p>
-        </div>
+    <section id="partie1"  class="haut-page separation-contenu marge-pages">
         <HautPage />
-    </div>
+    </section>
         
+    <section id="partie2" class="separation-contenu-legere marge-pages">
 
-    <section class="separation-contenu-legere marge-pages">
-        <div id="travaux">
-            <p>coucou</p>
-        </div>
         <Projet
             Titre="@Titre"
             ImagePrincipale="@ImagePrincipale"
@@ -46,7 +39,7 @@
         </Projet>
     </section>
 
-    <section class="separation-contenu marge-pages">
+    <section id="test" class="separation-contenu marge-pages">
         <Projet
             Titre="@Titre"
             ImagePrincipale="@ImagePrincipale"
@@ -64,12 +57,10 @@
         </Projet>
     </section>
 
-    <div class="bas-page separation-contenu marge-pages">
-        <div id="propos">
-            <p>coucou</p>
-        </div>
+    <section id="partie3" class="bas-page separation-contenu marge-pages">
+
         <BasPage />
-    </div>
+    </section>
 </div>
 
 @code {

@@ -22,5 +22,16 @@ namespace portfolio_siwa.Composants.Global.NavBar
                 await this.JSRuntime.InvokeVoidAsync("window.open", url, "_blank");
             }
         }
+
+        protected void DirigerBalise(int balise)
+        {
+            if (NavigationManager is null) return;
+            string chemin = "";
+            if (balise == 1) chemin = "#home";
+            if (balise == 2) chemin = "#travaux";
+            if (balise == 3) chemin = "#propos";
+            Console.WriteLine("Redirection vers : " + chemin);
+            NavigationManager.NavigateTo(chemin);
+        }
     }
 }
