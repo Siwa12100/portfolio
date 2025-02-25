@@ -17,6 +17,21 @@ namespace portfolio_siwa.Pages.Index
         protected MarkupString? GenseSenseTextePresentation;
         protected DetailsProjet? DetailsProjetGenseSense;
 
+        protected string? TitreProjetDrosolab;
+        protected MarkupString? DescriptionProjetDrosolab;
+        protected string? DrosolabDescriptionSymfony;
+        protected string? DrosolabDescriptionVue;
+        protected string? DrosolabDescriptionDocker;
+        protected string? DrosolabDescriptionMysql;
+
+        protected string? TitreProjetSiteElendil;
+        protected MarkupString? DescriptionProjetSiteElendil;
+        protected string? ElendilDescriptionBlazor;
+        protected string? ElendilDescriptionNginx;
+        protected string? ElendilDescriptionDocker;
+        protected string? ElendilDescriptionLetsencrypt;
+
+
         protected override void OnInitialized()
         {
             TitreProjetGenseSense = "GenseSense IA";
@@ -41,6 +56,22 @@ namespace portfolio_siwa.Pages.Index
                 Texte = this.GenseSenseTextePresentation,
                 CheminImage = "images/projets/schemaGenseSense.png"
             };
+
+            this.TitreProjetDrosolab = "Virtogen";
+            this.DescriptionProjetDrosolab = new MarkupString("Projet réalisé en partenariat avec des professeurs de l'UFR de biologie de Clermont-Ferrand. Il  permet de simuler l’évolution des caractéristiques génétiques dans des populations de drosophiles. Les étudiants manipulent une paillasse expérimentale où ils ajoutent des flacons contenant des populations d'insectes aux phénotypes spécifiques. Ils peuvent observer l’évolution des générations et tester différentes interactions génétiques. ");
+            this.DrosolabDescriptionVue = "Framework utilisé pour développer l’interface interactive, permettant aux étudiants de manipuler facilement les flacons et d’observer l’évolution des populations en temps réel.";
+            this.DrosolabDescriptionSymfony = "Back-end assurant la gestion des données et des règles métier liées aux populations et aux simulations. Il expose une API REST utilisée par le front.";
+            this.DrosolabDescriptionDocker = "Utilisé pour conteneuriser l’ensemble du projet et simplifier son déploiement, garantissant un environnement stable et reproductible.";
+            this.DrosolabDescriptionMysql = "Base de données relationnelle stockant les phénotypes, les configurations de simulations et l’évolution des générations, avec Doctrine comme ORM pour gérer les entités.";
+        
+            this.TitreProjetSiteElendil = "Site de l'Alliance d'Elendil";
+            this.DescriptionProjetSiteElendil = new MarkupString("Réalisation du site vitrine du projet dans le domaine du jeu vidéo : <a href='https://elendil-mc.fr'>Alliance d'Elendil</a>. Présentation des différents serveurs de jeu, des différents concepts de l'Alliance et récupération depuis l'api du jeu des informations en direct sur les serveurs et leurs joueurs");
+            this.ElendilDescriptionBlazor = "Framework utilisé pour développer le site web. Utilisation de la bibliothèque de composants MudBlazor. ";
+            this.ElendilDescriptionNginx = "Utilisé en mode reverse proxy pour rediriger les requêtes vers le bon conteneur Docker.";
+            this.ElendilDescriptionDocker = "Utilisé pour conteneuriser l’ensemble du projet et simplifier son déploiement.";
+            this.ElendilDescriptionLetsencrypt = "Utilisé pour générer des certificats SSL et sécuriser les communications en https.";
+
+
         }
     }
 }
