@@ -11,10 +11,13 @@ body, html {
     background-color: var(--couleur-de-fond);
 }
 
+/* a {
+
+    color : red !important;
+    border: 3px solid red;
+    text-decoration: none;
+} */
   
-a, .btn-link {
-    color: #006bb7;
-}
 
 /* .btn-primary {
     color: #fff;

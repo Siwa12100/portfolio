@@ -31,6 +31,22 @@ namespace portfolio_siwa.Pages.Index
         protected string? ElendilDescriptionDocker;
         protected string? ElendilDescriptionLetsencrypt;
 
+        protected string? TitreProjetLibPais;
+        protected MarkupString? DescriptionProjetLibPais;
+        protected string? LibPaisDescriptionBlazor;
+        protected string? LibPaisDescriptionSpringBoot;
+        protected string? LibPaisDescriptionJava;
+        protected string? LibPaisDescriptionMongoDB;
+        protected string? LibPaisDescriptionDocker;
+        protected string? LibPaisDescriptionGoogleDriveApi;
+
+        protected string? TitreProjetIoaCi;
+        protected MarkupString? DescriptionProjetIoaCi;
+        protected string? IoaCiDescriptionDroneCI;
+        protected string? IoaCiDescriptionDockerCompose;
+        protected string? IoaCiDescriptionSonar;
+        protected string? IoaCiDescriptionDebian;
+        protected string? IoaCiDescriptionRegistry;
 
         protected override void OnInitialized()
         {
@@ -65,13 +81,28 @@ namespace portfolio_siwa.Pages.Index
             this.DrosolabDescriptionMysql = "Base de données relationnelle stockant les phénotypes, les configurations de simulations et l’évolution des générations, avec Doctrine comme ORM pour gérer les entités.";
         
             this.TitreProjetSiteElendil = "Site de l'Alliance d'Elendil";
-            this.DescriptionProjetSiteElendil = new MarkupString("Réalisation du site vitrine du projet dans le domaine du jeu vidéo : <a href='https://elendil-mc.fr'>Alliance d'Elendil</a>. Présentation des différents serveurs de jeu, des différents concepts de l'Alliance et récupération depuis l'api du jeu des informations en direct sur les serveurs et leurs joueurs");
+            this.DescriptionProjetSiteElendil = new MarkupString("Réalisation du site vitrine du projet dans le domaine du jeu vidéo : <a style='color: #2E9CCA;' class='projet' href='https://elendil-mc.fr'>Alliance d'Elendil</a>. Présentation des différents serveurs de jeu, des différents concepts de l'Alliance et récupération depuis l'api du jeu des informations en direct sur les serveurs et leurs joueurs");
             this.ElendilDescriptionBlazor = "Framework utilisé pour développer le site web. Utilisation de la bibliothèque de composants MudBlazor. ";
             this.ElendilDescriptionNginx = "Utilisé en mode reverse proxy pour rediriger les requêtes vers le bon conteneur Docker.";
             this.ElendilDescriptionDocker = "Utilisé pour conteneuriser l’ensemble du projet et simplifier son déploiement.";
             this.ElendilDescriptionLetsencrypt = "Utilisé pour générer des certificats SSL et sécuriser les communications en https.";
 
-
+            this.TitreProjetLibPais = "PAÍS TV & Librariá";
+            this.DescriptionProjetLibPais = new MarkupString("<a class='projet' style='color: #2E9CCA;' href='https://ioa-pais.fr'>PAÍS TV</a> & <a style='color: #2E9CCA;' class='projet' href='https://libraria.ioa-pais.fr'>Librariá</a> sont deux plateformes créées pour valoriser le patrimoine occitan. Librariá répertorie et met en avant plus de 2500 ouvrages disponibles à l'Institut occitan de l'Aveyron, offrant une exploration détaillée grâce à un moteur de recherche et une interface intuitive. PAÍS TV regroupe et classe les vidéos produites par l’IOA sur YouTube, facilitant l’accès aux séries pédagogiques et documentaires sur la langue et la culture occitanes.");
+            this.LibPaisDescriptionBlazor = "Framework utilisé pour le développement du front-end, permettant de créer une interface dynamique et réactive en C#. ";
+            this.LibPaisDescriptionSpringBoot = "Back-end du projet, servant d’API pour gérer les opérations CRUD sur les données stockées dans MongoDB. Il gère également l’interaction avec Google Drive pour le stockage et la récupération des images.";
+            this.LibPaisDescriptionJava = "Langage utilisé pour développer l’API avec Spring Boot.";
+            this.LibPaisDescriptionMongoDB = "Base de données NoSQL utilisée pour stocker les données du projet sous forme de documents JSON.";
+            this.LibPaisDescriptionGoogleDriveApi = "Service utilisé pour stocker et gérer les images du projet. L’API permet à Spring Boot d’accéder aux fichiers de manière sécurisée et organisée.";
+            this.LibPaisDescriptionDocker = "Utilisé pour conteneuriser l’ensemble du projet et simplifier son déploiement.";
+        
+            this.TitreProjetIoaCi = "Environnement de développement sécurisé pour l'IOA";
+            this.DescriptionProjetIoaCi = new MarkupString("Ce projet a consisté en la mise en place d'un environnement de développement sécurisé pour l'Institut Occitan de l'Aveyron. Il a s'agit d'administrer un VPS sous Debian, d'assurer sa sécurisation (pare-feu, SSH, etc.) ainsi que le déploiement d’un processus de CI/CD complet. Un serveur Drone CI orchestre l'intégration continue, tandis que SonarQube assure l'analyse de la qualité du code. Une registry privée stocke les images Docker, et l’ensemble est géré via Docker Compose pour assurer la communication et la gestion des services.");
+            this.IoaCiDescriptionDroneCI = "Outil utilisé pour l'intégration continue, permettant l'exécution automatisée des tests et des déploiements des projets hébergés sur le serveur. Il assure une gestion efficace des workflows CI/CD.";
+            this.IoaCiDescriptionDockerCompose = "Utilisé pour orchestrer le déploiement et la configuration des services (Drone CI, SonarQube, registry). Il facilite la mise en place des réseaux Docker et la communication entre les différents conteneurs.";
+            this.IoaCiDescriptionSonar = "Analyse statique du code permettant d'évaluer la qualité, la sécurité et la maintenabilité des projets. Il est intégré au pipeline CI/CD pour fournir des rapports détaillés sur les vulnérabilités et les bonnes pratiques.";
+            this.IoaCiDescriptionDebian = "Système d’exploitation du VPS sur lequel l’environnement de développement est déployé. La sécurisation inclut la configuration d’un pare-feu, le durcissement de SSH et la gestion des accès.";
+            this.IoaCiDescriptionRegistry = "Stocke en privé sur le VPS les images Docker des projets pour un déploiement contrôlé et sécurisé..";
         }
     }
 }

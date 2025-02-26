@@ -63,3 +63,10 @@
         margin-top: 1.2rem;
     }
 }
+
+.projet a {
+
+    color : red;
+    border: 3px solid red;
+    text-decoration: none;
+}

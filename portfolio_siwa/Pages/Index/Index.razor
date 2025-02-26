@@ -54,7 +54,6 @@
             </div>
         </BasPage>    
         </Projet>
-
     </section>
         <section class="separation-contenu marge-pages">
         <Projet
@@ -73,8 +72,44 @@
         </Projet>
     </section>
 
-    <section id="partie3" class="bas-page separation-contenu marge-pages">
+    <section class="separation-contenu-legere marge-pages">
+    <Projet
+        Titre="@this.TitreProjetLibPais"
+        ImagePrincipale="/Images/projets/paistv.png"
+        Texte="@this.DescriptionProjetLibPais"
+        PositionMedia="PositionMedia.Gauche">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="Blazor Server" Description="@this.LibPaisDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
+            <Techno Nom="Java" Description="@this.LibPaisDescriptionJava" Logo="Images/logos/logoJava.png" />
+            <Techno Nom="Spring Boot" Description="@this.LibPaisDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
+            <Techno Nom="MongoDB" Description="@this.LibPaisDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
+            <Techno Nom="Google Drive API" Description="@this.LibPaisDescriptionGoogleDriveApi" Logo="Images/logos/logoGoogledrive.png" />
+       
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
 
+<section class="separation-contenu marge-pages">
+    <Projet
+        Titre="@this.TitreProjetIoaCi"
+        ImagePrincipale="/Images/projets/ciioa.png"
+        Texte="@this.DescriptionProjetIoaCi"
+        PositionMedia="PositionMedia.Droite">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="Drone CI" Description="@this.IoaCiDescriptionDroneCI" Logo="Images/logos/logoDrone.svg" />
+            <Techno Nom="SonarQube" Description="@this.IoaCiDescriptionSonar" Logo="Images/logos/logoSonar.png" />
+            <Techno Nom="Docker Compose" Description="@this.IoaCiDescriptionDockerCompose" Logo="Images/logos/logoCompose.png" />
+            <Techno Nom="Docker Registry" Description="@this.IoaCiDescriptionRegistry" Logo="Images/logos/logoRegistry.png" />
+            <Techno Nom="Debian" Description="@this.IoaCiDescriptionDebian" Logo="Images/logos/logoDebian.png" />
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
+
+    <section id="partie3" class="bas-page separation-contenu marge-pages">
         <BasPage />
     </section>
 </div>
@@ -87,3 +122,5 @@
         "Siwa est une application web de gestion de projets. Elle permet de suivre l'avancement des projets, de gérer les tâches, les ressources et les coûts. Elle est développée en C# avec le framework ASP.NET Core et utilise une base de données SQL Server."
     );
 }
+
+
