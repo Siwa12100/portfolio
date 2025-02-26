@@ -91,12 +91,32 @@
     </Projet>
 </section>
 
+    <section class="separation-contenu-legere marge-pages">
+    <Projet
+        Titre="@this.TitreProjetMyriade"
+        ImagePrincipale="/Images/projets/logoMyriade.png"
+        Texte="@this.DescriptionProjetMyriade"
+        PositionMedia="PositionMedia.Droite">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="Java" Description="@this.MyriadeDescriptionJava" Logo="Images/logos/logoJava.png" />
+            <Techno Nom="Paper Mc" Description="@this.MyriadeDescriptionPaper" Logo="Images/logos/logoPaper.webp" />
+            <Techno Nom="Spring Boot" Description="@this.MyriadeDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
+            <Techno Nom="Kotlin" Description="@this.MyriadeDescriptionKotlin" Logo="Images/logos/logoKotlin.png" />
+            <Techno Nom="MongoDB" Description="@this.MyriadeDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
+            <Techno Nom="Redis" Description="@this.MyriadeDescriptionRedis" Logo="Images/logos/logoRedis.svg" />
+            <Techno Nom="Blazor Server" Description="@this.MyriadeDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
+
 <section class="separation-contenu marge-pages">
     <Projet
         Titre="@this.TitreProjetIoaCi"
         ImagePrincipale="/Images/projets/ciioa.png"
         Texte="@this.DescriptionProjetIoaCi"
-        PositionMedia="PositionMedia.Droite">
+        PositionMedia="PositionMedia.Gauche">
     <BasPage>
         <div class="technos">
             <Techno Nom="Drone CI" Description="@this.IoaCiDescriptionDroneCI" Logo="Images/logos/logoDrone.svg" />
@@ -109,18 +129,27 @@
     </Projet>
 </section>
 
+<section class="separation-contenu-legere marge-pages">
+    <Projet
+        Titre="@this.TitreProjetJogaires"
+        ImagePrincipale="/Images/projets/jogaires.png"
+        Texte="@this.DescriptionProjetJogaires"
+        PositionMedia="PositionMedia.Droite">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="Blazor Server" Description="@this.JogairesDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
+            <Techno Nom="Kotlin" Description="@this.JogairesDescriptionKotlin" Logo="Images/logos/logoKotlin.png" />
+            <Techno Nom="Spring Boot" Description="@this.JogairesDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
+            <Techno Nom="MongoDB" Description="@this.JogairesDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
+            <Techno Nom="Docker" Description="@this.JogairesDescriptionDocker" Logo="Images/logos/logoDocker.png" />
+        
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
+
     <section id="partie3" class="bas-page separation-contenu marge-pages">
         <BasPage />
     </section>
 </div>
-
-@code {
-    private string Titre => "Siwa";
-    private string ImagePrincipale => "Images/agora1.png";
-
-    MarkupString? Texte => new MarkupString(
-        "Siwa est une application web de gestion de projets. Elle permet de suivre l'avancement des projets, de gérer les tâches, les ressources et les coûts. Elle est développée en C# avec le framework ASP.NET Core et utilise une base de données SQL Server."
-    );
-}
-
 

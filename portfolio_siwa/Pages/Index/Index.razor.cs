@@ -48,6 +48,24 @@ namespace portfolio_siwa.Pages.Index
         protected string? IoaCiDescriptionDebian;
         protected string? IoaCiDescriptionRegistry;
 
+        protected string? TitreProjetJogaires;
+        protected MarkupString? DescriptionProjetJogaires;
+        protected string? JogairesDescriptionBlazor;
+        protected string? JogairesDescriptionKotlin;
+        protected string? JogairesDescriptionSpringBoot;
+        protected string? JogairesDescriptionMongoDB;
+        protected string? JogairesDescriptionDocker;
+
+        protected string? TitreProjetMyriade;
+        protected MarkupString? DescriptionProjetMyriade;
+        protected string? MyriadeDescriptionBlazor;
+        protected string? MyriadeDescriptionSpringBoot;
+        protected string? MyriadeDescriptionMongoDB;
+        protected string? MyriadeDescriptionJava;
+        protected string? MyriadeDescriptionKotlin;
+        protected string? MyriadeDescriptionRedis;
+        protected string? MyriadeDescriptionPaper;
+
         protected override void OnInitialized()
         {
             TitreProjetGenseSense = "GenseSense IA";
@@ -103,6 +121,25 @@ namespace portfolio_siwa.Pages.Index
             this.IoaCiDescriptionSonar = "Analyse statique du code permettant d'évaluer la qualité, la sécurité et la maintenabilité des projets. Il est intégré au pipeline CI/CD pour fournir des rapports détaillés sur les vulnérabilités et les bonnes pratiques.";
             this.IoaCiDescriptionDebian = "Système d’exploitation du VPS sur lequel l’environnement de développement est déployé. La sécurisation inclut la configuration d’un pare-feu, le durcissement de SSH et la gestion des accès.";
             this.IoaCiDescriptionRegistry = "Stocke en privé sur le VPS les images Docker des projets pour un déploiement contrôlé et sécurisé..";
+        
+            this.TitreProjetJogaires = "Jogaires Inspector";
+            this.DescriptionProjetJogaires = new MarkupString("Ce projet permet aux administrateurs de serveurs Minecraft de répertorier les comportements des joueurs. Ils peuvent signaler un bannissement, un avertissement, une information générale ou une recommandation. Chaque administrateur peut consulter les notes laissées par d’autres, facilitant la gestion des joueurs entre serveurs. Sécurisé et fiable, le système est déjà utilisé par une dizaine d’administrateurs et recense plusieurs milliers de joueurs.");
+            this.JogairesDescriptionBlazor = "Utilisé pour le développement du front-end, offrant une interface fluide et interactive permettant aux administrateurs de consulter et ajouter des informations sur les joueurs en temps réel.";
+            this.JogairesDescriptionSpringBoot = "API principale assurant la gestion des données et la logique métier. Il permet d’exposer des endpoints sécurisés pour la création, la modification et la consultation des signalements des joueurs.";
+            this.JogairesDescriptionMongoDB = "Base de données NoSQL stockant les signalements des joueurs sous forme de documents JSON.";
+            this.JogairesDescriptionDocker = "Assure la conteneurisation du projet, facilitant le déploiement et la gestion des services sur le serveur, garantissant un environnement stable et sécurisé.";        
+            this.JogairesDescriptionKotlin = "Langage utilisé pour le back-end. Son intégration avec Spring Boot facilite l’écriture d’un code concis et performant.";
+        
+            this.TitreProjetMyriade = "Myriade";
+            this.DescriptionProjetMyriade = new MarkupString("Myriade est un projet encore en bêta, permettant une communication instantanée bidirectionnelle entre serveurs Minecraft sans dépendre d’un proxy comme Velocity ou BungeeCord. Il permet de créer des réseaux de serveurs massifs, bien plus étendus que ceux limités par les proxys traditionnels. Un système de portails assure le transfert des joueurs entre serveurs, exploitant cette infrastructure de communication en temps réel. Ce projet s'inscrit dans une dynamique d’univers virtuel interconnecté, posant les prémices d’un métavers dans Minecraft et ouvrant la voie à un écosystème de plugins inter-serveurs.");
+            this.MyriadeDescriptionBlazor = "Langage principal des plugins Minecraft, permettant l'intégration du système de communication et des portails directement dans le jeu.";
+            this.MyriadeDescriptionPaper = "API Minecraft utilisée pour développer les plugins serveur, permettant l’intégration fluide du système de communication et de transfert des joueurs.";
+            this.MyriadeDescriptionRedis = "Technologie clé du projet, utilisée pour la communication instantanée entre serveurs via Redis Pub/Sub, ainsi que pour stocker en mémoire vive des données temporaires liées aux transferts de joueurs.";
+            this.MyriadeDescriptionSpringBoot = "Framework utilisé pour créer les APIs REST, assurant la gestion et la sécurisation des échanges de données entre les serveurs et la base de données.";
+            this.MyriadeDescriptionKotlin = "Utilisé pour le développement des services back-end, apportant une syntaxe moderne et concise, tout en garantissant performance et maintenabilité.";
+            this.MyriadeDescriptionMongoDB = "Base de données NoSQL stockant les informations des serveurs, les coordonnées des portails, ainsi que les identifiants des utilisateurs pour les connexions.";
+            this.MyriadeDescriptionJava = "Langage principal des plugins Minecraft, permettant l'intégration du système de communication et des portails directement dans le jeu.";
+        
         }
     }
 }
