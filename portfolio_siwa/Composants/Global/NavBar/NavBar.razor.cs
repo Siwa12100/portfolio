@@ -12,6 +12,7 @@ namespace portfolio_siwa.Composants.Global.NavBar
         protected IJSRuntime? JSRuntime { get; set; }
 
         protected string? LienDiscord = "https://discord.gg/hfKf5y2DC9";
+        protected string? CheminCv = "https://cv.jean-marcillac.dev";
 
         protected async Task Rediriger()
         {
@@ -32,6 +33,18 @@ namespace portfolio_siwa.Composants.Global.NavBar
             if (balise == 3) chemin = "#propos";
             Console.WriteLine("Redirection vers : " + chemin);
             NavigationManager.NavigateTo(chemin);
+        }
+
+        protected async Task RedirigerCv()
+        {
+            if (NavigationManager is null) return;
+            var url = NavigationManager.ToAbsoluteUri(this.CheminCv).ToString();
+            if (this.JSRuntime is not null)
+            {
+                await this.JSRuntime.InvokeVoidAsync("window.open", url, "_blank");
+            }
+
+            return;
         }
     }
 }
