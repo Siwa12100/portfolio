@@ -132,7 +132,7 @@ namespace portfolio_siwa.Pages.Index
         
             this.TitreProjetMyriade = "Myriade";
             this.DescriptionProjetMyriade = new MarkupString("Myriade est un projet encore en bêta, permettant une communication instantanée bidirectionnelle entre serveurs Minecraft sans dépendre d’un proxy comme Velocity ou BungeeCord. Il permet de créer des réseaux de serveurs massifs, bien plus étendus que ceux limités par les proxys traditionnels. Un système de portails assure le transfert des joueurs entre serveurs, exploitant cette infrastructure de communication en temps réel. Ce projet s'inscrit dans une dynamique d’univers virtuel interconnecté, posant les prémices d’un métavers dans Minecraft et ouvrant la voie à un écosystème de plugins inter-serveurs.");
-            this.MyriadeDescriptionBlazor = "Langage principal des plugins Minecraft, permettant l'intégration du système de communication et des portails directement dans le jeu.";
+            this.MyriadeDescriptionBlazor = "Framework utilisé pour le front-end du panel web, permettant d'administrer les réseaux de serveurs et les utilisateurs de Myriade.";
             this.MyriadeDescriptionPaper = "API Minecraft utilisée pour développer les plugins serveur, permettant l’intégration fluide du système de communication et de transfert des joueurs.";
             this.MyriadeDescriptionRedis = "Technologie clé du projet, utilisée pour la communication instantanée entre serveurs via Redis Pub/Sub, ainsi que pour stocker en mémoire vive des données temporaires liées aux transferts de joueurs.";
             this.MyriadeDescriptionSpringBoot = "Framework utilisé pour créer les APIs REST, assurant la gestion et la sécurisation des échanges de données entre les serveurs et la base de données.";
