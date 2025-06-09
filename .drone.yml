@@ -58,10 +58,7 @@ steps:
       - export PATH="$PATH:/root/.dotnet/tools"
 
       - echo "🚀 [INFO] Initialisation Sonar..."
-      - dotnet-sonarscanner begin /k:portfolio-siwa \
-          /d:sonar.host.url=$SONAR_HOST_URL \
-          /d:sonar.login=$SONAR_TOKEN \
-          /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml
+      - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml
 
       - echo "🧱 [INFO] Build du projet principal..."
       - dotnet build portfolio_siwa/portfolio_siwa.csproj --no-incremental
@@ -70,6 +67,7 @@ steps:
       - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
       - echo "✅ [SUCCESS] Analyse SonarQube terminée avec succès."
+
 
 
   - name: "🐳 build-and-push"
