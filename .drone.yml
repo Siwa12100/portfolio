@@ -1,0 +1,64 @@
+kind: pipeline
+type: docker
+name: build-and-deploy-portfolio-siwa
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+steps:
+  - name: "🔍 vérification"
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    commands:
+      - echo "🔍 [INFO] Vérification du projet .NET..."
+      - dotnet restore portfolio_siwa/portfolio_siwa.csproj || {
+          echo "❌ [ERROR] Restauration des dépendances échouée.";
+          exit 1;
+        }
+      - dotnet build portfolio_siwa/portfolio_siwa.csproj -c Release || {
+          echo "❌ [ERROR] Build échoué.";
+          exit 1;
+        }
+      - echo "✅ [SUCCESS] Vérification réussie."
+
+  - name: "🐳 build-and-push"
+    image: plugins/docker
+    settings:
+      registry: registry.devalada.valorium-mc.fr
+      repo: registry.devalada.valorium-mc.fr/portfolio-siwa
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      tags:
+        - latest
+      dockerfile: Dockerfile
+
+  - name: "🚀 deploy-vps"
+    image: appleboy/drone-ssh
+    depends_on:
+      - "🐳 build-and-push"
+    settings:
+      host: ecirada.valorium-mc.fr
+      port: 22
+      username:
+        from_secret: SSH_USER
+      ssh_key:
+        from_secret: SSH_PRIVATE_KEY
+      script:
+        - echo "🚀 [INFO] Déploiement de portfolio_siwa en cours..."
+        - cd deploiements/portfolio-siwa/
+        - echo "🛑 [INFO] Arrêt de l'ancien conteneur..."
+        - docker compose down
+        - echo "📥 [INFO] Pull de la dernière image depuis le registry..."
+        - docker compose pull
+        - echo "🚀 [INFO] Démarrage du nouveau conteneur..."
+        - docker compose up -d
+        - sleep 5
+        - docker ps | grep portfolio_siwa || {
+            echo "❌ [ERROR] Le service ne tourne pas !";
+            exit 1;
+          }
+        - echo "✅ [SUCCESS] Déploiement terminé avec succès."
