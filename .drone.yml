@@ -44,8 +44,11 @@ steps:
       - name: shared-volume
         path: /shared
     commands:
-      - echo "🧪 [INFO] Lancement des tests unitaires..." && mkdir -p /shared/test-results && dotnet test portfolio_siwa.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/shared/test-results/coverage.opencover.xml --logger:"trx" || { echo "❌ [ERROR] Tests échoués !"; exit 1; }
-      - echo "📂 [INFO] Fichiers de couverture générés :" && find /shared/test-results -type f
+      - echo "🧪 [INFO] Lancement des tests unitaires..."
+      - mkdir -p /shared/test-results
+      - dotnet test portfolio_siwa.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/shared/test-results/coverage.opencover.xml --logger:"trx" || { echo "❌ [ERROR] Tests échoués !"; exit 1; }
+      - echo "📂 [INFO] Fichiers de couverture générés :"
+      - find /shared/test-results -type f
 
 
 
@@ -61,7 +64,18 @@ steps:
       - name: shared-volume
         path: /shared
     commands:
-      - apt-get update && apt-get install -y openjdk-17-jre && export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && export PATH=$JAVA_HOME/bin:$PATH && dotnet tool install --global dotnet-sonarscanner && export PATH="$PATH:/root/.dotnet/tools" && echo "🚀 [INFO] Initialisation Sonar..." && dotnet-sonarscanner begin /k:portfolio-siwa /s:portfolio_siwa.sln /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml && echo "🧱 [INFO] Build de la solution..." && dotnet build portfolio_siwa.sln --no-incremental && echo "✅ [INFO] Fin de l’analyse Sonar..." && dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
+      - apt-get update
+      - apt-get install -y openjdk-17-jre
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - dotnet tool install --global dotnet-sonarscanner
+      - export PATH="$PATH:/root/.dotnet/tools:$PATH"
+      - echo "🚀 [INFO] Initialisation Sonar..."
+      - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml
+      - echo "🧱 [INFO] Build de la solution..."
+      - dotnet build portfolio_siwa.sln --no-incremental
+      - echo "✅ [INFO] Fin de l’analyse Sonar..."
+      - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
 
 
 
