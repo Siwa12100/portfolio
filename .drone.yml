@@ -81,6 +81,7 @@ steps:
         from_secret: DOCKER_USERNAME
       password:
         from_secret: DOCKER_PASSWORD
+      no_cache: true
       tags:
         - latest
       dockerfile: Dockerfile

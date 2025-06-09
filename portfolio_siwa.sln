@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "portfolio_siwa", "portfolio_siwa\portfolio_siwa.csproj", "{D7CA2422-E100-4706-ACA5-C35F9C22E848}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{11B882A2-09CB-413E-A5EA-BE108B3C50B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D7CA2422-E100-4706-ACA5-C35F9C22E848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CA2422-E100-4706-ACA5-C35F9C22E848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CA2422-E100-4706-ACA5-C35F9C22E848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B882A2-09CB-413E-A5EA-BE108B3C50B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B882A2-09CB-413E-A5EA-BE108B3C50B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B882A2-09CB-413E-A5EA-BE108B3C50B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B882A2-09CB-413E-A5EA-BE108B3C50B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
