@@ -33,16 +33,9 @@ steps:
     commands:
       - echo "🧪 [INFO] Lancement des tests unitaires..."
       - mkdir -p /shared/test-results
-      - dotnet test tests/tests.csproj --configuration Release \
-          /p:CollectCoverage=true \
-          /p:CoverletOutputFormat=opencover \
-          /p:CoverletOutput=/shared/test-results/coverage \
-          /p:MergeWith=/shared/test-results/coverage.json \
-          --logger:"trx" || {
-            echo "❌ [ERROR] Tests échoués !";
-            exit 1;
-          }
+      - dotnet test tests/tests.csproj --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/shared/test-results/coverage /p:MergeWith=/shared/test-results/coverage.json --logger:"trx" || { echo "❌ [ERROR] Tests échoués !"; exit 1; }
       - echo "✅ [SUCCESS] Tests terminés avec succès."
+
 
   - name: "🔎 sonar-analyse"
     image: mcr.microsoft.com/dotnet/sdk:9.0
