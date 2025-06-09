@@ -38,7 +38,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src/portfolio_siwa
 RUN dotnet clean && rm -rf bin obj
 
-# Empêcher la compression des assets Blazor (si bug compression)
+# Empêcher la compression des assets Blazor (si bug compression) 
 RUN dotnet publish "portfolio_siwa.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Étape finale : image d'exécution sécurisée
