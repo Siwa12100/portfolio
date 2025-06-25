@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./config.sh
+source ./config-docker.sh
 
 EXISTING_CONTAINER=$(docker ps -a -q --filter name=$CONTAINER_NAME)
 
