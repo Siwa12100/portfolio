@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: build-and-deploy-portfolio-siwa
+name: build-and-deploy-portfolio-siwa-main
 
 trigger:
   branch:
@@ -8,104 +8,213 @@ trigger:
   event:
     - push
 
+volumes:
+  - name: shared-volume
+    temp: {}
+
 steps:
-  - name: "🔍 vérification"
+  - name: "🛠 build"
     image: mcr.microsoft.com/dotnet/sdk:9.0
     commands:
-      - echo "🔍 [INFO] Vérification du projet .NET..."
-      - dotnet restore portfolio_siwa/portfolio_siwa.csproj || {
-          echo "❌ [ERROR] Restauration des dépendances échouée.";
+      - echo "🛠 [INFO] Build du projet portfolio_siwa..."
+      - dotnet publish ./portfolio_siwa/portfolio_siwa.csproj -c Release -o out || {
+          echo "❌ [ERROR] Le build a échoué.";
           exit 1;
         }
-      - dotnet build portfolio_siwa/portfolio_siwa.csproj -c Release || {
-          echo "❌ [ERROR] Build échoué.";
-          exit 1;
-        }
-      - echo "✅ [SUCCESS] Vérification réussie."
+      - echo "✅ [SUCCESS] Build terminé."
 
-  - name: "📦 tests"
-    depends_on:
-      - "🔍 vérification"
+  - name: "🧪 tests-unitaires"
     image: mcr.microsoft.com/dotnet/sdk:9.0
     volumes:
       - name: shared-volume
-        path: /shared
+        path: /coverage
     commands:
-      - echo "🧪 [INFO] Lancement des tests unitaires..."
-      - mkdir -p /shared/test-results
-      - dotnet test portfolio_siwa.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/shared/test-results/coverage.opencover.xml --logger:"trx" || { echo "❌ [ERROR] Tests échoués !"; exit 1; }
-      - echo "📂 [INFO] Fichiers de couverture générés :"
-      - find /shared/test-results -type f
+      - echo "🧪 [INFO] Lancement des tests avec couverture..."
+      - dotnet test ./portfolio_siwa.sln --configuration Release --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
+      - echo "🔍 [DEBUG] Fichier opencover.xml généré (début) :"
+      - COVERAGE_FILE=$(find /coverage -name *.opencover.xml | head -n 1)
+      - cat "$COVERAGE_FILE" | head -n 30
+      - echo "📦 [INFO] Renommage pour Sonar..."
+      - mv "$COVERAGE_FILE" /coverage/opencover.xml
+      - echo "✅ [SUCCESS] Tests terminés avec couverture."
 
-  - name: "🔎 sonar-analyse"
+  - name: "📊 analyse-sonar"
     image: mcr.microsoft.com/dotnet/sdk:9.0
-    depends_on:
-      - "📦 tests"
     environment:
       SONAR_HOST_URL: https://sonar.davalada.valorium-mc.fr
       SONAR_TOKEN:
         from_secret: SONAR_TOKEN
     volumes:
       - name: shared-volume
-        path: /shared
+        path: /coverage
     commands:
-      - apt-get update
-      - apt-get install -y openjdk-17-jre
-      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-      - export PATH=$JAVA_HOME/bin:$PATH
+      - echo "📊 [INFO] Initialisation de l'analyse Sonar..."
+      - apt-get update && apt-get install -y openjdk-17-jre
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && export PATH=$JAVA_HOME/bin:$PATH
       - dotnet tool install --global dotnet-sonarscanner
-      - export PATH="$PATH:/root/.dotnet/tools:$PATH"
-      - echo "🚀 [INFO] Initialisation Sonar..."
-      - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml
-      - echo "🧱 [INFO] Build de la solution..."
-      - dotnet build portfolio_siwa.sln --no-incremental
-      - echo "✅ [INFO] Fin de l’analyse Sonar..."
+      - export PATH="$PATH:/root/.dotnet/tools"
+      - echo "🔍 [DEBUG] Vérification du fichier opencover.xml avant analyse..."
+      - find /coverage -name *.opencover.xml || true
+      - head -n 30 /coverage/opencover.xml
+      - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/coverage/**/opencover.xml /d:sonar.sources=./portfolio_siwa
+      - dotnet build ./portfolio_siwa/portfolio_siwa.csproj --no-incremental
       - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
+      - echo "✅ [SUCCESS] Analyse Sonar terminée."
 
-  - name: "🐳 build-and-push"
-    depends_on:
-      - "📦 tests"
+  - name: "🐳 build-et-push-image"
     image: plugins/docker
+    depends_on: [ "🛠 build", "🧪 tests-unitaires" ]
     settings:
       registry: registry.devalada.valorium-mc.fr
-      repo: registry.devalada.valorium-mc.fr/portfolio-siwa
+      repo: registry.devalada.valorium-mc.fr/portfolio-siwa-main
       username:
         from_secret: DOCKER_USERNAME
       password:
         from_secret: DOCKER_PASSWORD
-      no_cache: true
+      dockerfile: Dockerfile
       tags:
         - latest
-      dockerfile: Dockerfile
 
-  - name: "🚀 deploy-vps"
+  - name: "🚀 deploiement-vps-main"
     image: appleboy/drone-ssh
     depends_on:
-      - "🐳 build-and-push"
+      - "🐳 build-et-push-image"
     settings:
       host: ecirada.valorium-mc.fr
-      port: 22
       username:
         from_secret: SSH_USER
       ssh_key:
         from_secret: SSH_PRIVATE_KEY
+      port: 22
       script:
-        - echo "🚀 [INFO] Déploiement de portfolio_siwa en cours..."
-        - cd deploiements/portfolio-siwa/
-        - echo "🛑 [INFO] Arrêt de l'ancien conteneur..."
+        - echo "🚀 [INFO] Déploiement en cours..."
+        - cd deploiements/portfolio/portfolio-siwa-main
+        - echo "🛑 [INFO] Arrêt de l'ancien service..."
         - docker compose down
-        - echo "📥 [INFO] Pull de la dernière image depuis le registry..."
+        - echo "📥 [INFO] Pull de la nouvelle image..."
         - docker compose pull
-        - echo "🚀 [INFO] Démarrage du nouveau conteneur..."
+        - echo "🚀 [INFO] Relancement du service..."
         - docker compose up -d
         - sleep 5
-        - docker ps | grep portfolio_siwa || {
+        - docker ps | grep portfolio-siwa-main || {
             echo "❌ [ERROR] Le service ne tourne pas !";
             exit 1;
           }
-        - echo "✅ [SUCCESS] Déploiement terminé avec succès."
+        - echo "✅ [SUCCESS] Déploiement terminé."
 
 
-volumes:
-  - name: shared-volume
-    temp: {}
+
+
+
+
+# kind: pipeline
+# type: docker
+# name: build-and-deploy-portfolio-siwa
+
+# trigger:
+#   branch:
+#     - main
+#   event:
+#     - push
+
+# steps:
+#   - name: "🔍 vérification"
+#     image: mcr.microsoft.com/dotnet/sdk:9.0
+#     commands:
+#       - echo "🔍 [INFO] Vérification du projet .NET..."
+#       - dotnet restore portfolio_siwa/portfolio_siwa.csproj || {
+#           echo "❌ [ERROR] Restauration des dépendances échouée.";
+#           exit 1;
+#         }
+#       - dotnet build portfolio_siwa/portfolio_siwa.csproj -c Release || {
+#           echo "❌ [ERROR] Build échoué.";
+#           exit 1;
+#         }
+#       - echo "✅ [SUCCESS] Vérification réussie."
+
+#   - name: "📦 tests"
+#     depends_on:
+#       - "🔍 vérification"
+#     image: mcr.microsoft.com/dotnet/sdk:9.0
+#     volumes:
+#       - name: shared-volume
+#         path: /shared
+#     commands:
+#       - echo "🧪 [INFO] Lancement des tests unitaires..."
+#       - mkdir -p /shared/test-results
+#       - dotnet test portfolio_siwa.sln --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=/shared/test-results/coverage.opencover.xml --logger:"trx" || { echo "❌ [ERROR] Tests échoués !"; exit 1; }
+#       - echo "📂 [INFO] Fichiers de couverture générés :"
+#       - find /shared/test-results -type f
+
+#   - name: "🔎 sonar-analyse"
+#     image: mcr.microsoft.com/dotnet/sdk:9.0
+#     depends_on:
+#       - "📦 tests"
+#     environment:
+#       SONAR_HOST_URL: https://sonar.davalada.valorium-mc.fr
+#       SONAR_TOKEN:
+#         from_secret: SONAR_TOKEN
+#     volumes:
+#       - name: shared-volume
+#         path: /shared
+#     commands:
+#       - apt-get update
+#       - apt-get install -y openjdk-17-jre
+#       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+#       - export PATH=$JAVA_HOME/bin:$PATH
+#       - dotnet tool install --global dotnet-sonarscanner
+#       - export PATH="$PATH:/root/.dotnet/tools:$PATH"
+#       - echo "🚀 [INFO] Initialisation Sonar..."
+#       - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/shared/test-results/coverage.opencover.xml
+#       - echo "🧱 [INFO] Build de la solution..."
+#       - dotnet build portfolio_siwa.sln --no-incremental
+#       - echo "✅ [INFO] Fin de l’analyse Sonar..."
+#       - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
+
+#   - name: "🐳 build-and-push"
+#     depends_on:
+#       - "📦 tests"
+#     image: plugins/docker
+#     settings:
+#       registry: registry.devalada.valorium-mc.fr
+#       repo: registry.devalada.valorium-mc.fr/portfolio-siwa
+#       username:
+#         from_secret: DOCKER_USERNAME
+#       password:
+#         from_secret: DOCKER_PASSWORD
+#       no_cache: true
+#       tags:
+#         - latest
+#       dockerfile: Dockerfile
+
+#   - name: "🚀 deploy-vps"
+#     image: appleboy/drone-ssh
+#     depends_on:
+#       - "🐳 build-and-push"
+#     settings:
+#       host: ecirada.valorium-mc.fr
+#       port: 22
+#       username:
+#         from_secret: SSH_USER
+#       ssh_key:
+#         from_secret: SSH_PRIVATE_KEY
+#       script:
+#         - echo "🚀 [INFO] Déploiement de portfolio_siwa en cours..."
+#         - cd deploiements/portfolio-siwa/
+#         - echo "🛑 [INFO] Arrêt de l'ancien conteneur..."
+#         - docker compose down
+#         - echo "📥 [INFO] Pull de la dernière image depuis le registry..."
+#         - docker compose pull
+#         - echo "🚀 [INFO] Démarrage du nouveau conteneur..."
+#         - docker compose up -d
+#         - sleep 5
+#         - docker ps | grep portfolio_siwa || {
+#             echo "❌ [ERROR] Le service ne tourne pas !";
+#             exit 1;
+#           }
+#         - echo "✅ [SUCCESS] Déploiement terminé avec succès."
+
+
+# volumes:
+#   - name: shared-volume
+#     temp: {}
