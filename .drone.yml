@@ -96,7 +96,7 @@ steps:
         - echo "🚀 [INFO] Relancement du service..."
         - docker compose up -d
         - sleep 5
-        - docker ps | grep portfolio-siwa-main || {
+        - docker ps | grep portfolio_siwa || {
             echo "❌ [ERROR] Le service ne tourne pas !";
             exit 1;
           }
