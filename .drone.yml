@@ -65,8 +65,8 @@ steps:
     image: plugins/docker
     depends_on: [ "🛠 build", "🧪 tests-unitaires" ]
     settings:
-      registry: registry.devalada.valorium-mc.fr
-      repo: registry.devalada.valorium-mc.fr/portfolio-siwa-main
+      registry: registry.davalada.valorium-mc.fr
+      repo: registry.davalada.valorium-mc.fr/portfolio-siwa-main
       username:
         from_secret: DOCKER_USERNAME
       password:
