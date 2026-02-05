@@ -30,7 +30,8 @@ steps:
         path: /coverage
     commands:
       - echo "🧪 [INFO] Lancement des tests avec couverture..."
-      - dotnet test ./portfolio_siwa.sln --configuration Release --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
+      - dotnet clean ./portfolio_siwa.sln --configuration Release
+      - dotnet test ./portfolio_siwa.sln --configuration Release --no-build --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
       - echo "🔍 [DEBUG] Fichier opencover.xml généré (début) :"
       - COVERAGE_FILE=$(find /coverage -name *.opencover.xml | head -n 1)
       - cat "$COVERAGE_FILE" | head -n 30
