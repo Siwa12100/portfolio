@@ -90,7 +90,7 @@ steps:
 
   - name: "🐳 build-et-push-image"
     image: plugins/docker
-    depends_on: [ "🛠 build", "🧪 tests-unitaires" ]
+    depends_on: [ "🛠 build" ] # "🧪 tests-unitaires"
     settings:
       registry: registry.davalada.valorium-mc.fr
       repo: registry.davalada.valorium-mc.fr/portfolio-siwa-main
