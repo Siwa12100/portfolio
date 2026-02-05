@@ -68,8 +68,7 @@ steps:
       - echo "📄 Fichier trouvé : $COVERAGE_FILE"
       - head -n 30 "$COVERAGE_FILE"
       - mv "$COVERAGE_FILE" /coverage/opencover.xml
-    - echo "✅ [SUCCESS] Tests terminés avec couverture."
-
+      - echo "✅ [SUCCESS] Tests terminés avec couverture."
 
   - name: "📊 analyse-sonar"
     image: mcr.microsoft.com/dotnet/sdk:9.0
