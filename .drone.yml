@@ -115,7 +115,7 @@ steps:
       port: 22
       script:
         - echo "🚀 [INFO] Déploiement en cours..."
-        - cd deploiements/portfolio/portfolio-siwa-main
+        - cd deploiements/portfolio-siwa
         - echo "🛑 [INFO] Arrêt de l'ancien service..."
         - docker compose down
         - echo "📥 [INFO] Pull de la nouvelle image..."
