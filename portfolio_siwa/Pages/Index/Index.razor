@@ -19,13 +19,32 @@
     <section id="partie1"  class="haut-page separation-contenu marge-pages">
         <HautPage />
     </section>
+
+    <section class="separation-contenu-legere marge-pages">
+        <Projet
+            Titre="@this.TitreProjetLibPais"
+            ImagePrincipale="/Images/projets/paistv.png"
+            Texte="@this.DescriptionProjetLibPais"
+            PositionMedia="PositionMedia.Gauche">
+        <BasPage>
+            <div class="technos">
+                <Techno Nom="Blazor Server" Description="@this.LibPaisDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
+                <Techno Nom="Java" Description="@this.LibPaisDescriptionJava" Logo="Images/logos/logoJava.png" />
+                <Techno Nom="Spring Boot" Description="@this.LibPaisDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
+                <Techno Nom="MongoDB" Description="@this.LibPaisDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
+                <Techno Nom="Google Drive API" Description="@this.LibPaisDescriptionGoogleDriveApi" Logo="Images/logos/logoGoogledrive.png" />
         
+            </div>
+        </BasPage>    
+        </Projet>
+    </section>
+
     <section id="partie2" class="separation-contenu-legere marge-pages">
         <Projet
             Titre="@this.TitreProjetGenseSense"
             ImagePrincipale="/Images/projets/genesense.png"
             Texte="@this.DescriptionProjetGenseSense"
-            PositionMedia="PositionMedia.Gauche"
+            PositionMedia="PositionMedia.Droite"
             LienGithub="@this.GenseSenseGithub">
         <BasPage>
             <div class="technos">
@@ -38,24 +57,8 @@
         </BasPage>    
         </Projet>
     </section>
-
-    <section id="test" class="separation-contenu marge-pages">
-        <Projet
-            Titre="@this.TitreProjetDrosolab"
-            ImagePrincipale="/Images/projets/drosolab.png"
-            Texte="@this.DescriptionProjetDrosolab"
-            PositionMedia="PositionMedia.Droite">
-        <BasPage>
-            <div class="technos">
-                <Techno Nom="Vue.js" Description="@this.DrosolabDescriptionVue" Logo="Images/logos/logoVue.png" />
-                <Techno Nom="Symfony" Description="@this.DrosolabDescriptionSymfony" Logo="Images/logos/logoSymfony.png" />
-                <Techno Nom="Doctrine & Mysql" Description="@this.DrosolabDescriptionMysql" Logo="Images/logos/logoDoctrine.png" />
-                <Techno Nom="Docker" Description="@this.DrosolabDescriptionDocker" Logo="Images/logos/logoDocker.png" />
-            </div>
-        </BasPage>    
-        </Projet>
-    </section>
-        <section class="separation-contenu marge-pages">
+    
+    <section class="separation-contenu marge-pages">
         <Projet
             Titre="@this.TitreProjetSiteElendil"
             ImagePrincipale="/Images/projets/elendil.png"
@@ -71,25 +74,6 @@
         </BasPage>    
         </Projet>
     </section>
-
-    <section class="separation-contenu-legere marge-pages">
-    <Projet
-        Titre="@this.TitreProjetLibPais"
-        ImagePrincipale="/Images/projets/paistv.png"
-        Texte="@this.DescriptionProjetLibPais"
-        PositionMedia="PositionMedia.Gauche">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="Blazor Server" Description="@this.LibPaisDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-            <Techno Nom="Java" Description="@this.LibPaisDescriptionJava" Logo="Images/logos/logoJava.png" />
-            <Techno Nom="Spring Boot" Description="@this.LibPaisDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
-            <Techno Nom="MongoDB" Description="@this.LibPaisDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
-            <Techno Nom="Google Drive API" Description="@this.LibPaisDescriptionGoogleDriveApi" Logo="Images/logos/logoGoogledrive.png" />
-       
-        </div>
-    </BasPage>    
-    </Projet>
-</section>
 
     <section class="separation-contenu-legere marge-pages">
     <Projet
@@ -143,6 +127,23 @@
             <Techno Nom="MongoDB" Description="@this.JogairesDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
             <Techno Nom="Docker" Description="@this.JogairesDescriptionDocker" Logo="Images/logos/logoDocker.png" />
         
+        </div>
+    </BasPage>    
+    </Projet>
+</section>
+
+<section id="test" class="separation-contenu marge-pages">
+    <Projet
+        Titre="@this.TitreProjetDrosolab"
+        ImagePrincipale="/Images/projets/drosolab.png"
+        Texte="@this.DescriptionProjetDrosolab"
+        PositionMedia="PositionMedia.Droite">
+    <BasPage>
+        <div class="technos">
+            <Techno Nom="Vue.js" Description="@this.DrosolabDescriptionVue" Logo="Images/logos/logoVue.png" />
+            <Techno Nom="Symfony" Description="@this.DrosolabDescriptionSymfony" Logo="Images/logos/logoSymfony.png" />
+            <Techno Nom="Doctrine & Mysql" Description="@this.DrosolabDescriptionMysql" Logo="Images/logos/logoDoctrine.png" />
+            <Techno Nom="Docker" Description="@this.DrosolabDescriptionDocker" Logo="Images/logos/logoDocker.png" />
         </div>
     </BasPage>    
     </Projet>

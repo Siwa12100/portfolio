@@ -1,0 +1,33 @@
+@namespace Portfolio.Siwa.Composants.Global.BlocsContenu.DispositionContenu
+
+<div class="disposition-contenu">
+    @if (ContenuHaut != null)
+    {
+        <div class="disposition-contenu__haut">
+            @ContenuHaut
+        </div>
+    }
+
+    <div class="disposition-contenu__centre @ObtenirClasseCentrage()">
+        @if (ContenuGauche != null)
+        {
+            <div class="disposition-contenu__gauche">
+                @ContenuGauche
+            </div>
+        }
+
+        @if (ContenuDroite != null)
+        {
+            <div class="disposition-contenu__droite">
+                @ContenuDroite
+            </div>
+        }
+    </div>
+
+    @if (ContenuBas != null)
+    {
+        <div class="disposition-contenu__bas">
+            @ContenuBas
+        </div>
+    }
+</div>

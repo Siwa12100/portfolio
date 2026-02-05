@@ -1,0 +1,85 @@
+/* === CONTENEUR PRINCIPAL === */
+.disposition-contenu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    width: 100%;
+}
+
+/* === SECTION HAUT === */
+.disposition-contenu__haut {
+    width: 100%;
+}
+
+/* === SECTION CENTRE === */
+.disposition-contenu__centre {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.disposition-contenu__centre--milieu {
+    align-items: center;
+}
+
+.disposition-contenu__centre--haut {
+    align-items: flex-start;
+}
+
+/* === COLONNES GAUCHE & DROITE === */
+.disposition-contenu__gauche,
+.disposition-contenu__droite {
+    flex: 1;
+    min-width: 0; /* Évite le débordement */
+}
+
+/* === SECTION BAS === */
+.disposition-contenu__bas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1.7rem;
+}
+
+/* ========================================
+   📱 RESPONSIVE
+======================================== */
+
+/* Tablettes */
+@media (max-width: 1024px) {
+    .disposition-contenu {
+        gap: 1.7rem;
+    }
+
+    .disposition-contenu__centre {
+        flex-direction: column;
+        gap: 1.7rem;
+    }
+
+    .disposition-contenu__gauche,
+    .disposition-contenu__droite {
+        width: 100%;
+    }
+
+    .disposition-contenu__bas {
+        margin-top: 0.6rem;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+    .disposition-contenu {
+        gap: 1rem;
+    }
+
+    .disposition-contenu__centre {
+        gap: 1rem;
+    }
+
+    .disposition-contenu__bas {
+        margin-top: 0;
+    }
+}
