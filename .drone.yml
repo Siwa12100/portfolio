@@ -65,28 +65,28 @@ steps:
   #     - mv "$COVERAGE_FILE" /coverage/opencover.xml
   #     - echo "✅ [SUCCESS] Tests terminés avec couverture."
 
-  - name: "📊 analyse-sonar"
-    image: mcr.microsoft.com/dotnet/sdk:9.0
-    environment:
-      SONAR_HOST_URL: https://sonar.davalada.valorium-mc.fr
-      SONAR_TOKEN:
-        from_secret: SONAR_TOKEN
-    volumes:
-      - name: shared-volume
-        path: /coverage
-    commands:
-      - echo "📊 [INFO] Initialisation de l'analyse Sonar..."
-      - apt-get update && apt-get install -y openjdk-17-jre
-      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && export PATH=$JAVA_HOME/bin:$PATH
-      - dotnet tool install --global dotnet-sonarscanner
-      - export PATH="$PATH:/root/.dotnet/tools"
-      - echo "🔍 [DEBUG] Vérification du fichier opencover.xml avant analyse..."
-      - find /coverage -name *.opencover.xml || true
-      - head -n 30 /coverage/opencover.xml
-      - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/coverage/**/opencover.xml /d:sonar.sources=./portfolio_siwa
-      - dotnet build ./portfolio_siwa/portfolio_siwa.csproj --no-incremental
-      - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
-      - echo "✅ [SUCCESS] Analyse Sonar terminée."
+  # - name: "📊 analyse-sonar"
+  #   image: mcr.microsoft.com/dotnet/sdk:9.0
+  #   environment:
+  #     SONAR_HOST_URL: https://sonar.davalada.valorium-mc.fr
+  #     SONAR_TOKEN:
+  #       from_secret: SONAR_TOKEN
+  #   volumes:
+  #     - name: shared-volume
+  #       path: /coverage
+  #   commands:
+  #     - echo "📊 [INFO] Initialisation de l'analyse Sonar..."
+  #     - apt-get update && apt-get install -y openjdk-17-jre
+  #     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && export PATH=$JAVA_HOME/bin:$PATH
+  #     - dotnet tool install --global dotnet-sonarscanner
+  #     - export PATH="$PATH:/root/.dotnet/tools"
+  #     - echo "🔍 [DEBUG] Vérification du fichier opencover.xml avant analyse..."
+  #     - find /coverage -name *.opencover.xml || true
+  #     - head -n 30 /coverage/opencover.xml
+  #     - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/coverage/**/opencover.xml /d:sonar.sources=./portfolio_siwa
+  #     - dotnet build ./portfolio_siwa/portfolio_siwa.csproj --no-incremental
+  #     - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
+  #     - echo "✅ [SUCCESS] Analyse Sonar terminée."
 
   - name: "🐳 build-et-push-image"
     image: plugins/docker
