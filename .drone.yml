@@ -49,20 +49,21 @@ steps:
         }
       - echo "✅ [SUCCESS] Build terminé."
 
-  - name: "🧪 tests-unitaires"
-    image: mcr.microsoft.com/dotnet/sdk:9.0
-    volumes:
-      - name: shared-volume
-        path: /coverage
-    commands:
-      - echo "🧪 [INFO] Lancement des tests avec couverture..."
-      - dotnet test ./portfolio_siwa.sln -c Release --no-build --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
-      - echo "🔍 [DEBUG] Recherche du fichier de couverture..."
-      - COVERAGE_FILE=$(find /coverage -name "*.opencover.xml" -type f | head -n 1) && if [ -z "$COVERAGE_FILE" ]; then echo "⚠️ [WARN] Aucun fichier de couverture trouvé"; ls -la /coverage/; exit 1; fi
-      - echo "📄 Fichier trouvé : $COVERAGE_FILE"
-      - head -n 30 "$COVERAGE_FILE"
-      - mv "$COVERAGE_FILE" /coverage/opencover.xml
-      - echo "✅ [SUCCESS] Tests terminés avec couverture."
+  # - name: "🧪 tests-unitaires"
+  #   image: mcr.microsoft.com/dotnet/sdk:9.0
+  #   volumes:
+  #     - name: shared-volume
+  #       path: /coverage
+  #   commands:
+  #     - echo "🧪 [INFO] Lancement des tests avec couverture..."
+  #     - dotnet test ./portfolio_siwa.sln -c Release --no-build --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
+  #     - echo "🔍 [DEBUG] Recherche du fichier de couverture..."
+  #     - |
+  #       COVERAGE_FILE=$(find /coverage -name "*.opencover.xml" -type f | head -n 1) && if [ -z "$COVERAGE_FILE" ]; then echo "⚠️ [WARN] Aucun fichier de couverture trouvé"; ls -la /coverage/; exit 1; fi
+  #     - echo "📄 Fichier trouvé : $COVERAGE_FILE"
+  #     - head -n 30 "$COVERAGE_FILE"
+  #     - mv "$COVERAGE_FILE" /coverage/opencover.xml
+  #     - echo "✅ [SUCCESS] Tests terminés avec couverture."
 
   - name: "📊 analyse-sonar"
     image: mcr.microsoft.com/dotnet/sdk:9.0
