@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+.git/
+.devcontainer/
+tests/
+*.sln
+README.md
