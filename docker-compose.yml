@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  site_alliance_elendil:
+  portfolio_siwa:
     build:
       context: .
       dockerfile: Dockerfile
