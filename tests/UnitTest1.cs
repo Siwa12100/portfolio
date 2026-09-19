@@ -1,19 +1,42 @@
-﻿using Microsoft.AspNetCore.Components;
-using portfolio_siwa.Modeles;
+﻿using portfolio_siwa.Donnees;
 
 namespace tests;
 
-public class UnitTest1
+public class CatalogueProjetsTests
 {
     [Fact]
-    public void Test1()
+    public void Le_catalogue_contient_des_projets()
     {
-        Assert.Equal(4, 2 + 2);
-        DetailsProjet details = new()
+        Assert.NotEmpty(CatalogueProjets.Tous);
+    }
+
+    [Fact]
+    public void Chaque_fiche_est_complete()
+    {
+        foreach (var fiche in CatalogueProjets.Tous)
         {
-            Titre = "Test Project",
-            Texte = new MarkupString("<p>This is a test project description.</p>"),
-            CheminImage = "test-image.jpg"
-        };
+            Assert.False(string.IsNullOrWhiteSpace(fiche.Titre));
+            Assert.False(string.IsNullOrWhiteSpace(fiche.Categorie));
+            Assert.False(string.IsNullOrWhiteSpace(fiche.Resume.Value));
+            Assert.False(string.IsNullOrWhiteSpace(fiche.Cadre));
+            Assert.StartsWith("/Images/", fiche.Image);
+            Assert.True(fiche.ImageLargeur > 0 && fiche.ImageHauteur > 0);
+            Assert.NotEmpty(fiche.Technos);
+        }
+    }
+
+    [Fact]
+    public void Les_liens_externes_sont_absolus()
+    {
+        foreach (var fiche in CatalogueProjets.Tous)
+        {
+            foreach (var lien in new[] { fiche.LienSite, fiche.LienGithub })
+            {
+                if (lien is not null)
+                {
+                    Assert.StartsWith("https://", lien);
+                }
+            }
+        }
     }
 }

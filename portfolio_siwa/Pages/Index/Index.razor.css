@@ -1,40 +1,19 @@
-.contenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    overflow: hidden;
+.liste-projets {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
 }
 
-.haut-page {
-    margin-top: 17vh;
+.titre-sous-section {
+    margin-top: var(--e7);
+    margin-bottom: var(--e4);
+    color: var(--texte-doux);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-.bas-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.liste-compacte {
+    display: grid;
+    gap: var(--e3);
 }
-
-.technos {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: start;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-
-
-@media (max-width: 1024px) {
-
-}
-
-
-
-

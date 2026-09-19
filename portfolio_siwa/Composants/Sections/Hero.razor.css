@@ -1,0 +1,101 @@
+.hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-top: calc(var(--hauteur-nav) + clamp(1.5rem, 6vw, 4rem));
+    /* La section suivante a déjà son propre espace en haut : inutile d'en rajouter autant. */
+    padding-bottom: var(--e6);
+}
+
+/* Halo diffus derrière la photo : réchauffe le haut de page sans rien surcharger. */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -12%;
+    right: -6%;
+    width: min(46rem, 90%);
+    aspect-ratio: 1 / 1;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle,
+        rgba(255, 153, 19, 0.16) 0%,
+        rgba(141, 125, 221, 0.13) 38%,
+        transparent 68%);
+}
+
+/* La photo est déclarée en premier dans le HTML pour arriver en tête sur mobile,
+   c'est le premier écran depuis Instagram. L'ordre la renvoie à droite sur grand écran. */
+.hero__photo {
+    order: 2;
+}
+
+.hero__texte {
+    order: 1;
+}
+
+.hero__photo img {
+    width: clamp(11rem, 26vw, 19rem);
+    /* Indispensable : sans ça l'attribut height="900" de la balise l'emporte. */
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--bordure-forte);
+    box-shadow: var(--ombre-2);
+}
+
+.hero h1 {
+    margin-block: var(--e3) var(--e2);
+}
+
+.hero__role {
+    font-family: var(--police-titre);
+    font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+    color: var(--accent-doux);
+    margin-bottom: var(--e4);
+}
+
+.hero__accroche {
+    color: var(--texte-doux);
+    margin-bottom: var(--e5);
+}
+
+.hero__accroche p {
+    margin-bottom: var(--e3);
+}
+
+.hero__accroche p:last-child {
+    margin-bottom: 0;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e3);
+    margin-bottom: var(--e5);
+}
+
+@media (max-width: 860px) {
+    .hero {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: var(--e4);
+    }
+
+    .hero__photo {
+        order: 0;
+    }
+
+    .hero__accroche {
+        margin-inline: auto;
+        /* Le titre reste centré, mais un paragraphe centré sur quatre lignes se lit mal. */
+        text-align: left;
+    }
+
+    .hero__actions {
+        justify-content: center;
+    }
+}

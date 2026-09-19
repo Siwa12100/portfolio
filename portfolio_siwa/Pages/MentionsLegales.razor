@@ -1,0 +1,48 @@
+@page "/mentions-legales"
+
+<PageTitle>Mentions légales | Jean Marcillac</PageTitle>
+
+<section class="section">
+    <div class="contenu-limite mesure legales">
+        <h1>Mentions légales</h1>
+
+        <h2>Éditeur du site</h2>
+        <p>
+            Jean Marcillac, éditeur et directeur de la publication.<br />
+            Contact : <a href="mailto:jean.marcillac12@gmail.com">jean.marcillac12@gmail.com</a>
+        </p>
+
+        <h2>Hébergement</h2>
+        @* À compléter avant la mise en ligne : la loi impose de nommer l'hébergeur,
+           avec sa raison sociale, son adresse et son téléphone. *@
+        <p>
+            Site hébergé sur un serveur privé virtuel fourni par @HebergeurNom.<br />
+            @HebergeurAdresse<br />
+            @HebergeurTelephone
+        </p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>
+            Les textes et le code de ce site sont l'œuvre de son éditeur. Les captures d'écran
+            présentent des projets réalisés dans un cadre scolaire, professionnel ou associatif, et
+            restent la propriété de leurs commanditaires respectifs. Les logos des technologies
+            appartiennent à leurs détenteurs et ne sont utilisés qu'à des fins d'identification.
+        </p>
+
+        <h2>Données personnelles</h2>
+        <p>
+            Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience et ne collecte
+            aucune donnée personnelle. Aucun formulaire n'y figure : les prises de contact se font
+            par courrier électronique, à votre initiative.
+        </p>
+
+        <p><a href="/">Retour à l'accueil</a></p>
+    </div>
+</section>
+
+@code {
+    // Renseigner ces trois valeurs avec les informations de l'hébergeur du VPS.
+    private const string HebergeurNom = "[hébergeur à renseigner]";
+    private const string HebergeurAdresse = "[adresse à renseigner]";
+    private const string HebergeurTelephone = "[téléphone à renseigner]";
+}

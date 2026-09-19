@@ -1,0 +1,32 @@
+.contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e2);
+}
+
+.contact {
+    display: grid;
+    place-items: center;
+    /* Cible tactile de 3rem, même si l'icône est plus petite. */
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid var(--bordure);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: transform var(--transition), background-color var(--transition), border-color var(--transition);
+}
+
+.contact img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media (hover: hover) {
+    .contact:hover {
+        transform: translateY(-2px);
+        background: var(--surface-haute);
+        border-color: var(--bordure-forte);
+    }
+}

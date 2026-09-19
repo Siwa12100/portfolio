@@ -1,0 +1,64 @@
+@namespace portfolio_siwa.Composants.Sections
+
+@* Format resserré pour les projets qui suivent les quatre mis en avant :
+   même information, moitié moins de hauteur. *@
+<article class="compacte" data-reveal>
+    @* Description complète au survol, uniquement sur les appareils qui savent survoler :
+       au toucher, le résumé court et les puces suffisent. *@
+    <div class="compacte__complet" aria-hidden="true">
+        <p class="compacte__complet-titre">@this.Fiche.Titre</p>
+        <div>@this.Fiche.Resume</div>
+    </div>
+
+    <div class="compacte__visuel">
+        <img src="@this.Fiche.Image" alt="@($"Aperçu du projet {this.Fiche.Titre}")"
+             width="@this.Fiche.ImageLargeur" height="@this.Fiche.ImageHauteur"
+             loading="lazy" decoding="async" />
+    </div>
+
+    <div class="compacte__corps">
+        <p class="compacte__meta">
+            <span class="compacte__categorie">@this.Fiche.Categorie</span>
+            @if (this.Fiche.Annee is not null)
+            {
+                <span>@this.Fiche.Annee</span>
+            }
+            @if (this.Fiche.Cadre is not null)
+            {
+                <span>@this.Fiche.Cadre</span>
+            }
+        </p>
+
+        <h3 class="compacte__titre">@this.Fiche.Titre</h3>
+        <p class="compacte__resume">@this.Fiche.ResumeCourt</p>
+
+        <ul class="puces">
+            @foreach (var techno in this.Fiche.Technos)
+            {
+                <li>
+                    <button type="button" class="puce">
+                        <img src="@techno.Logo" alt="" loading="lazy" />
+                        <span class="puce__nom">@techno.Nom</span>
+                        <span class="puce__role">@techno.Role</span>
+                    </button>
+                </li>
+            }
+        </ul>
+
+        @if (this.Fiche.LienSite is not null || this.Fiche.LienGithub is not null)
+        {
+            <div class="compacte__liens">
+                @if (this.Fiche.LienSite is not null)
+                {
+                    <a class="bouton bouton--discret bouton--petit" href="@this.Fiche.LienSite"
+                       target="_blank" rel="noopener noreferrer">Voir le site</a>
+                }
+                @if (this.Fiche.LienGithub is not null)
+                {
+                    <a class="bouton bouton--discret bouton--petit" href="@this.Fiche.LienGithub"
+                       target="_blank" rel="noopener noreferrer">Code source</a>
+                }
+            </div>
+        }
+    </div>
+</article>

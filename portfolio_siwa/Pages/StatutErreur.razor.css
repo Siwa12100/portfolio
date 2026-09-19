@@ -1,0 +1,11 @@
+.statut {
+    padding-top: var(--hauteur-nav);
+}
+
+.statut h1 {
+    margin-block: var(--e3) var(--e3);
+}
+
+.statut p {
+    color: var(--texte-doux);
+}

@@ -1,0 +1,17 @@
+.legales {
+    padding-top: var(--hauteur-nav);
+}
+
+.legales h1 {
+    margin-bottom: var(--e5);
+}
+
+.legales h2 {
+    font-size: 1.2rem;
+    margin-top: var(--e5);
+    margin-bottom: var(--e2);
+}
+
+.legales p {
+    color: var(--texte-doux);
+}

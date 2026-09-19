@@ -1,17 +1,14 @@
-using Microsoft.AspNetCore.StaticFiles;
-using MudBlazor.Services;
 using portfolio_siwa;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-builder.Services.AddMudServices();
+// Rendu statique côté serveur : le site n'a aucun état à maintenir, donc pas de
+// circuit SignalR à garder ouvert. Les navigateurs intégrés (Instagram…) coupent
+// ces connexions dès que l'utilisateur quitte l'application.
+builder.Services.AddRazorComponents();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
@@ -21,19 +18,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Réexécute la requête sur /erreur/404 sans changer l'URL ni le code de statut :
+// en rendu statique, une URL inconnue renverrait sinon une page blanche.
+app.UseStatusCodePagesWithReExecute("/erreur/{0}");
 
 app.UseAntiforgery();
 
 app.MapStaticAssets();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-
-// Temporaire, pour corriger le bug liés aux vidéos de Blazor .NET 9 
-app.MapGet("/banniereElendil", () =>
-{
-    var path = Path.Combine(app.Environment.ContentRootPath, "wwwroot", "Videos", "cinematique1.mp4");
-    return Results.File(path, "video/mp4");
-})
-.AllowAnonymous();
+app.MapRazorComponents<App>();
 
 app.Run();

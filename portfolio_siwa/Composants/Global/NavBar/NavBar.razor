@@ -1,27 +1,24 @@
-<nav>
-  <div class="contenu-nav">
-    <ul class="menu-principal">
-      <li id="accueil"><NavLink href="#partie1" class="nav-link" ActiveClass="active">Accueil</NavLink></li>
-      <li id="travaux"><NavLink href="#partie2" class="nav-link" ActiveClass="active">Travaux</NavLink></li>
-      <li id="propos"><NavLink href="#partie3" class="nav-link" ActiveClass="active">À propos</NavLink></li>
-    </ul>
-    <button class="bouton-burger" @onclick="ToggleMenu">☰</button>
-    <ul class="menu-mobile @(menuVisible ? "ouvert" : "ferme")">
-      <li @onclick="ToggleMenu" id="accueil-mobile">Accueil</li>
-      <li @onclick="ToggleMenu" id="travaux-mobile">Travaux</li>
-      <li @onclick="ToggleMenu" id="propos-mobile">À propos</li>
-    </ul>
-    <button class="bouton-cv" @onclick="RedirigerCv">
-      <img src="Images/logos/logocv.svg" alt="cv">
-      <p>CV</p>
-    </button>
-  </div>
-</nav>
+@namespace portfolio_siwa.Composants.Global.NavBar
 
-@code {
-    private bool menuVisible = false;
-    private void ToggleMenu()
-    {
-        menuVisible = !menuVisible;
-    }
-}
+@* Le repli du menu est géré en JS (js/site.js) : la page reste en rendu statique,
+   donc pas de WebSocket à maintenir depuis un navigateur intégré. *@
+<nav class="nav" id="nav">
+    <div class="nav__contenu contenu-limite">
+        <a class="nav__marque" href="#accueil">Jean Marcillac</a>
+
+        <button type="button" class="nav__burger" id="nav-burger"
+                aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav__menu" id="nav-menu">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li>
+                <a class="bouton bouton--plein nav__cv" href="https://cv.jean-marcillac.dev"
+                   target="_blank" rel="noopener noreferrer">CV</a>
+            </li>
+        </ul>
+    </div>
+</nav>
