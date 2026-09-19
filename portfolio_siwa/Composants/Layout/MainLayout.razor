@@ -1,22 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
-@using portfolio_siwa.Composants.Global.NavBar;
-@using portfolio_siwa.Composants.Global.Footer;
+@using portfolio_siwa.Composants.Global.NavBar
+@using portfolio_siwa.Composants.Global.Footer
 
-@* Required *@
-<MudThemeProvider />
-<MudPopoverProvider />
-@* Needed for dialogs *@
-<MudDialogProvider />
-@* Needed for snackbars *@
-<MudSnackbarProvider />
+<NavBar />
 
-<MudScrollToTop>
-    <MudFab Color="Color.Dark" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
-</MudScrollToTop>
-
-<div class="contenu">
-    <NavBar/>
+<main>
     @Body
-    <Footer/>
-</div>
+</main>
+
+<Footer />
+
+<button type="button" id="retour-haut" class="retour-haut" aria-label="Revenir en haut">↑</button>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>

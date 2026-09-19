@@ -1,262 +1,161 @@
-  nav {
+.nav {
     position: fixed;
-    width: 100%;
+    inset: 0 0 auto 0;
     z-index: 1000;
-    height: 4.8rem;
+    height: var(--hauteur-nav);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    background-color: transparent;
-    backdrop-filter: blur(13px);
-    padding-right: 1rem;
-  }
-  nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    opacity: 0.2;
-    z-index: -1;
-    border-radius: inherit;
-  }
-  
+    background: transparent;
+    transition: background-color var(--transition), box-shadow var(--transition),
+                backdrop-filter var(--transition);
+}
 
-  .contenu-nav {
+/* Classe posée par le JS dès que la page défile. */
+.nav.nav--posee {
+    background: rgba(19, 21, 44, 0.82);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--bordure), var(--ombre-1);
+}
+
+.nav__contenu {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
-    width: 55%;
-    margin-right: 7rem;
-  }
+    justify-content: space-between;
+    gap: var(--e4);
+}
 
-  .menu-principal {
-    list-style: none;
+.nav__marque {
+    font-family: var(--police-titre);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--texte);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav__menu {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 0;
-    margin: 0;
-  }
+    gap: clamp(1rem, 2.5vw, 2rem);
+}
 
-  .menu-principal li {
+.nav__menu a {
     position: relative;
-    color: var(--couleur-texte);
-    font-size: var(--taille-texte);
-    font-family: var(--police-texte);
-    padding-left: 2.6rem;
-    margin-left: 3.3rem;
-    transition: transform 0.4s ease;
-    cursor: pointer;
-  }
+    color: var(--texte-doux);
+    font-size: var(--t-petit);
+    font-weight: 500;
+    text-decoration: none;
+    padding-block: 0.5rem;
+}
 
-  .menu-principal li:hover {
-    transform: scale(1.1);
-  }
+.nav__menu a:hover {
+    color: var(--texte);
+}
 
-  .menu-principal li::before {
-    content: '';
+/* Soulignement animé, hors bouton CV. */
+.nav__menu a:not(.nav__cv)::after {
+    content: "";
     position: absolute;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.9rem;
-    height: 1.9rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    transition: transform 0.4s ease;
-  }
-
-  #accueil::before {
-    background-image: url('/Images/logos/logoHome.svg');
-  }
-  #travaux::before {
-    background-image: url('/Images/logos/logobuild.svg');
-  }
-  #propos::before {
-    background-image: url('/Images/logos/logogredon.svg');
-  }
-
-  .menu-principal li:hover::before {
-    transform: translateY(-50%) rotate(20deg);
-  }
-
-  .menu-principal li::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 2.1rem;
-    width: 0%;
+    bottom: 0.15rem;
+    width: 0;
     height: 2px;
-    background-color: var(--couleur-texte);
-    transition: width 0.3s ease;
-  }
+    border-radius: 2px;
+    background: var(--gradient-accent);
+    transition: width var(--transition);
+}
 
-  .menu-principal li:hover::after {
-    width: calc(100% - 2.1rem);
-  }
+.nav__menu a:not(.nav__cv):hover::after {
+    width: 100%;
+}
 
-  .bouton-cv {
-    color: white;
-    font-size: var(--taille-texte);
-    font-family: var(--police-texte);
-    font-style: var(--font-style-texte);
-    font-weight: var(--poids-police-texte);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
+.nav__cv {
+    color: #fff;
+}
+
+.nav__burger {
+    display: none;
+    flex-direction: column;
     justify-content: center;
-    background: var(--gradient-violet-orange);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 0.3rem 0.8rem;
-    transition: transform 0.4s ease, background 1s ease;
+    gap: 5px;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.6rem;
+    border: 1px solid var(--bordure);
+    border-radius: var(--r-s);
+    background: rgba(255, 255, 255, 0.04);
     cursor: pointer;
-    margin-left: 2.2rem;
-  }
+}
 
-  .bouton-cv p {
-    margin: 0;
-    padding: 0;
-    font-size: var(--taille-texte-boutons);
-    font-family: var(--police-texte);
-    font-style: var(--font-style-texte);
-    transition: var(--transition-grossissement);
-  }
+.nav__burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    flex: 0 0 2px;
+    border-radius: 2px;
+    background: var(--texte);
+    transition: transform var(--transition), opacity var(--transition);
+}
 
-  .bouton-cv:hover {
-    transform: scale(1.03);
-  }
+/* Croix quand le menu est ouvert. */
+.nav__burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
 
-  .bouton-cv img {
-    width: auto;
-    height: calc(var(--taille-texte-boutons));
-    margin-right: 0.7rem;
-    transition: var(--transition-grossissement);
-  }
+.nav__burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
 
-  .bouton-cv:hover img {
-    transform: rotate(-12deg);
-  }
+.nav__burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
 
-  .bouton-burger {
-    display: none;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--couleur-texte);
-    cursor: pointer;
-    transition: transform 0.4s ease;
-  }
-
-  .bouton-burger:hover {
-    transform: scale(1.2);
-  }
-
-  .menu-mobile {
-    display: none;
-  }
-
-  @media (max-width: 1024px) {
-
-    nav {
-      padding-right: 0;
+@media (max-width: 860px) {
+    .nav__burger {
+        display: flex;
     }
 
-    .contenu-nav {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 0;
+    .nav__menu {
+        position: absolute;
+        top: var(--hauteur-nav);
+        left: var(--marge-page);
+        right: var(--marge-page);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: var(--e2);
+        border: 1px solid var(--bordure);
+        border-radius: var(--r-m);
+        background: var(--fond-doux);
+        box-shadow: var(--ombre-2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
     }
 
-    .menu-principal {
-      display: none;
+    .nav__menu.ouvert {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
 
-    .bouton-burger {
-      display: block;
+    .nav__menu li + li {
+        border-top: 1px solid var(--bordure);
     }
 
-    .menu-mobile {
-      list-style: none;
-      padding: 1rem;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      top: calc(4.8rem + 0rem);
-      background-color: var(--bleu-fonce);
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      pointer-events: none;
+    .nav__menu a {
+        display: block;
+        padding: 0.85rem 0.5rem;
+        font-size: 1rem;
     }
 
-    .menu-mobile.ouvert {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
+    .nav__menu .nav__cv {
+        margin-top: var(--e2);
+        justify-content: center;
     }
 
-    .menu-mobile.ferme {
-      transform: translateY(-10px);
+    .nav__menu li:has(.nav__cv) {
+        border-top: none;
     }
-
-    .menu-mobile li {
-      position: relative;
-      color: var(--couleur-texte);
-      font-size: var(--taille-texte);
-      font-family: var(--police-texte);
-      padding: 0.5rem 1rem;
-      transition: transform 0.4s ease;
-      margin: 0.5rem 0;
-    }
-
-    .menu-mobile li:hover {
-      transform: scale(1.05);
-    }
-
-    .menu-mobile li::before {
-      content: '';
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 0.5rem;
-      width: 1.5rem;
-      height: 1.5rem;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-
-    #accueil-mobile::before {
-      background-image: url('/Images/logos/logoHome.svg');
-    }
-
-    #travaux-mobile::before {
-      background-image: url('/Images/logos/logobuild.svg');
-    }
-
-    #propos-mobile::before {
-      background-image: url('/Images/logos/logogredon.svg');
-    }
-
-    .menu-mobile li::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 100%;
-      background: var(--couleur-texte);
-      margin-top: 0.5rem;
-      opacity: 0.5;
-    }
-
-    .bouton-cv {
-      margin-left: 1rem;
-    }
-  }
-  
+}

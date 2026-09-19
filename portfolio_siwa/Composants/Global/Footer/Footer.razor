@@ -1,10 +1,15 @@
 @namespace portfolio_siwa.Composants.Global.Footer
 
-@using portfolio_siwa.Composants.Global.Boutons.BoutonDiscord
-@using portfolio_siwa.Composants.Global.Boutons.BoutonFondTransparent
-
-<footer class="contenu">
-    <p>Portfolio réalisé par mes soins, avec le Framework .NET Blazor Server.</p>
-    <BoutonGithub Texte="Code du portfolio" Lien="https://github.com/Siwa12100/portfolio" />
-
+<footer class="pied">
+    <div class="pied__contenu contenu-limite">
+        <p>
+            Portfolio réalisé par mes soins, en .NET Blazor.
+            <a href="/mentions-legales">Mentions légales</a>
+        </p>
+        <a class="bouton bouton--discret" href="https://github.com/Siwa12100/portfolio"
+           target="_blank" rel="noopener noreferrer">
+            <img src="Images/logoGithub.png" alt="" width="18" height="18" />
+            Code du portfolio
+        </a>
+    </div>
 </footer>

@@ -1,0 +1,52 @@
+@namespace portfolio_siwa.Composants.Sections
+
+<div class="apropos" data-reveal>
+    <div class="apropos__texte">
+        <p>
+            Originaire de l'Aveyron, j'aime créer des projets concrets, utiles et porteurs de sens.
+            Mes études, mon engagement associatif et mes expériences professionnelles m'ont appris
+            à allier la technique et la gestion de projet.
+        </p>
+        <p>
+            En alternance chez <strong>Enedis</strong>, je fais de l'analyse de données et je développe
+            des outils métiers pour l'agence ingénierie d'Auvergne : planification des chantiers longue
+            durée, suivi des affaires, visualisation de la charge des équipes.
+        </p>
+        <p>
+            Le reste de mon temps va au milieu associatif, entre le <strong>Valorium</strong> et
+            l'<strong>Alliance d'Elendil</strong>, où j'explore le développement d'univers virtuels et
+            la gestion de communautés en ligne. Les projets m'y ont amené à prendre des responsabilités :
+            la présidence de ces deux associations, et la trésorerie de l'Institut occitan de l'Aveyron
+            depuis mon passage chez eux.
+        </p>
+        <p>
+            Curieux d'histoire et de culture, je regarde comment le numérique peut servir à transmettre
+            et à valoriser ces sujets. Mon travail à l'<strong>Institut occitan de l'Aveyron</strong> m'a
+            permis d'expérimenter cette approche, en développant des outils pour mettre en avant la culture
+            occitane auprès des jeunes générations.
+        </p>
+        <p>
+            D'où l'envie de mettre mes compétences au service de projets et d'organisations porteurs
+            de sens, utiles, responsables et durables, et un engagement pour la protection, la
+            valorisation et la transmission de la langue et de la culture occitanes.
+        </p>
+    </div>
+
+    <div class="apropos__contact">
+        <h3>Me contacter</h3>
+        <p>Une question, une opportunité, ou juste envie d'échanger ?</p>
+
+        @* Le mailto ouvre le client mail quand il y en a un. Sinon, l'adresse reste
+           lisible et copiable d'un clic : sur un poste sans client configuré, un
+           mailto seul ne déclenche rien du tout. *@
+        <div class="apropos__actions">
+            <a class="bouton bouton--plein" href="mailto:jean.marcillac12@gmail.com">Écrivez-moi</a>
+            <button type="button" class="adresse" data-copier="jean.marcillac12@gmail.com"
+                    data-message="Adresse mail copiée" title="Copier l'adresse">
+                jean.marcillac12@gmail.com
+            </button>
+        </div>
+
+        <Contacts />
+    </div>
+</div>

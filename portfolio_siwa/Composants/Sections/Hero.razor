@@ -1,0 +1,42 @@
+@namespace portfolio_siwa.Composants.Sections
+
+<header class="hero contenu-limite" id="accueil">
+    <div class="hero__photo" data-reveal>
+        <img src="Images/PhotoProfil.jpg" alt="Jean Marcillac" width="900" height="900"
+             fetchpriority="high" decoding="async" />
+    </div>
+
+    <div class="hero__texte">
+        <p class="etiquette" data-reveal>Ingénierie informatique</p>
+        <h1 data-reveal style="--retard: 1">Jean Marcillac</h1>
+        <p class="hero__role" data-reveal style="--retard: 2">
+            Étudiant en ingénierie informatique à l'INSA Lyon,
+            data analyste en alternance chez Enedis.
+        </p>
+
+        <div class="hero__accroche mesure" data-reveal style="--retard: 3">
+            <p>
+                Je développe une approche concrète et expérimentale du numérique, attentive aux avancées
+                de l'IA, aux méthodologies de développement et aux technologies émergentes.
+            </p>
+            <p>
+                Au-delà de la technique, la dissonance entre les promesses du numérique et ses réalités
+                énergétiques et matérielles m'interroge, tout comme la place d'un numérique résilient
+                et durable dans un monde sous contraintes.
+            </p>
+            <p>
+                Au-delà des études et du professionnel, plusieurs associations occupent mon temps libre,
+                et mes compétences y sont mises à contribution.
+            </p>
+        </div>
+
+        <div class="hero__actions" data-reveal style="--retard: 4">
+            <a class="bouton bouton--plein" href="#projets">Voir mes projets</a>
+            <a class="bouton bouton--contour" href="#apropos">À propos de moi</a>
+        </div>
+
+        <div data-reveal style="--retard: 5">
+            <Contacts />
+        </div>
+    </div>
+</header>

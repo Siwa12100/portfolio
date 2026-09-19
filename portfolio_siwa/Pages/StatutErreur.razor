@@ -1,0 +1,23 @@
+@page "/erreur/{Code:int}"
+
+<PageTitle>@Titre | Jean Marcillac</PageTitle>
+
+<section class="section">
+    <div class="contenu-limite mesure statut">
+        <p class="etiquette">Erreur @Code</p>
+        <h1>@Titre</h1>
+        <p>@Message</p>
+        <a class="bouton bouton--plein" href="/">Retour à l'accueil</a>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public int Code { get; set; }
+
+    private string Titre => Code == 404 ? "Cette page n'existe pas" : "Quelque chose s'est mal passé";
+
+    private string Message => Code == 404
+        ? "Le lien est peut-être incomplet, ou la page a changé d'adresse."
+        : "Réessayez dans un instant. Si le problème persiste, écrivez-moi.";
+}

@@ -1,156 +1,45 @@
-﻿@using portfolio_siwa.Composants.Global.FondMedia
-@using portfolio_siwa.Composants.Global.Boutons.BoutonFondTransparent
-@using portfolio_siwa.Composants.Global.BlocsContenu.BlocContenuGaucheDroite
-@using portfolio_siwa.Composants.Global.BlocsContenu.BlocTexteMedia
-@using portfolio_siwa.Composants.Global.Images.ImageDimensionee
-@using portfolio_siwa.Composants.Global.AnchorNavigation
-@using portfolio_siwa.Composants.Global.Boutons.BoutonGradientViolet
-@using portfolio_siwa.Composants.Global.BlocsContenu.Bloc3Contenu
-@using portfolio_siwa.Composants.Projet
-@using portfolio_siwa.Composants.Global.Techno
-@using portfolio_siwa.Composants.Global.HautPage
-@using portfolio_siwa.Composants.Global.BasPage
-
 @page "/"
 
-<AnchorNavigation />
+@using portfolio_siwa.Composants.Sections
+@using portfolio_siwa.Donnees
 
-<div class="contenu">
-    <section id="partie1"  class="haut-page separation-contenu marge-pages">
-        <HautPage />
-    </section>
+<Hero />
 
-    <section class="separation-contenu-legere marge-pages">
-        <Projet
-            Titre="@this.TitreProjetLibPais"
-            ImagePrincipale="/Images/projets/paistv.png"
-            Texte="@this.DescriptionProjetLibPais"
-            PositionMedia="PositionMedia.Gauche">
-        <BasPage>
-            <div class="technos">
-                <Techno Nom="Blazor Server" Description="@this.LibPaisDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-                <Techno Nom="Java" Description="@this.LibPaisDescriptionJava" Logo="Images/logos/logoJava.png" />
-                <Techno Nom="Spring Boot" Description="@this.LibPaisDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
-                <Techno Nom="MongoDB" Description="@this.LibPaisDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
-                <Techno Nom="Google Drive API" Description="@this.LibPaisDescriptionGoogleDriveApi" Logo="Images/logos/logoGoogledrive.png" />
-        
+<section id="projets" class="section">
+    <div class="contenu-limite">
+        <h2 class="titre-section">Réalisations</h2>
+
+        @* Les quatre premières fiches du catalogue sont mises en avant, les suivantes
+           passent en format compact pour garder la page lisible sur mobile. *@
+        <div class="liste-projets">
+            @for (var i = 0; i < NombreMisEnAvant; i++)
+            {
+                var fiche = CatalogueProjets.Tous[i];
+                <CarteProjet Fiche="fiche" Inverse="@(i % 2 == 1)" />
+            }
+        </div>
+
+        @if (CatalogueProjets.Tous.Count > NombreMisEnAvant)
+        {
+            <h3 class="titre-sous-section">Autres projets</h3>
+
+            <div class="liste-compacte">
+                @foreach (var fiche in CatalogueProjets.Tous.Skip(NombreMisEnAvant))
+                {
+                    <CarteProjetCompacte Fiche="fiche" />
+                }
             </div>
-        </BasPage>    
-        </Projet>
-    </section>
-
-    <section id="partie2" class="separation-contenu-legere marge-pages">
-        <Projet
-            Titre="@this.TitreProjetGenseSense"
-            ImagePrincipale="/Images/projets/genesense.png"
-            Texte="@this.DescriptionProjetGenseSense"
-            PositionMedia="PositionMedia.Droite"
-            LienGithub="@this.GenseSenseGithub">
-        <BasPage>
-            <div class="technos">
-                <Techno Nom="Python 3" Description="@this.GeneSenseDescriptionPython" Logo="Images/logos/logoPython.svg" />
-                <Techno Nom="Flask" Description="@this.GeneSenseDescriptionFlask" Logo="Images/logos/flask.svg" />
-                <Techno Nom="Blazor Server" Description="@this.GeneSenseDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-                <Techno Nom="YOLO" Description="@this.GeneSenseDescriptionYolo" Logo="Images/logos/logoYolo.png" />
-                <Techno Nom="Docker" Description="@this.GeneSenseDescriptionDocker" Logo="Images/logos/logoDocker.png" />
-            </div>
-        </BasPage>    
-        </Projet>
-    </section>
-    
-    <section class="separation-contenu marge-pages">
-        <Projet
-            Titre="@this.TitreProjetSiteElendil"
-            ImagePrincipale="/Images/projets/elendil.png"
-            Texte="@this.DescriptionProjetSiteElendil"
-            PositionMedia="PositionMedia.Gauche">
-        <BasPage>
-            <div class="technos">
-                <Techno Nom="Blazor Server" Description="@this.ElendilDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-                <Techno Nom="Nginx" Description="@this.ElendilDescriptionNginx" Logo="Images/logos/logoNginx.png" />
-                <Techno Nom="Let's Encrypt" Description="@this.ElendilDescriptionLetsencrypt" Logo="Images/logos/logoEncrypt.png" />
-                <Techno Nom="Docker" Description="@this.ElendilDescriptionDocker" Logo="Images/logos/logoDocker.png" />
-            </div>
-        </BasPage>    
-        </Projet>
-    </section>
-
-    <section class="separation-contenu-legere marge-pages">
-    <Projet
-        Titre="@this.TitreProjetMyriade"
-        ImagePrincipale="/Images/projets/logoMyriade.png"
-        Texte="@this.DescriptionProjetMyriade"
-        PositionMedia="PositionMedia.Droite">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="Java" Description="@this.MyriadeDescriptionJava" Logo="Images/logos/logoJava.png" />
-            <Techno Nom="Paper Mc" Description="@this.MyriadeDescriptionPaper" Logo="Images/logos/logoPaper.webp" />
-            <Techno Nom="Spring Boot" Description="@this.MyriadeDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
-            <Techno Nom="Kotlin" Description="@this.MyriadeDescriptionKotlin" Logo="Images/logos/logoKotlin.png" />
-            <Techno Nom="MongoDB" Description="@this.MyriadeDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
-            <Techno Nom="Redis" Description="@this.MyriadeDescriptionRedis" Logo="Images/logos/logoRedis.svg" />
-            <Techno Nom="Blazor Server" Description="@this.MyriadeDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-        </div>
-    </BasPage>    
-    </Projet>
+        }
+    </div>
 </section>
 
-<section class="separation-contenu marge-pages">
-    <Projet
-        Titre="@this.TitreProjetIoaCi"
-        ImagePrincipale="/Images/projets/ciioa.png"
-        Texte="@this.DescriptionProjetIoaCi"
-        PositionMedia="PositionMedia.Gauche">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="Drone CI" Description="@this.IoaCiDescriptionDroneCI" Logo="Images/logos/logoDrone.svg" />
-            <Techno Nom="SonarQube" Description="@this.IoaCiDescriptionSonar" Logo="Images/logos/logoSonar.png" />
-            <Techno Nom="Docker Compose" Description="@this.IoaCiDescriptionDockerCompose" Logo="Images/logos/logoCompose.png" />
-            <Techno Nom="Docker Registry" Description="@this.IoaCiDescriptionRegistry" Logo="Images/logos/logoRegistry.png" />
-            <Techno Nom="Debian" Description="@this.IoaCiDescriptionDebian" Logo="Images/logos/logoDebian.png" />
-        </div>
-    </BasPage>    
-    </Projet>
+<section id="apropos" class="section">
+    <div class="contenu-limite">
+        <h2 class="titre-section">À propos</h2>
+        <APropos />
+    </div>
 </section>
 
-<section class="separation-contenu-legere marge-pages">
-    <Projet
-        Titre="@this.TitreProjetJogaires"
-        ImagePrincipale="/Images/projets/jogaires.png"
-        Texte="@this.DescriptionProjetJogaires"
-        PositionMedia="PositionMedia.Droite">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="Blazor Server" Description="@this.JogairesDescriptionBlazor" Logo="Images/logos/logoBlazor.png" />
-            <Techno Nom="Kotlin" Description="@this.JogairesDescriptionKotlin" Logo="Images/logos/logoKotlin.png" />
-            <Techno Nom="Spring Boot" Description="@this.JogairesDescriptionSpringBoot" Logo="Images/logos/logoSpring.svg" />
-            <Techno Nom="MongoDB" Description="@this.JogairesDescriptionMongoDB" Logo="Images/logos/logoMongo.png" />
-            <Techno Nom="Docker" Description="@this.JogairesDescriptionDocker" Logo="Images/logos/logoDocker.png" />
-        
-        </div>
-    </BasPage>    
-    </Projet>
-</section>
-
-<section id="test" class="separation-contenu marge-pages">
-    <Projet
-        Titre="@this.TitreProjetDrosolab"
-        ImagePrincipale="/Images/projets/drosolab.png"
-        Texte="@this.DescriptionProjetDrosolab"
-        PositionMedia="PositionMedia.Droite">
-    <BasPage>
-        <div class="technos">
-            <Techno Nom="Vue.js" Description="@this.DrosolabDescriptionVue" Logo="Images/logos/logoVue.png" />
-            <Techno Nom="Symfony" Description="@this.DrosolabDescriptionSymfony" Logo="Images/logos/logoSymfony.png" />
-            <Techno Nom="Doctrine & Mysql" Description="@this.DrosolabDescriptionMysql" Logo="Images/logos/logoDoctrine.png" />
-            <Techno Nom="Docker" Description="@this.DrosolabDescriptionDocker" Logo="Images/logos/logoDocker.png" />
-        </div>
-    </BasPage>    
-    </Projet>
-</section>
-
-    <section id="partie3" class="bas-page separation-contenu marge-pages">
-        <BasPage />
-    </section>
-</div>
-
+@code {
+    private const int NombreMisEnAvant = 4;
+}

@@ -1,0 +1,54 @@
+@namespace portfolio_siwa.Composants.Sections
+
+<article class="carte @(this.Inverse ? "carte--inverse" : "")" data-reveal>
+    <div class="carte__visuel">
+        <img src="@this.Fiche.Image" alt="@($"Aperçu du projet {this.Fiche.Titre}")"
+             width="@this.Fiche.ImageLargeur" height="@this.Fiche.ImageHauteur"
+             loading="lazy" decoding="async" />
+    </div>
+
+    <div class="carte__corps">
+        <p class="etiquette">@this.Fiche.Categorie</p>
+        <h3 class="carte__titre">@this.Fiche.Titre</h3>
+
+        @if (this.Contexte.Count > 0)
+        {
+            <p class="carte__contexte">@string.Join(" · ", this.Contexte)</p>
+        }
+
+        <div class="carte__resume mesure">@this.Fiche.Resume</div>
+
+        @if (this.Fiche.Technos.Count > 0)
+        {
+            @* Le rôle apparaît au survol, et au toucher grâce au focus : rien n'allonge la page. *@
+            <ul class="puces">
+                @foreach (var techno in this.Fiche.Technos)
+                {
+                    <li>
+                        <button type="button" class="puce">
+                            <img src="@techno.Logo" alt="" loading="lazy" />
+                            <span class="puce__nom">@techno.Nom</span>
+                            <span class="puce__role">@techno.Role</span>
+                        </button>
+                    </li>
+                }
+            </ul>
+        }
+
+        @if (this.Fiche.LienSite is not null || this.Fiche.LienGithub is not null)
+        {
+            <div class="carte__liens">
+                @if (this.Fiche.LienSite is not null)
+                {
+                    <a class="bouton bouton--plein" href="@this.Fiche.LienSite"
+                       target="_blank" rel="noopener noreferrer">Voir le site</a>
+                }
+                @if (this.Fiche.LienGithub is not null)
+                {
+                    <a class="bouton bouton--contour" href="@this.Fiche.LienGithub"
+                       target="_blank" rel="noopener noreferrer">Code source</a>
+                }
+            </div>
+        }
+    </div>
+</article>

@@ -1,0 +1,79 @@
+.carte {
+    --padding-carte: clamp(1rem, 2.5vw, 1.75rem);
+
+    display: grid;
+    /* Le visuel prend plus de place que le texte : c'est lui qui donne envie de lire. */
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    padding: var(--padding-carte);
+    border: 1px solid var(--bordure);
+    border-radius: var(--r-l);
+    background: linear-gradient(160deg, var(--surface) 0%, var(--fond-doux) 100%);
+    box-shadow: var(--ombre-1), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+@media (hover: hover) {
+    .carte:hover {
+        border-color: var(--bordure-forte);
+        box-shadow: var(--ombre-2);
+        transform: translateY(-3px);
+    }
+}
+
+.carte--inverse .carte__visuel {
+    order: 2;
+}
+
+.carte__visuel img {
+    width: 100%;
+    /* Ratio naturel : recadrer une capture d'écran coupe son interface. */
+    height: auto;
+    border-radius: var(--r-m);
+    border: 1px solid var(--bordure);
+}
+
+.carte__titre {
+    margin-block: var(--e2) var(--e1);
+}
+
+.carte__contexte {
+    margin-bottom: var(--e3);
+    color: var(--texte-discret);
+    font-size: var(--t-petit);
+}
+
+.carte__resume {
+    color: var(--texte-doux);
+    margin-bottom: var(--e4);
+}
+
+.carte__liens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e2);
+}
+
+/* Une seule colonne, visuel toujours en tête : même rythme d'un projet à l'autre. */
+@media (max-width: 860px) {
+    .carte {
+        grid-template-columns: 1fr;
+        gap: var(--e4);
+    }
+
+    .carte--inverse .carte__visuel {
+        order: 0;
+    }
+
+    /* Le visuel vient toucher les bords de la carte : il gagne en présence. */
+    .carte__visuel {
+        margin: calc(-1 * var(--padding-carte)) calc(-1 * var(--padding-carte)) 0;
+    }
+
+    .carte__visuel img {
+        border-width: 0 0 1px;
+        border-radius: calc(var(--r-l) - 1px) calc(var(--r-l) - 1px) 0 0;
+    }
+}
+
