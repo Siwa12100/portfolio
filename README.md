@@ -72,6 +72,11 @@ tout l'arbre de composants par un `CascadingValue`. Le français n'a pas de pré
 | Accueil | `/` | `/en` | `/oc` |
 | Mentions légales | `/mentions-legales` | `/en/legal-notice` | `/oc/mencions-legalas` |
 
+**La typographie est appliquée pour vous.** En français et en occitan, `Typographie.Francaise` remplace
+l'espace avant `?`, `!`, `:`, `;` et `%`, entre les groupes de chiffres (`5 000`) et dans les guillemets
+par une espace insécable : le signe ne reste plus seul en début de ligne, et un nombre ne se coupe plus.
+Écrire les textes avec des espaces ordinaires, la règle passe dessus.
+
 **Ajouter une page** demande trois choses : une valeur dans l'énumération `PageSite`, ses
 trois adresses dans `Langues.Adresse`, et les trois directives `@page` sur le composant.
 Le sélecteur de langue, les liens `hreflang` et le sitemap suivent tout seuls.

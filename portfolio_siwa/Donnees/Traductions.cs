@@ -69,21 +69,11 @@ namespace portfolio_siwa.Donnees
             "I take a hands-on, experimental approach to technology, with an eye on advances in AI, on development methods and on emerging tools.",
             "Desvolopi una aprocha concreta e experimentala del numeric, atentiva a las avançadas de l'IA, a las metodologias de desvolopament e a las tecnologias emergentas.");
 
-        public static Texte HeroDissonance { get; } = new(
-            "Au-delà de la technique, la dissonance entre les promesses du numérique et ses réalités énergétiques et matérielles m'interroge, tout comme la place d'un numérique résilient et durable dans un monde sous contraintes.",
-            "Beyond the technical side, the gap between what technology promises and what it actually costs in energy and materials keeps me questioning, as does the place of a resilient, sustainable digital world under constraint.",
-            "Al delà de la tecnica, la dissonància entre las promesas del numeric e sas realitats energeticas e materialas m'interròga, coma la plaça d'un numeric resilient e durable dins un mond jos constrenchas.");
-
-        public static Texte HeroAssociatif { get; } = new(
-            "Au-delà des études et du professionnel, plusieurs associations occupent mon temps libre, et mes compétences y sont mises à contribution.",
-            "Outside of studies and work, several non-profits take up my free time, and my skills go into them.",
-            "Al delà dels estudis e del professional, mantuna associacion ocupa mon temps liure, e mas competéncias i son mesas a contribucion.");
-
         public static Texte BoutonProjets { get; } = new(
             "Voir mes projets", "See my projects", "Veire mos projèctes");
 
         public static Texte BoutonAPropos { get; } = new(
-            "À propos de moi", "About me", "A prepaus de ieu");
+            "À propos de moi", "About me", "A prepaus");
 
         // ===== Section des projets =====
         public static Texte TitreRealisations { get; } = new(
@@ -110,25 +100,15 @@ namespace portfolio_siwa.Donnees
             "I grew up in the Aveyron, and I like building things that are concrete, useful and meaningful. Studies, non-profit work and professional experience taught me to hold together the technical side and the project management side.",
             "Originari de l'Avairon, m'agrada crear de projèctes concrets, utils e portaires de sens. Mos estudis, mon engatjament associatiu e mas experiéncias professionalas m'an apres a ligar la tecnica e la gestion de projècte.");
 
-        public static Texte AProposEnedis { get; } = new(
-            "En alternance chez <strong>Enedis</strong>, je fais de l'analyse de données et je développe des outils métiers pour l'agence ingénierie d'Auvergne : planification des chantiers longue durée, suivi des affaires, visualisation de la charge des équipes.",
-            "As an apprentice at <strong>Enedis</strong>, I work on data analysis and build internal tools for the Auvergne engineering department: planning long-running worksites, tracking projects, visualising team workload.",
-            "En alternància a <strong>Enedis</strong>, fau d'analisi de donadas e desvolopi d'aisinas de mestièr per l'agéncia engenhariá d'Auvèrnhe : planificacion dels chantièrs de longa durada, seguit de las afars, visualizacion de la carga de las equipas.");
-
-        public static Texte AProposAssociations { get; } = new(
-            "Le reste de mon temps va au milieu associatif, au <strong>Valorium</strong>, l'association qui porte l'<strong>Alliance d'Elendil</strong>, où j'explore le développement d'univers virtuels et la gestion de communautés en ligne. Les projets m'y ont amené à prendre des responsabilités : la présidence de l'association, et la trésorerie de l'Institut occitan de l'Aveyron depuis mon passage chez eux.",
-            "The rest of my time goes to non-profit work, at <strong>Valorium</strong>, the association behind the <strong>Alliance d'Elendil</strong>, where I explore virtual worlds and the running of online communities. The projects brought responsibilities with them: chairing the association, and serving as treasurer of the Institut occitan de l'Aveyron since my time there.",
-            "La rèsta de mon temps va al mitan associatiu, al <strong>Valorium</strong>, l'associacion que pòrta l'<strong>Aliança d'Elendil</strong>, ont explori lo desvolopament d'univèrses virtuals e la gestion de comunautats en linha. Los projèctes m'an menat a prene de responsabilitats : la presidéncia de l'associacion, e la tresauriá de l'Institut occitan de l'Avairon dempuèi mon passatge amb eles.");
-
-        public static Texte AProposCulture { get; } = new(
-            "Curieux d'histoire et de culture, je regarde comment le numérique peut servir à transmettre et à valoriser ces sujets. Mon travail à l'<strong>Institut occitan de l'Aveyron</strong> m'a permis d'expérimenter cette approche, en développant des outils pour mettre en avant la culture occitane auprès des jeunes générations.",
-            "Curious about history and culture, I look at how technology can help pass them on. My work at the <strong>Institut occitan de l'Aveyron</strong> let me try that out, building tools that bring Occitan culture to younger generations.",
-            "Curiós d'istòria e de cultura, espii cossí lo numeric pòt servir a transmetre e a valorizar aqueles subjèctes. Mon trabalh a l'<strong>Institut occitan de l'Avairon</strong> m'a permés d'ensajar aquela aprocha, en desvolopant d'aisinas per metre en davant la cultura occitana demest las joves generacions.");
+        public static Texte AProposReflexion { get; } = new(
+            "Au-delà de la technique, la dissonance entre les promesses du numérique et ses réalités énergétiques et matérielles m'interroge. Curieux d'histoire et de culture, je regarde aussi comment il peut servir à transmettre et valoriser ces sujets, notamment la culture occitane auprès des jeunes générations.",
+            "Beyond the technical side, the gap between what technology promises and what it actually costs in energy and materials keeps me questioning. Curious about history and culture, I also look at how it can help pass those subjects on, notably Occitan culture to younger generations.",
+            "Al delà de la tecnica, la dissonància entre las promesas del numeric e sas realitats energeticas e materialas m'interròga. Curiós d'istòria e de cultura, espii tanben cossí lo numeric pòt servir a transmetre e a valorizar aqueles subjèctes, en particular la cultura occitana demest las joves generacions.");
 
         public static Texte AProposConclusion { get; } = new(
-            "D'où l'envie de mettre mes compétences au service de projets et d'organisations porteurs de sens, utiles, responsables et durables, et un engagement pour la protection, la valorisation et la transmission de la langue et de la culture occitanes.",
-            "Hence the wish to put my skills at the service of meaningful, useful, responsible and sustainable projects and organisations, along with a commitment to protecting, promoting and passing on the Occitan language and culture.",
-            "D'aquí l'enveja de metre mas competéncias al servici de projèctes e d'organizacions portaires de sens, utils, responsables e durables, e un engatjament per la proteccion, la valorizacion e la transmission de la lenga e de la cultura occitanas.");
+            "D'où l'envie de mettre mes compétences au service de projets et d'organisations utiles, responsables et durables, et un engagement pour la transmission de la langue et de la culture occitanes.",
+            "Hence the wish to put my skills at the service of useful, responsible and sustainable projects and organisations, along with a commitment to passing on the Occitan language and culture.",
+            "D'aquí l'enveja de metre mas competéncias al servici de projèctes e d'organizacions utils, responsables e durables, e un engatjament per la transmission de la lenga e de la cultura occitanas.");
 
         // ===== Contact =====
         public static Texte MeContacter { get; } = new("Me contacter", "Get in touch", "Me contactar");

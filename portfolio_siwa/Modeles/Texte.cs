@@ -9,11 +9,15 @@ namespace portfolio_siwa.Modeles
     /// </summary>
     public sealed partial record Texte(string Fr, string En, string Oc)
     {
+        // Calculées une fois : un texte s'affiche à chaque page, la typographie ne change jamais.
+        private readonly string frTypographie = Typographie.Francaise(Fr);
+        private readonly string ocTypographie = Typographie.Francaise(Oc);
+
         public string this[Langue langue] => langue switch
         {
             Langue.Anglais => this.En,
-            Langue.Occitan => this.Oc,
-            _ => this.Fr,
+            Langue.Occitan => this.ocTypographie,
+            _ => this.frTypographie,
         };
 
         /// <summary>Même contenu, rendu tel quel quand il porte un peu de HTML.</summary>

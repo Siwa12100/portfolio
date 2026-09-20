@@ -131,7 +131,7 @@ namespace portfolio_siwa.Donnees
             texte.AppendLine();
             texte.AppendLine($"> {Traductions.Description[langue]}");
             texte.AppendLine();
-            texte.AppendLine($"{Traductions.HeroApproche[langue]} {Traductions.HeroDissonance[langue]}");
+            texte.AppendLine(Traductions.HeroApproche[langue]);
             texte.AppendLine();
             texte.AppendLine("The site is published in three languages: French (canonical), English and Occitan.");
             texte.AppendLine();
@@ -168,9 +168,8 @@ namespace portfolio_siwa.Donnees
             texte.AppendLine("## About");
             texte.AppendLine();
             texte.AppendLine($"- {Traductions.AProposOrigine.Nu(langue)}");
-            texte.AppendLine($"- {Traductions.AProposEnedis.Nu(langue)}");
-            texte.AppendLine($"- {Traductions.AProposAssociations.Nu(langue)}");
-            texte.AppendLine($"- {Traductions.AProposCulture.Nu(langue)}");
+            texte.AppendLine($"- {Traductions.AProposReflexion.Nu(langue)}");
+            texte.AppendLine($"- {Traductions.AProposConclusion.Nu(langue)}");
             texte.AppendLine();
 
             texte.AppendLine("## Contact");

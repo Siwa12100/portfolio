@@ -211,7 +211,104 @@ namespace portfolio_siwa.Donnees
 
             new FicheProjet
             {
-                Titre = Texte.Unique("GenseSense IA"),
+                Titre = new Texte(
+                    "Environnement de développement sécurisé pour l'Institut occitan de l'Aveyron",
+                    "Secure development environment for the Institut occitan de l'Aveyron",
+                    "Environament de desvolopament securizat per l'Institut occitan de l'Avairon"),
+                Categorie = new Texte("DevOps & sécurité", "DevOps & security", "DevOps e seguretat"),
+                Annee = Texte.Unique("2024"),
+                Cadre = StageBut,
+                Realisation = Seul,
+                Image = "/Images/projets/ciioa.jpg",
+                ImageLargeur = 1100,
+                ImageHauteur = 588,
+                Resume = new Texte(
+                    "Administration d'un VPS sous Debian pour l'institut : sécurisation (pare-feu, SSH) " +
+                    "et mise en place d'une chaîne CI/CD complète. Drone CI orchestre l'intégration " +
+                    "continue, SonarQube analyse la qualité du code et une registry privée stocke les " +
+                    "images Docker. <strong>Tous les projets de développement de l'institut</strong> " +
+                    "passent désormais par cette chaîne, avec un gain net de temps et de fiabilité.",
+
+                    "Administration of a Debian VPS for the institute: hardening (firewall, SSH) and a " +
+                    "full CI/CD pipeline. Drone CI runs continuous integration, SonarQube analyses code " +
+                    "quality and a private registry stores the Docker images. <strong>Every development " +
+                    "project at the institute</strong> now goes through this pipeline, with a clear gain " +
+                    "in time and reliability.",
+
+                    "Administracion d'un VPS jol sistèma Debian per l'institut : securizacion (parafuòc, " +
+                    "SSH) e mesa en plaça d'una cadena CI/CD completa. Drone CI orquèstra l'integracion " +
+                    "contunha, SonarQube analisa la qualitat del còde e una registry privada garda los " +
+                    "imatges Docker. <strong>Totes los projèctes de desvolopament de l'institut</strong> " +
+                    "passan ara per aquela cadena, amb un ganh net de temps e de fisabilitat."),
+                ResumeCourt = new Texte(
+                    "VPS Debian sécurisé et chaîne CI/CD complète, utilisée par tous les projets de développement de l'institut.",
+                    "Hardened Debian VPS and a full CI/CD pipeline, used by every development project at the institute.",
+                    "VPS Debian securizat e cadena CI/CD completa, utilizada per totes los projèctes de desvolopament de l'institut."),
+                Technos =
+                [
+                    new TechnoProjet("Drone CI", "/Images/logos/logoDrone.svg", new Texte(
+                        "Intégration continue : tests et déploiements automatisés des projets hébergés.",
+                        "Continuous integration: automated tests and deployments for the hosted projects.",
+                        "Integracion contunha : tèsts e desplegaments automatizats dels projèctes albergats.")),
+                    new TechnoProjet("SonarQube", "/Images/logos/logoSonar.png", new Texte(
+                        "Analyse statique du code : qualité, sécurité et maintenabilité.",
+                        "Static code analysis: quality, security and maintainability.",
+                        "Analisi estatica del còde : qualitat, seguretat e mantenabilitat.")),
+                    new TechnoProjet("Docker Compose", "/Images/logos/logoCompose.png", new Texte(
+                        "Orchestration des services et des réseaux Docker.",
+                        "Orchestration of the services and Docker networks.",
+                        "Orquestracion dels servicis e de las rets Docker.")),
+                    new TechnoProjet("Docker Registry", "/Images/logos/logoRegistry.png", new Texte(
+                        "Stockage privé des images Docker, pour un déploiement contrôlé.",
+                        "Private storage of the Docker images, for controlled deployments.",
+                        "Emmagazinatge privat dels imatges Docker, per un desplegament contrarotlat.")),
+                    new TechnoProjet("Debian", "/Images/logos/logoDebian.png", new Texte(
+                        "Système du VPS : pare-feu, durcissement SSH et gestion des accès.",
+                        "The VPS operating system: firewall, SSH hardening and access management.",
+                        "Sistèma del VPS : parafuòc, endurciment SSH e gestion dels acceses.")),
+                ],
+            },
+
+            new FicheProjet
+            {
+                Titre = new Texte(
+                    "Radar, suivi des affaires", "Radar, project tracking", "Radar, seguit de las afars"),
+                Categorie = new Texte("Tableau de bord", "Dashboard", "Tablèu de bòrd"),
+                Annee = Texte.Unique("2026"),
+                Cadre = Alternance,
+                Image = "/Images/projets/enedis-radar.jpg",
+                ImageLargeur = 1002,
+                ImageHauteur = 561,
+                Resume = new Texte(
+                    "Radar suit l'avancée des affaires jalon par jalon, pour l'agence ingénierie comme " +
+                    "pour les bases opérationnelles. Chaque étape est chiffrée et filtrable, ce qui " +
+                    "permet de voir où les dossiers s'accumulent et de fluidifier leur déroulé jusqu'à " +
+                    "la réalisation.",
+
+                    "Radar tracks how projects progress, milestone by milestone, for the engineering " +
+                    "department and the operational units alike. Every stage is counted and filterable, " +
+                    "which shows where files pile up and helps smooth their path to completion.",
+
+                    "Radar sèc l'avançada de las afars jalon per jalon, per l'agéncia engenhariá coma " +
+                    "per las basas operacionalas. Cada etapa es chifrada e filtrabla, çò que permet de " +
+                    "veire ont los dorsièrs s'amontetan e de fluidificar lor desenrotlament fins a la " +
+                    "realizacion."),
+                ResumeCourt = new Texte(
+                    "Tableau de bord du suivi des affaires, jalon par jalon, pour l'ingénierie et les bases opérationnelles.",
+                    "Dashboard tracking projects milestone by milestone, for engineering and operational units.",
+                    "Tablèu de bòrd del seguit de las afars, jalon per jalon, per l'engenhariá e las basas operacionalas."),
+                Technos =
+                [
+                    new TechnoProjet("Power BI", "/Images/logos/logoPowerbi.svg", new Texte(
+                        "Modélisation des données et tableau de bord distribué aux équipes.",
+                        "Data modelling and the dashboard shared with the teams.",
+                        "Modelizacion de las donadas e tablèu de bòrd distribuit a las equipas.")),
+                ],
+            },
+
+            new FicheProjet
+            {
+                Titre = Texte.Unique("GenSense IA"),
                 Categorie = new Texte(
                     "Intelligence artificielle", "Artificial intelligence", "Intelligéncia artificiala"),
                 Annee = Texte.Unique("2025"),
@@ -267,103 +364,6 @@ namespace portfolio_siwa.Donnees
                         "Interactive web panel talking to the server in real time.",
                         "Panèl web interactiu, en comunicacion en temps real amb lo servidor.")),
                     new TechnoProjet("Docker", "/Images/logos/logoDocker.png", RoleDocker),
-                ],
-            },
-
-            new FicheProjet
-            {
-                Titre = new Texte(
-                    "Radar, suivi des affaires", "Radar, project tracking", "Radar, seguit de las afars"),
-                Categorie = new Texte("Tableau de bord", "Dashboard", "Tablèu de bòrd"),
-                Annee = Texte.Unique("2026"),
-                Cadre = Alternance,
-                Image = "/Images/projets/enedis-radar.jpg",
-                ImageLargeur = 1002,
-                ImageHauteur = 561,
-                Resume = new Texte(
-                    "Radar suit l'avancée des affaires jalon par jalon, pour l'agence ingénierie comme " +
-                    "pour les bases opérationnelles. Chaque étape est chiffrée et filtrable, ce qui " +
-                    "permet de voir où les dossiers s'accumulent et de fluidifier leur déroulé jusqu'à " +
-                    "la réalisation.",
-
-                    "Radar tracks how projects progress, milestone by milestone, for the engineering " +
-                    "department and the operational units alike. Every stage is counted and filterable, " +
-                    "which shows where files pile up and helps smooth their path to completion.",
-
-                    "Radar sèc l'avançada de las afars jalon per jalon, per l'agéncia engenhariá coma " +
-                    "per las basas operacionalas. Cada etapa es chifrada e filtrabla, çò que permet de " +
-                    "veire ont los dorsièrs s'amontetan e de fluidificar lor desenrotlament fins a la " +
-                    "realizacion."),
-                ResumeCourt = new Texte(
-                    "Tableau de bord du suivi des affaires, jalon par jalon, pour l'ingénierie et les bases opérationnelles.",
-                    "Dashboard tracking projects milestone by milestone, for engineering and operational units.",
-                    "Tablèu de bòrd del seguit de las afars, jalon per jalon, per l'engenhariá e las basas operacionalas."),
-                Technos =
-                [
-                    new TechnoProjet("Power BI", "/Images/logos/logoPowerbi.svg", new Texte(
-                        "Modélisation des données et tableau de bord distribué aux équipes.",
-                        "Data modelling and the dashboard shared with the teams.",
-                        "Modelizacion de las donadas e tablèu de bòrd distribuit a las equipas.")),
-                ],
-            },
-
-            new FicheProjet
-            {
-                Titre = new Texte(
-                    "Environnement de développement sécurisé pour l'IOA",
-                    "Secure development environment for the IOA",
-                    "Environament de desvolopament securizat per l'IOA"),
-                Categorie = new Texte("DevOps & sécurité", "DevOps & security", "DevOps e seguretat"),
-                Annee = Texte.Unique("2025"),
-                Cadre = StageBut,
-                Realisation = Seul,
-                Image = "/Images/projets/ciioa.jpg",
-                ImageLargeur = 1100,
-                ImageHauteur = 588,
-                Resume = new Texte(
-                    "Administration d'un VPS sous Debian pour l'institut : sécurisation (pare-feu, SSH) " +
-                    "et mise en place d'une chaîne CI/CD complète. Drone CI orchestre l'intégration " +
-                    "continue, SonarQube analyse la qualité du code et une registry privée stocke les " +
-                    "images Docker. <strong>Tous les projets de développement de l'institut</strong> " +
-                    "passent désormais par cette chaîne, avec un gain net de temps et de fiabilité.",
-
-                    "Administration of a Debian VPS for the institute: hardening (firewall, SSH) and a " +
-                    "full CI/CD pipeline. Drone CI runs continuous integration, SonarQube analyses code " +
-                    "quality and a private registry stores the Docker images. <strong>Every development " +
-                    "project at the institute</strong> now goes through this pipeline, with a clear gain " +
-                    "in time and reliability.",
-
-                    "Administracion d'un VPS jol sistèma Debian per l'institut : securizacion (parafuòc, " +
-                    "SSH) e mesa en plaça d'una cadena CI/CD completa. Drone CI orquèstra l'integracion " +
-                    "contunha, SonarQube analisa la qualitat del còde e una registry privada garda los " +
-                    "imatges Docker. <strong>Totes los projèctes de desvolopament de l'institut</strong> " +
-                    "passan ara per aquela cadena, amb un ganh net de temps e de fisabilitat."),
-                ResumeCourt = new Texte(
-                    "VPS Debian sécurisé et chaîne CI/CD complète, utilisée par tous les projets de développement de l'institut.",
-                    "Hardened Debian VPS and a full CI/CD pipeline, used by every development project at the institute.",
-                    "VPS Debian securizat e cadena CI/CD completa, utilizada per totes los projèctes de desvolopament de l'institut."),
-                Technos =
-                [
-                    new TechnoProjet("Drone CI", "/Images/logos/logoDrone.svg", new Texte(
-                        "Intégration continue : tests et déploiements automatisés des projets hébergés.",
-                        "Continuous integration: automated tests and deployments for the hosted projects.",
-                        "Integracion contunha : tèsts e desplegaments automatizats dels projèctes albergats.")),
-                    new TechnoProjet("SonarQube", "/Images/logos/logoSonar.png", new Texte(
-                        "Analyse statique du code : qualité, sécurité et maintenabilité.",
-                        "Static code analysis: quality, security and maintainability.",
-                        "Analisi estatica del còde : qualitat, seguretat e mantenabilitat.")),
-                    new TechnoProjet("Docker Compose", "/Images/logos/logoCompose.png", new Texte(
-                        "Orchestration des services et des réseaux Docker.",
-                        "Orchestration of the services and Docker networks.",
-                        "Orquestracion dels servicis e de las rets Docker.")),
-                    new TechnoProjet("Docker Registry", "/Images/logos/logoRegistry.png", new Texte(
-                        "Stockage privé des images Docker, pour un déploiement contrôlé.",
-                        "Private storage of the Docker images, for controlled deployments.",
-                        "Emmagazinatge privat dels imatges Docker, per un desplegament contrarotlat.")),
-                    new TechnoProjet("Debian", "/Images/logos/logoDebian.png", new Texte(
-                        "Système du VPS : pare-feu, durcissement SSH et gestion des accès.",
-                        "The VPS operating system: firewall, SSH hardening and access management.",
-                        "Sistèma del VPS : parafuòc, endurciment SSH e gestion dels acceses.")),
                 ],
             },
 

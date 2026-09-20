@@ -63,6 +63,22 @@ public class SiteHttpTests : IClassFixture<WebApplicationFactory<Program>>
         }
     }
 
+    [Theory]
+    [MemberData(nameof(ToutesLesLangues))]
+    public async Task Le_haut_de_page_tient_en_un_paragraphe(Langue langue)
+    {
+        // Sur un téléphone, deux paragraphes suffisaient à repousser « Voir mes projets » et les
+        // contacts sous le premier écran, alors que le public arrive surtout d'Instagram.
+        var client = this.fabrique.CreateClient();
+        var html = await (await client.GetAsync(langue.Accueil())).Content.ReadAsStringAsync();
+
+        var debut = html.IndexOf("hero__accroche", StringComparison.Ordinal);
+        var fin = html.IndexOf("hero__actions", StringComparison.Ordinal);
+        var accroche = html[debut..fin];
+
+        Assert.Single(System.Text.RegularExpressions.Regex.Matches(accroche, "<p[ >]"));
+    }
+
     public static IEnumerable<object[]> ToutesLesLangues() =>
         Langues.Toutes.Select(langue => new object[] { langue });
 
