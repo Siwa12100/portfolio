@@ -23,7 +23,10 @@
   "portsAttributes": {
     "5087": {
       "label": "Portfolio",
-      "onAutoForward": "openBrowser"
+      // Une seule ouverture par session. Avec "openBrowser", VS Code rouvrait le navigateur
+      // chaque fois que le port se rouvrait, donc à chaque redémarrage de dotnet watch
+      // (DOTNET_WATCH_RESTART_ON_RUDE_EDIT en provoque souvent), d'où plusieurs fenêtres.
+      "onAutoForward": "openBrowserOnce"
     }
   },
 
