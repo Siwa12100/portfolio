@@ -1,9 +1,8 @@
 @namespace portfolio_siwa.Composants.Global.NavBar
 
+@using portfolio_siwa.Composants.Global.SelecteurLangue
 @using portfolio_siwa.Donnees
 @using portfolio_siwa.Modeles
-
-@inject NavigationManager Navigation
 
 @* Le repli du menu est géré en JS (js/site.js) : la page reste en rendu statique,
    donc pas de WebSocket à maintenir depuis un navigateur intégré. *@
@@ -29,20 +28,9 @@
                    title="@Traductions.NavCvTitre[this.Langue]"
                    target="_blank" rel="noopener noreferrer">CV</a>
             </li>
-        </ul>
-
-        <ul class="nav__langues" aria-label="@Traductions.NavLangue[this.Langue]">
-            @foreach (var langue in Langues.Toutes)
-            {
-                <li>
-                    <a class="@(langue == this.Langue ? "actif" : null)"
-                       href="@Langues.Equivalent(this.CheminActuel, langue)"
-                       hreflang="@langue.CodeIso()"
-                       lang="@langue.CodeIso()"
-                       title="@langue.Nom()"
-                       aria-current="@(langue == this.Langue ? "true" : null)">@langue.Etiquette()</a>
-                </li>
-            }
+            @* Dans le menu plutôt que dans la barre : sur un écran étroit, la barre n'a
+               de la place que pour la marque et le burger. *@
+            <li class="nav__langues"><SelecteurLangue /></li>
         </ul>
     </div>
 </nav>
@@ -50,9 +38,4 @@
 @code {
     [CascadingParameter]
     private Langue Langue { get; set; }
-
-    [CascadingParameter]
-    private HttpContext? Contexte { get; set; }
-
-    private string CheminActuel => Requete.Chemin(this.Contexte, this.Navigation);
 }

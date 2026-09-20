@@ -26,6 +26,10 @@
 }
 
 .nav__marque {
+    display: inline-flex;
+    align-items: center;
+    /* Le texte seul ferait 29 px de haut : 44 px est la taille minimale d'une cible tactile. */
+    min-height: 2.75rem;
     font-family: var(--police-titre);
     font-size: 1.05rem;
     font-weight: 600;
@@ -75,35 +79,11 @@
 }
 
 /* ===== Sélecteur de langue ===== */
+/* Le composant SelecteurLangue porte son propre style. Ici : sa place dans le menu. */
 .nav__langues {
-    display: flex;
-    align-items: center;
-    gap: 0.15rem;
-    margin-left: var(--e3);
+    margin-left: var(--e2);
     padding-left: var(--e3);
     border-left: 1px solid var(--bordure);
-}
-
-.nav__langues a {
-    display: block;
-    padding: 0.35rem 0.5rem;
-    border-radius: var(--r-s);
-    color: var(--texte-discret);
-    font-size: var(--t-micro);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: color var(--transition), background-color var(--transition);
-}
-
-.nav__langues a:hover {
-    color: var(--texte);
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.nav__langues a.actif {
-    color: var(--accent-doux);
-    background: rgba(255, 255, 255, 0.06);
 }
 
 .nav__burger {
@@ -146,16 +126,6 @@
 @media (max-width: 860px) {
     .nav__burger {
         display: flex;
-        /* Le burger passe après le sélecteur de langue, en bord d'écran. */
-        order: 3;
-    }
-
-    .nav__langues {
-        order: 2;
-        margin-left: auto;
-        margin-right: var(--e2);
-        padding-left: 0;
-        border-left: none;
     }
 
     .nav__menu {
@@ -202,5 +172,21 @@
 
     .nav__menu li:has(.nav__cv) {
         border-top: none;
+    }
+
+    /* Les trois langues se partagent la largeur du menu : des cibles larges au pouce. */
+    .nav__menu .nav__langues {
+        margin-left: 0;
+        padding: var(--e2) 0 0;
+        border-left: none;
+    }
+
+    .nav__langues ::deep .langues {
+        gap: var(--e2);
+    }
+
+    .nav__langues ::deep .langue {
+        flex: 1;
+        border: 1px solid var(--bordure);
     }
 }

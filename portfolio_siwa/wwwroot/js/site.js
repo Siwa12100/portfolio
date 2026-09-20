@@ -3,6 +3,32 @@
 (() => {
     "use strict";
 
+    const mouvementRefuse = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // ----- Puces de technologies : le rôle s'ouvre au toucher -----
+    // Le survol n'existe pas au doigt, et sur iOS un bouton ne prend pas le focus à l'appui :
+    // l'état est donc porté par aria-expanded, que le CSS lit pour afficher la bulle.
+    const puces = document.querySelectorAll(".puce[aria-expanded]");
+
+    const fermerPuces = (sauf) => {
+        puces.forEach((puce) => {
+            if (puce !== sauf) puce.setAttribute("aria-expanded", "false");
+        });
+    };
+
+    puces.forEach((puce) => {
+        puce.addEventListener("click", () => {
+            const ouverte = puce.getAttribute("aria-expanded") === "true";
+            fermerPuces(puce);
+            puce.setAttribute("aria-expanded", String(!ouverte));
+        });
+    });
+
+    // Un appui ailleurs referme la bulle ouverte.
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".puce")) fermerPuces(null);
+    });
+
     // ----- Menu mobile -----
     const burger = document.getElementById("nav-burger");
     const menu = document.getElementById("nav-menu");
@@ -39,6 +65,10 @@
         });
     }
 
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") fermerPuces(null);
+    });
+
     // ----- Barre de navigation au défilement + bouton de retour en haut -----
     const retourHaut = document.getElementById("retour-haut");
 
@@ -64,12 +94,11 @@
     auDefilement();
 
     retourHaut?.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: mouvementRefuse ? "auto" : "smooth" });
     });
 
     // ----- Apparition des blocs au défilement -----
     const aReveler = document.querySelectorAll("[data-reveal]");
-    const mouvementRefuse = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!mouvementRefuse && "IntersectionObserver" in window && aReveler.length) {
         // La classe déclenche le masquage CSS : on ne la pose qu'une fois sûr de pouvoir révéler.

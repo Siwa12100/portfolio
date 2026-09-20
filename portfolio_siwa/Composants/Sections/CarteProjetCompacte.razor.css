@@ -1,5 +1,4 @@
 .compacte {
-    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
     align-items: start;
@@ -15,46 +14,6 @@
     .compacte:hover {
         border-color: var(--bordure-forte);
         background: var(--surface);
-    }
-}
-
-/* ===== Description complète au survol ===== */
-.compacte__complet {
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--e1);
-    padding: clamp(1rem, 2.5vw, 1.5rem);
-    border-radius: var(--r-m);
-    background: linear-gradient(140deg, var(--surface-haute) 0%, var(--fond-doux) 100%);
-    color: var(--texte-doux);
-    font-size: var(--t-petit);
-    overflow: auto;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition), visibility var(--transition);
-    /* Les liens de la carte restent cliquables à travers le panneau. */
-    pointer-events: none;
-}
-
-.compacte__complet-titre {
-    margin: 0;
-    color: var(--texte);
-    font-family: var(--police-titre);
-    font-size: 1.05rem;
-}
-
-.compacte__complet p {
-    margin: 0;
-}
-
-@media (hover: hover) {
-    .compacte:hover .compacte__complet {
-        opacity: 1;
-        visibility: visible;
     }
 }
 
@@ -95,9 +54,58 @@
 }
 
 .compacte__resume {
-    margin-bottom: var(--e2);
+    margin-bottom: var(--e1);
     color: var(--texte-doux);
     font-size: var(--t-petit);
+}
+
+/* ===== Description complète, repliable ===== */
+.compacte__plus {
+    margin-bottom: var(--e2);
+}
+
+.compacte__plus summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    color: var(--accent-doux);
+    font-size: var(--t-petit);
+    font-weight: 600;
+    cursor: pointer;
+    /* Le triangle natif varie d'un navigateur à l'autre : remplacé par un chevron maison. */
+    list-style: none;
+}
+
+.compacte__plus summary::-webkit-details-marker {
+    display: none;
+}
+
+.compacte__plus summary::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-top: -0.2rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform var(--transition), margin-top var(--transition);
+}
+
+.compacte__plus[open] summary::after {
+    margin-top: 0.2rem;
+    transform: rotate(-135deg);
+}
+
+.compacte__complet {
+    padding: var(--e2) var(--e3);
+    border-left: 2px solid var(--bordure-forte);
+    color: var(--texte-doux);
+    font-size: var(--t-petit);
+}
+
+.compacte__complet > :last-child {
+    margin-bottom: 0;
 }
 
 /* Moins d'air sous les puces qu'en grand format : la bulle reste lisible. */
@@ -117,4 +125,3 @@
         gap: var(--e3);
     }
 }
-

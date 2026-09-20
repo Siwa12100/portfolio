@@ -4,7 +4,9 @@
 
 <article class="carte @(this.Inverse ? "carte--inverse" : "")" data-reveal>
     <div class="carte__visuel">
-        <img src="@this.Fiche.Image" alt="@($"{Traductions.ApercuDe[this.Langue]} {this.Fiche.Titre[this.Langue]}")"
+        @* Le visuel occupe environ 564 px au-dessus de 860 px, toute la largeur en dessous. *@
+        <img src="@this.Fiche.Image" srcset="@this.Fiche.SrcSet" sizes="(min-width: 861px) 564px, 100vw"
+             alt="@($"{Traductions.ApercuDe[this.Langue]} {this.Fiche.Titre[this.Langue]}")"
              width="@this.Fiche.ImageLargeur" height="@this.Fiche.ImageHauteur"
              loading="lazy" decoding="async" />
     </div>
@@ -25,7 +27,7 @@
             @foreach (var techno in this.Fiche.Technos)
             {
                 <li>
-                    <button type="button" class="puce">
+                    <button type="button" class="puce" aria-expanded="false">
                         <img src="@techno.Logo" alt="" loading="lazy" />
                         <span class="puce__nom">@techno.Nom</span>
                         <span class="puce__role">@techno.Role[this.Langue]</span>

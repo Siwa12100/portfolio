@@ -95,6 +95,9 @@ namespace portfolio_siwa.Donnees
         public static Texte VoirLeSite { get; } = new("Voir le site", "Visit the site", "Veire lo sit");
         public static Texte CodeSource { get; } = new("Code source", "Source code", "Còde font");
 
+        public static Texte EnSavoirPlus { get; } = new(
+            "En savoir plus", "Read more", "Ne saber mai");
+
         /// <summary>Texte alternatif des captures de projets, complété par le titre.</summary>
         public static Texte ApercuDe { get; } = new(
             "Aperçu du projet", "Screenshot of", "Ulhada del projècte");

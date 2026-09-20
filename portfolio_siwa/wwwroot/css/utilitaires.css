@@ -74,7 +74,7 @@
 }
 
 .bouton--plein {
-    background: var(--gradient-accent);
+    background: var(--gradient-bouton);
     color: #fff;
     box-shadow: var(--ombre-1);
 }
@@ -130,7 +130,7 @@
 .bouton--petit {
     min-height: 2.4rem;
     padding: 0.4rem 1rem;
-    font-size: var(--t-micro);
+    font-size: var(--t-petit);
 }
 
 /* ========== Étiquettes ========== */
@@ -167,10 +167,23 @@
     border: 1px solid var(--bordure);
     border-radius: var(--r-pilule);
     background: rgba(255, 255, 255, 0.05);
-    font-size: var(--t-micro);
+    font-size: var(--t-petit);
     color: var(--texte-doux);
-    cursor: help;
+    cursor: pointer;
     transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+/* Au doigt, rien n'annonce qu'une puce s'ouvre : un signe le dit. */
+@media (hover: none) {
+    .puce::after {
+        content: "+";
+        color: var(--texte-discret);
+        font-weight: 600;
+    }
+
+    .puce[aria-expanded="true"]::after {
+        content: "\2212";
+    }
 }
 
 .puce img {
@@ -179,11 +192,21 @@
     object-fit: contain;
 }
 
-.puce:hover,
-.puce:focus-visible {
+.puce:focus-visible,
+.puce[aria-expanded="true"] {
     background: var(--surface-haute);
     border-color: var(--bordure-forte);
     color: var(--texte);
+}
+
+/* Le survol seul ne suffit pas au toucher : sur iOS il reste collé après l'appui, et la
+   puce ne pourrait plus se refermer. Il est donc réservé aux appareils qui savent survoler. */
+@media (hover: hover) {
+    .puce:hover {
+        background: var(--surface-haute);
+        border-color: var(--bordure-forte);
+        color: var(--texte);
+    }
 }
 
 /* La bulle de description */
@@ -209,12 +232,55 @@
     pointer-events: none;
 }
 
-.puce:hover .puce__role,
 .puce:focus-visible .puce__role,
-.puce:focus .puce__role {
+.puce[aria-expanded="true"] .puce__role {
     opacity: 1;
     visibility: visible;
     transform: none;
+}
+
+@media (hover: hover) {
+    .puce:hover .puce__role {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+}
+
+/* Cibles tactiles : 44 px minimum, là où l'on vise avec un doigt. */
+@media (pointer: coarse) {
+    .puce,
+    .bouton--petit,
+    .adresse {
+        min-height: 2.75rem;
+    }
+}
+
+/* ========== Entrée du haut de page ========== */
+/* Le haut de page s'anime en CSS seul : il démarre dès la première image, sans attendre
+   que le script soit chargé. Avec l'observateur JS, il s'affichait, disparaissait puis
+   revenait, le temps que le script arrive. */
+@keyframes entree {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+[data-entree] {
+    animation: entree 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+    animation-delay: calc(var(--retard, 0) * 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-entree] {
+        animation: none;
+    }
 }
 
 /* ========== Apparition au défilement ========== */

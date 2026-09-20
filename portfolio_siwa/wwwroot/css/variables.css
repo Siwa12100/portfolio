@@ -18,6 +18,11 @@
     --violet: #8d7ddd;
     --gradient-accent: linear-gradient(135deg, #5f5195 0%, #a7715a 58%, #ff9913 100%);
 
+    /* Même trajectoire, mais chaque point tient 4,5:1 avec du texte blanc (4,66:1 au plus
+       bas, contre 2,14:1 avec l'orange vif). Réservé aux fonds qui portent du texte :
+       --gradient-accent reste pour les filets et les soulignements. */
+    --gradient-bouton: linear-gradient(135deg, #5f5195 0%, #96575a 58%, #b85a08 100%);
+
     /* === Typographie === */
     --police-titre: "Roboto Slab", Georgia, serif;
     --police-texte: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -27,7 +32,7 @@
     --t-h3: clamp(1.15rem, 2.6vw, 1.4rem);
     --t-corps: clamp(1rem, 2.5vw, 1.0625rem);
     --t-petit: 0.875rem;
-    --t-micro: 0.78rem;
+    --t-micro: 0.8125rem;
 
     /* Longueur de ligne confortable à la lecture. */
     --mesure: 66ch;

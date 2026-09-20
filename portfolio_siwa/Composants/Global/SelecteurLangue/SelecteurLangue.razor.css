@@ -1,0 +1,32 @@
+.langues {
+    display: flex;
+    align-items: center;
+    /* 8 px entre deux cibles : assez pour ne pas tomber sur la mauvaise langue au pouce. */
+    gap: var(--e1);
+}
+
+.langue {
+    display: grid;
+    place-items: center;
+    /* 44 px : la taille minimale d'une cible tactile. */
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding-inline: var(--e2);
+    border-radius: var(--r-s);
+    color: var(--texte-discret);
+    font-size: var(--t-petit);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.langue:hover {
+    color: var(--texte);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.langue.actif {
+    color: var(--accent-doux);
+    background: rgba(255, 255, 255, 0.06);
+}

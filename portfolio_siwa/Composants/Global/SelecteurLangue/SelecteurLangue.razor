@@ -1,0 +1,32 @@
+@namespace portfolio_siwa.Composants.Global.SelecteurLangue
+
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
+@inject NavigationManager Navigation
+
+@* Le même sélecteur sert dans le menu et dans le pied de page : une seule définition
+   des liens, donc une seule façon de garder le visiteur sur la page où il se trouve. *@
+<ul class="langues" aria-label="@Traductions.NavLangue[this.Langue]">
+    @foreach (var langue in Langues.Toutes)
+    {
+        <li>
+            <a class="langue @(langue == this.Langue ? "actif" : null)"
+               href="@Langues.Equivalent(this.CheminActuel, langue)"
+               hreflang="@langue.CodeIso()"
+               lang="@langue.CodeIso()"
+               title="@langue.Nom()"
+               aria-current="@(langue == this.Langue ? "true" : null)">@langue.Etiquette()</a>
+        </li>
+    }
+</ul>
+
+@code {
+    [CascadingParameter]
+    private Langue Langue { get; set; }
+
+    [CascadingParameter]
+    private HttpContext? Contexte { get; set; }
+
+    private string CheminActuel => Requete.Chemin(this.Contexte, this.Navigation);
+}

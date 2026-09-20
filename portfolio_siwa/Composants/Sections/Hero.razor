@@ -4,30 +4,33 @@
 @using portfolio_siwa.Modeles
 
 <header class="hero contenu-limite" id="accueil">
-    <div class="hero__photo" data-reveal>
+    <div class="hero__photo" data-entree>
         @* Chemin absolu, identique à celui préchargé dans le head : le navigateur
            reconnaît la même image et ne la demande qu'une fois. *@
-        <img src="/Images/PhotoProfil.jpg" alt="@Traductions.PhotoAlt[this.Langue]" width="900" height="900"
+        <img src="/Images/PhotoProfil.jpg"
+             srcset="/Images/PhotoProfil-640.jpg 640w, /Images/PhotoProfil.jpg 900w"
+             sizes="@PlanDuSite.TaillesPhoto"
+             alt="@Traductions.PhotoAlt[this.Langue]" width="900" height="900"
              fetchpriority="high" decoding="async" />
     </div>
 
     <div class="hero__texte">
-        <p class="etiquette" data-reveal>@Traductions.HeroEtiquette[this.Langue]</p>
-        <h1 data-reveal style="--retard: 1">Jean Marcillac</h1>
-        <p class="hero__role" data-reveal style="--retard: 2">@Traductions.HeroRole[this.Langue]</p>
+        <p class="etiquette" data-entree>@Traductions.HeroEtiquette[this.Langue]</p>
+        <h1 data-entree style="--retard: 1">Jean Marcillac</h1>
+        <p class="hero__role" data-entree style="--retard: 2">@Traductions.HeroRole[this.Langue]</p>
 
-        <div class="hero__accroche mesure" data-reveal style="--retard: 3">
+        <div class="hero__accroche mesure" data-entree style="--retard: 3">
             <p>@Traductions.HeroApproche[this.Langue]</p>
             <p>@Traductions.HeroDissonance[this.Langue]</p>
             <p>@Traductions.HeroAssociatif[this.Langue]</p>
         </div>
 
-        <div class="hero__actions" data-reveal style="--retard: 4">
+        <div class="hero__actions" data-entree style="--retard: 4">
             <a class="bouton bouton--plein" href="#projets">@Traductions.BoutonProjets[this.Langue]</a>
             <a class="bouton bouton--contour" href="#apropos">@Traductions.BoutonAPropos[this.Langue]</a>
         </div>
 
-        <div data-reveal style="--retard: 5">
+        <div data-entree style="--retard: 5">
             <Contacts />
         </div>
     </div>

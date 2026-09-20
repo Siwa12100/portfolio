@@ -5,15 +5,11 @@
 @* Format resserré pour les projets qui suivent les quatre mis en avant :
    même information, moitié moins de hauteur. *@
 <article class="compacte" data-reveal>
-    @* Description complète au survol, uniquement sur les appareils qui savent survoler :
-       au toucher, le résumé court et les puces suffisent. *@
-    <div class="compacte__complet" aria-hidden="true">
-        <p class="compacte__complet-titre">@this.Fiche.Titre[this.Langue]</p>
-        <div>@this.Fiche.Resume.Balise(this.Langue)</div>
-    </div>
-
     <div class="compacte__visuel">
-        <img src="@this.Fiche.Image" alt="@($"{Traductions.ApercuDe[this.Langue]} {this.Fiche.Titre[this.Langue]}")"
+        @* Colonne de 260 px au-dessus de 720 px, pleine largeur en dessous : le navigateur
+           choisit la variante la plus légère qui suffit à cet affichage. *@
+        <img src="@this.Fiche.Image" srcset="@this.Fiche.SrcSet" sizes="(min-width: 721px) 260px, 100vw"
+             alt="@($"{Traductions.ApercuDe[this.Langue]} {this.Fiche.Titre[this.Langue]}")"
              width="@this.Fiche.ImageLargeur" height="@this.Fiche.ImageHauteur"
              loading="lazy" decoding="async" />
     </div>
@@ -31,14 +27,21 @@
             }
         </p>
 
-        <h3 class="compacte__titre">@this.Fiche.Titre[this.Langue]</h3>
+        <h4 class="compacte__titre">@this.Fiche.Titre[this.Langue]</h4>
         <p class="compacte__resume">@this.Fiche.ResumeCourt[this.Langue]</p>
+
+        @* La description complète, sans survol ni JavaScript : elle s'ouvre au toucher comme
+           au clavier, et les lecteurs d'écran la lisent. *@
+        <details class="compacte__plus">
+            <summary>@Traductions.EnSavoirPlus[this.Langue]</summary>
+            <div class="compacte__complet">@this.Fiche.Resume.Balise(this.Langue)</div>
+        </details>
 
         <ul class="puces">
             @foreach (var techno in this.Fiche.Technos)
             {
                 <li>
-                    <button type="button" class="puce">
+                    <button type="button" class="puce" aria-expanded="false">
                         <img src="@techno.Logo" alt="" width="17" height="17" loading="lazy" />
                         <span class="puce__nom">@techno.Nom</span>
                         <span class="puce__role">@techno.Role[this.Langue]</span>

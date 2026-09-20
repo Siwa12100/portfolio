@@ -27,6 +27,25 @@ namespace portfolio_siwa.Modeles
 
         public required int ImageHauteur { get; init; }
 
+        /// <summary>
+        /// Largeurs des variantes réduites de l'image, à côté de l'original : pour
+        /// <c>/Images/projets/x.jpg</c>, les fichiers <c>x-480.jpg</c> et <c>x-800.jpg</c>.
+        /// </summary>
+        public static IReadOnlyList<int> LargeursVariantes { get; } = [480, 800];
+
+        /// <summary>
+        /// Attribut srcset : le navigateur prend la variante la plus légère qui suffit à
+        /// l'écran, au lieu de télécharger systématiquement l'image pleine taille.
+        /// </summary>
+        public string SrcSet => string.Join(", ",
+            LargeursVariantes
+                .Select(largeur => $"{this.Variante(largeur)} {largeur}w")
+                .Append($"{this.Image} {this.ImageLargeur}w"));
+
+        /// <summary>Chemin de la variante d'une largeur donnée.</summary>
+        public string Variante(int largeur) =>
+            $"{this.Image[..this.Image.LastIndexOf('.')]}-{largeur}.jpg";
+
         /// <summary>Résumé du projet. Peut contenir un peu de HTML (mises en avant).</summary>
         public required Texte Resume { get; init; }
 

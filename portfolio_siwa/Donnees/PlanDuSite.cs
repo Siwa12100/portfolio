@@ -22,6 +22,13 @@ namespace portfolio_siwa.Donnees
         /// <summary>Image d'aperçu des partages, en adresse absolue : les réseaux sociaux n'acceptent que ça.</summary>
         public const string ImagePartage = $"{Domaine}/Images/PhotoProfil.jpg";
 
+        /// <summary>
+        /// Largeur d'affichage de la photo d'accueil (11 à 19 rem selon l'écran). Elle sert
+        /// à l'image et à son préchargement : les deux doivent désigner le même fichier,
+        /// sinon le navigateur le télécharge deux fois.
+        /// </summary>
+        public const string TaillesPhoto = "(min-width: 1170px) 304px, max(176px, 26vw)";
+
         public const int ImagePartageLargeur = 900;
         public const int ImagePartageHauteur = 900;
 

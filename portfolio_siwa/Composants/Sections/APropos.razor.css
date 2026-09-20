@@ -37,7 +37,7 @@
     border-radius: var(--r-s);
     background: transparent;
     color: var(--texte-doux);
-    font-size: var(--t-micro);
+    font-size: var(--t-petit);
     cursor: pointer;
     transition: color var(--transition), border-color var(--transition), background-color var(--transition);
 }

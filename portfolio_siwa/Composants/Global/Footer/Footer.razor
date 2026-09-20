@@ -1,5 +1,6 @@
 @namespace portfolio_siwa.Composants.Global.Footer
 
+@using portfolio_siwa.Composants.Global.SelecteurLangue
 @using portfolio_siwa.Donnees
 @using portfolio_siwa.Modeles
 
@@ -9,6 +10,8 @@
             @Traductions.PiedPortfolio[this.Langue]
             <a href="@this.Langue.MentionsLegales()">@Traductions.MentionsLegales[this.Langue]</a>
         </p>
+        @* Sur mobile le sélecteur vit dans le menu replié : celui-ci reste visible en bas de page. *@
+        <SelecteurLangue />
         <a class="bouton bouton--discret" href="@PlanDuSite.DepotSite"
            target="_blank" rel="noopener noreferrer">
             <img src="/Images/logoGithub.png" alt="" width="18" height="18" loading="lazy" />
