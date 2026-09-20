@@ -30,6 +30,12 @@
     }
   },
 
+  // Les autres ports que dotnet watch ouvre pour le rechargement à chaud ne doivent jamais rien
+  // afficher : aucune notification, aucune fenêtre.
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+
   "postCreateCommand": "dotnet restore portfolio_siwa.sln",
 
   "customizations": {

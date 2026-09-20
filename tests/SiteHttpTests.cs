@@ -100,6 +100,24 @@ public class SiteHttpTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Contains("gzip", reponse.Content.Headers.ContentEncoding);
     }
 
+    [Fact]
+    public async Task En_developpement_les_reponses_ne_sont_pas_compressees()
+    {
+        // dotnet watch injecte dans chaque page un script de rechargement automatique du navigateur,
+        // et il ne sait pas le faire dans une réponse compressée : l'auto-rechargement cessait de
+        // fonctionner. Seule la production, où le poids compte, compresse.
+        using var developpement = new WebApplicationFactory<Program>()
+            .WithWebHostBuilder(constructeur => constructeur.UseEnvironment("Development"));
+        var client = developpement.CreateClient();
+
+        var requete = new HttpRequestMessage(HttpMethod.Get, "/");
+        requete.Headers.AcceptEncoding.ParseAdd("gzip");
+        var reponse = await client.SendAsync(requete);
+
+        Assert.Equal(HttpStatusCode.OK, reponse.StatusCode);
+        Assert.Empty(reponse.Content.Headers.ContentEncoding);
+    }
+
     [Theory]
     [InlineData("/")]
     [InlineData("/oc")]

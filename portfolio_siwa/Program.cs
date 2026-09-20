@@ -23,7 +23,13 @@ builder.Services.AddResponseCompression(options => options.EnableForHttps = true
 
 var app = builder.Build();
 
-app.UseResponseCompression();
+// Pas de compression en développement : dotnet watch injecte dans chaque page un script de
+// rechargement automatique du navigateur, et il ne sait pas le faire dans une réponse compressée
+// (« Unable to configure browser refresh script injection »). Le poids ne compte que en ligne.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseResponseCompression();
+}
 
 if (!app.Environment.IsDevelopment())
 {

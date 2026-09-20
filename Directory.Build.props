@@ -1,0 +1,18 @@
+<Project>
+
+  <!--
+    Ce dossier est partagé entre la machine hôte et le dev container (montage de volume). Or les
+    sorties d'une compilation contiennent des chemins absolus, en particulier le manifeste des
+    fichiers statiques : compilé sur l'hôte, il pointe vers /home/... que le conteneur ne voit pas,
+    et le site y charge sans CSS, sans script ni image (une page « dans le vide »).
+
+    Chaque environnement écrit donc dans son propre dossier : le conteneur garde bin/ et obj/, et
+    tout le reste (WSL, Windows, autre machine) va dans .artifacts/hote/. DOTNET_RUNNING_IN_CONTAINER
+    est posée par les images .NET : dev container, construction Docker et CI compris.
+  -->
+  <PropertyGroup Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' != 'true'">
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <ArtifactsPath>$(MSBuildThisFileDirectory).artifacts/hote</ArtifactsPath>
+  </PropertyGroup>
+
+</Project>

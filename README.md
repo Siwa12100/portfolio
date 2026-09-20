@@ -16,21 +16,43 @@ Le projet fournit un dev container (.NET 9 SDK, rien d'autre) :
 
 Sans dev container, il suffit du SDK .NET 9 et de la même commande.
 
+**Après tout changement de `.devcontainer/devcontainer.json`, reconstruire le conteneur** (« Dev
+Containers: Rebuild Container »). Ses variables et ses réglages de ports ne sont lus qu'à la
+création : sans reconstruction, l'ancien comportement continue de s'appliquer.
+
 Le navigateur s'ouvre **une seule fois** par session dans le dev container, et jamais depuis
 `launchSettings.json` (`launchBrowser` est à `false`) : sinon chaque redémarrage de
 `dotnet watch` rouvrait une fenêtre. Hors dev container, l'adresse s'affiche dans le terminal.
+
+## Un dossier, deux environnements
+
+Le dossier du projet est monté dans le dev container : la machine hôte et le conteneur y compilent
+tous les deux. Or une compilation contient des chemins absolus, dont celui du fichier qui regroupe
+les styles des composants (`portfolio_siwa.….styles.css`). Compilé sur l'hôte, il pointait vers
+`/home/...`, que le conteneur ne voit pas : le site répondait, mais **sans sa mise en page**, comme
+une page qui charge dans le vide.
+
+`Directory.Build.props` sépare donc les deux. Le conteneur, la construction Docker et la CI (qui
+posent `DOTNET_RUNNING_IN_CONTAINER`) gardent `bin/` et `obj/`. Tout le reste écrit dans
+`.artifacts/hote/`, ignoré par git. Une compilation faite sur l'hôte ne peut plus toucher ce que le
+conteneur exécute.
+
+Si le site s'affiche un jour sans mise en page, supprimer `bin/` et `obj/` puis relancer.
+Le port **5087** est celui du dev container : un autre serveur qui l'occupe sur l'hôte entre en
+conflit avec la redirection de port de VS Code.
 
 ## Organisation
 
 | Dossier | Contenu |
 |---|---|
 | `Donnees/CatalogueProjets.cs` | **Tout le contenu des projets**, dans les trois langues. C'est le seul fichier à modifier pour ajouter ou corriger un projet. |
+| `Donnees/CatalogueAffiliations.cs` | Les organisations de mon parcours (INSA, Enedis, Institut occitan, Valorium), dans les trois langues. Elles alimentent la section « À propos », `llms.txt` et les données structurées. |
 | `Donnees/Traductions.cs` | Toutes les autres chaînes affichées : navigation, accroche, à propos, pied de page, erreurs, mentions légales. |
 | `Donnees/PlanDuSite.cs` | Domaine, contacts, et génération de `robots.txt`, `sitemap.xml` et `llms.txt`. |
 | `Donnees/DonneesStructurees.cs` | Le JSON-LD posé dans le head de chaque page. |
 | `Modeles/` | `FicheProjet`, `TechnoProjet`, `Texte` (un contenu en trois langues), `Langue`, `Requete`. |
 | `Infrastructure/` | `AntiforgerySansFormulaire` : voir « Aucun cookie » plus bas. |
-| `Composants/Sections/` | Hero, carte projet, à propos, contacts. |
+| `Composants/Sections/` | Hero, carte projet, parcours (les organisations), à propos, contacts. |
 | `Composants/Global/` | Navbar, pied de page et sélecteur de langue (partagé entre le menu et le pied de page). |
 | `wwwroot/css/` | `variables.css` (tokens), `base.css` (reset et typographie), `utilitaires.css` (boutons, sections, animations). |
 | `wwwroot/js/site.js` | Menu mobile, bulles des technologies, apparition au défilement, copie dans le presse-papier. |
@@ -132,6 +154,10 @@ Ils couvrent le catalogue, les adresses, les traductions et les images, et déma
 pour de bon (`SiteHttpTests`) : chaque page dans chaque langue avec ses balises `hreflang` et son
 adresse canonique, aucun cookie, compression, réponse à `HEAD`, aucune ressource chez un tiers.
 Un texte ajouté sans sa version anglaise ou occitane fait échouer la suite.
+
+**Pour reproduire la production en local, lancer la sortie de `dotnet publish`**, pas le `.dll` de
+`bin/` : sans elle, le mode production ne charge pas les fichiers statiques, qui répondent alors
+`200` avec un corps vide. C'est ce que fait le Dockerfile.
 
 ## Intégration continue et déploiement
 
