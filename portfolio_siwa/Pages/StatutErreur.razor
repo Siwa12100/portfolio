@@ -1,13 +1,14 @@
 @page "/erreur/{Code:int}"
 
-<PageTitle>@Titre | Jean Marcillac</PageTitle>
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
 
 <section class="section">
     <div class="contenu-limite mesure statut">
-        <p class="etiquette">Erreur @Code</p>
-        <h1>@Titre</h1>
-        <p>@Message</p>
-        <a class="bouton bouton--plein" href="/">Retour à l'accueil</a>
+        <p class="etiquette">@Traductions.Erreur[this.Langue] @this.Code</p>
+        <h1>@this.Titre</h1>
+        <p>@this.Message</p>
+        <a class="bouton bouton--plein" href="@this.Langue.Accueil()">@Traductions.RetourAccueil[this.Langue]</a>
     </div>
 </section>
 
@@ -15,9 +16,14 @@
     [Parameter]
     public int Code { get; set; }
 
-    private string Titre => Code == 404 ? "Cette page n'existe pas" : "Quelque chose s'est mal passé";
+    [CascadingParameter]
+    private Langue Langue { get; set; }
 
-    private string Message => Code == 404
-        ? "Le lien est peut-être incomplet, ou la page a changé d'adresse."
-        : "Réessayez dans un instant. Si le problème persiste, écrivez-moi.";
+    private string Titre => this.Code == 404
+        ? Traductions.PageIntrouvableTitre[this.Langue]
+        : Traductions.ErreurTitre[this.Langue];
+
+    private string Message => this.Code == 404
+        ? Traductions.PageIntrouvableTexte[this.Langue]
+        : Traductions.ErreurTexte[this.Langue];
 }

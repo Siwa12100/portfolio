@@ -2,7 +2,8 @@
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 1000;
-    height: var(--hauteur-nav);
+    height: var(--hauteur-nav-totale);
+    padding-top: var(--marge-haute);
     display: flex;
     align-items: center;
     background: transparent;
@@ -73,6 +74,38 @@
     color: #fff;
 }
 
+/* ===== Sélecteur de langue ===== */
+.nav__langues {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    margin-left: var(--e3);
+    padding-left: var(--e3);
+    border-left: 1px solid var(--bordure);
+}
+
+.nav__langues a {
+    display: block;
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--r-s);
+    color: var(--texte-discret);
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.nav__langues a:hover {
+    color: var(--texte);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav__langues a.actif {
+    color: var(--accent-doux);
+    background: rgba(255, 255, 255, 0.06);
+}
+
 .nav__burger {
     display: none;
     flex-direction: column;
@@ -113,13 +146,25 @@
 @media (max-width: 860px) {
     .nav__burger {
         display: flex;
+        /* Le burger passe après le sélecteur de langue, en bord d'écran. */
+        order: 3;
+    }
+
+    .nav__langues {
+        order: 2;
+        margin-left: auto;
+        margin-right: var(--e2);
+        padding-left: 0;
+        border-left: none;
     }
 
     .nav__menu {
         position: absolute;
-        top: var(--hauteur-nav);
-        left: var(--marge-page);
-        right: var(--marge-page);
+        /* Accroché au bas de la barre plutôt qu'à une hauteur fixe : il suit
+           l'encoche sans qu'on ait à refaire le calcul. */
+        top: 100%;
+        left: var(--marge-laterale);
+        right: var(--marge-laterale);
         flex-direction: column;
         align-items: stretch;
         gap: 0;

@@ -7,7 +7,32 @@
     width: 100%;
     max-width: var(--largeur-max);
     margin-inline: auto;
-    padding-inline: var(--marge-page);
+    /* En paysage, l'encoche mange un bord de l'écran : la marge s'élargit d'autant. */
+    padding-inline: var(--marge-laterale);
+}
+
+/* ========== Lien d'évitement ========== */
+/* Hors écran tant qu'il n'a pas le focus : il n'existe que pour le clavier. */
+.lien-evitement {
+    position: fixed;
+    top: calc(var(--marge-haute) + 0.5rem);
+    left: 50%;
+    z-index: 1200;
+    padding: 0.7rem 1.2rem;
+    border-radius: var(--r-pilule);
+    background: var(--surface-haute);
+    border: 1px solid var(--bordure-forte);
+    color: var(--texte);
+    font-size: var(--t-petit);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--ombre-2);
+    transform: translate(-50%, -200%);
+    transition: transform var(--transition);
+}
+
+.lien-evitement:focus-visible {
+    transform: translate(-50%, 0);
 }
 
 .titre-section {
@@ -83,6 +108,23 @@
 
 .bouton:active {
     transform: translateY(0);
+}
+
+/* Au doigt, il n'y a pas de survol : l'appui doit donc se voir lui-même,
+   sinon le site paraît ne pas répondre le temps que la page suivante arrive. */
+@media (hover: none) {
+    .bouton:active,
+    .contact:active,
+    .adresse:active {
+        transform: scale(0.97);
+        background-color: var(--surface-haute);
+    }
+
+    .puce:active {
+        border-color: var(--bordure-forte);
+        background: var(--surface-haute);
+        color: var(--texte);
+    }
 }
 
 .bouton--petit {
@@ -201,7 +243,7 @@
 .retour-haut {
     position: fixed;
     right: clamp(0.75rem, 3vw, 1.5rem);
-    bottom: clamp(0.75rem, 3vw, 1.5rem);
+    bottom: calc(clamp(0.75rem, 3vw, 1.5rem) + var(--marge-basse));
     z-index: 900;
     width: 2.9rem;
     height: 2.9rem;
@@ -230,7 +272,7 @@
 .toast {
     position: fixed;
     left: 50%;
-    bottom: clamp(1rem, 4vw, 2rem);
+    bottom: calc(clamp(1rem, 4vw, 2rem) + var(--marge-basse));
     z-index: 1100;
     transform: translate(-50%, 12px);
     padding: 0.7rem 1.2rem;
@@ -255,7 +297,8 @@
 @media print {
     .nav,
     .retour-haut,
-    .toast {
+    .toast,
+    .lien-evitement {
         display: none !important;
     }
 }

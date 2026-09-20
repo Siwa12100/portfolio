@@ -1,4 +1,5 @@
 using portfolio_siwa;
+using portfolio_siwa.Donnees;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +27,19 @@ app.UseAntiforgery();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>();
+
+// Ce que lisent les robots avant la page elle-même. Les trois textes sont construits
+// à partir du catalogue et de la liste des langues, donc une fois pour toutes au
+// démarrage : ils ne changent qu'avec un nouveau déploiement.
+var robots = PlanDuSite.Robots();
+var sitemap = PlanDuSite.Sitemap();
+var llms = PlanDuSite.Llms();
+
+app.MapGet("/robots.txt", () => Results.Text(robots, "text/plain; charset=utf-8"));
+app.MapGet("/sitemap.xml", () => Results.Text(sitemap, "application/xml; charset=utf-8"));
+
+// Convention llmstxt.org : un résumé propre du site, pour les assistants qui
+// préfèrent du texte au HTML de la page.
+app.MapGet("/llms.txt", () => Results.Text(llms, "text/plain; charset=utf-8"));
 
 app.Run();

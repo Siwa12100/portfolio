@@ -1,15 +1,35 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
 @using portfolio_siwa.Composants.Global.NavBar
 @using portfolio_siwa.Composants.Global.Footer
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
 
-<NavBar />
+@inject NavigationManager Navigation
 
-<main>
-    @Body
-</main>
+@* La langue est déduite de l'URL une fois, puis descendue à tout l'arbre. *@
+<CascadingValue Value="this.LangueCourante" IsFixed="true">
+    @* Premier élément focalisable de la page : au clavier, il évite de traverser
+       toute la navigation avant d'arriver au contenu. *@
+    <a class="lien-evitement" href="#contenu">@Traductions.AllerAuContenu[this.LangueCourante]</a>
 
-<Footer />
+    <NavBar />
 
-<button type="button" id="retour-haut" class="retour-haut" aria-label="Revenir en haut">↑</button>
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <main id="contenu">
+        @this.Body
+    </main>
+
+    <Footer />
+
+    <button type="button" id="retour-haut" class="retour-haut"
+            aria-label="@Traductions.RetourHaut[this.LangueCourante]">↑</button>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</CascadingValue>
+
+@code {
+    [CascadingParameter]
+    private HttpContext? Contexte { get; set; }
+
+    private Langue LangueCourante =>
+        Langues.Depuis(Requete.Chemin(this.Contexte, this.Navigation));
+}

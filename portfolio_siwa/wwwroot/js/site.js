@@ -8,17 +8,21 @@
     const menu = document.getElementById("nav-menu");
     const nav = document.getElementById("nav");
 
+    // Les deux libellés viennent du HTML : le JS n'a pas à connaître la langue affichée.
+    const libelle = (ouvert) =>
+        (ouvert ? burger?.dataset.fermer : burger?.dataset.ouvrir) || "";
+
     const fermerMenu = () => {
         menu?.classList.remove("ouvert");
         burger?.setAttribute("aria-expanded", "false");
-        burger?.setAttribute("aria-label", "Ouvrir le menu");
+        burger?.setAttribute("aria-label", libelle(false));
     };
 
     if (burger && menu) {
         burger.addEventListener("click", () => {
             const ouvert = menu.classList.toggle("ouvert");
             burger.setAttribute("aria-expanded", String(ouvert));
-            burger.setAttribute("aria-label", ouvert ? "Fermer le menu" : "Ouvrir le menu");
+            burger.setAttribute("aria-label", libelle(ouvert));
         });
 
         // Un lien cliqué referme le menu ; un clic à l'extérieur aussi.
@@ -44,7 +48,19 @@
         retourHaut?.classList.toggle("visible", y > 700);
     };
 
-    window.addEventListener("scroll", auDefilement, { passive: true });
+    // Le calcul est reporté à la prochaine image : sur les navigateurs intégrés,
+    // un évènement de défilement par pixel suffit à faire saccader la page.
+    let defilementPrevu = false;
+
+    window.addEventListener("scroll", () => {
+        if (defilementPrevu) return;
+        defilementPrevu = true;
+        window.requestAnimationFrame(() => {
+            defilementPrevu = false;
+            auDefilement();
+        });
+    }, { passive: true });
+
     auDefilement();
 
     retourHaut?.addEventListener("click", () => {
@@ -110,7 +126,8 @@
         bouton.addEventListener("click", async () => {
             const texte = bouton.dataset.copier;
             const ok = await copier(texte);
-            afficherMessage(ok ? (bouton.dataset.message || "Copié") : texte);
+            // Copie refusée : le texte lui-même s'affiche, à recopier à la main.
+            afficherMessage(ok ? (bouton.dataset.message || texte) : texte);
         });
     });
 })();

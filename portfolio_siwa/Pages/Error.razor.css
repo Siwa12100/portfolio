@@ -1,0 +1,18 @@
+/* Même présentation que la page d'erreur de statut : le CSS isolé ne traverse
+   pas d'un composant à l'autre, ces quelques règles vivent donc en double. */
+.statut {
+    padding-top: var(--hauteur-nav-totale);
+}
+
+.statut h1 {
+    margin-block: var(--e3) var(--e3);
+}
+
+.statut p {
+    color: var(--texte-doux);
+}
+
+.statut code {
+    font-size: var(--t-petit);
+    word-break: break-all;
+}

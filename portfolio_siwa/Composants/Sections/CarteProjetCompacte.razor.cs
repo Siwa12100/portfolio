@@ -8,5 +8,8 @@ namespace portfolio_siwa.Composants.Sections
         [Parameter]
         [EditorRequired]
         public required FicheProjet Fiche { get; set; }
+
+        [CascadingParameter]
+        private Langue Langue { get; set; }
     }
 }

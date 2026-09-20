@@ -3,6 +3,8 @@
     border-top: 1px solid var(--bordure);
     background: var(--fond-doux);
     padding-block: var(--e5);
+    /* Le dernier bloc de la page ne doit pas finir sous la barre gestuelle. */
+    padding-bottom: calc(var(--e5) + var(--marge-basse));
 }
 
 .pied__contenu {

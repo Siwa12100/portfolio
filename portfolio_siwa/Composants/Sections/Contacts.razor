@@ -1,25 +1,33 @@
 @namespace portfolio_siwa.Composants.Sections
 
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
 @* Aucun code C# ici : la copie dans le presse-papier est gérée par js/site.js,
    ce qui évite d'avoir à rendre la page interactive côté serveur. *@
 <ul class="contacts">
     <li>
-        <button type="button" class="contact" aria-label="Copier mon identifiant Discord"
-                title="Copier mon identifiant Discord"
-                data-copier="sioa" data-message="Identifiant Discord copié">
-            <img src="/Images/logos/logoDiscord.svg" alt="" width="24" height="24" />
+        <button type="button" class="contact" aria-label="@Traductions.CopierDiscord[this.Langue]"
+                title="@Traductions.CopierDiscord[this.Langue]"
+                data-copier="@PlanDuSite.Discord" data-message="@Traductions.DiscordCopie[this.Langue]">
+            <img src="/Images/logos/logoDiscord.svg" alt="" width="24" height="24" loading="lazy" />
         </button>
     </li>
     <li>
-        <a class="contact" href="mailto:jean.marcillac12@gmail.com"
-           aria-label="M'envoyer un mail" title="M'envoyer un mail">
-            <img src="/Images/logos/logoMail.svg" alt="" width="24" height="24" />
+        <a class="contact" href="mailto:@PlanDuSite.Courriel"
+           aria-label="@Traductions.EnvoyerMail[this.Langue]" title="@Traductions.EnvoyerMail[this.Langue]">
+            <img src="/Images/logos/logoMail.svg" alt="" width="24" height="24" loading="lazy" />
         </a>
     </li>
     <li>
-        <a class="contact" href="https://github.com/Siwa12100" target="_blank" rel="noopener noreferrer"
-           aria-label="Mon profil GitHub" title="Mon profil GitHub">
-            <img src="/Images/logos/logoGithub.svg" alt="" width="24" height="24" />
+        <a class="contact" href="@PlanDuSite.Github" target="_blank" rel="noopener noreferrer me"
+           aria-label="@Traductions.ProfilGithub[this.Langue]" title="@Traductions.ProfilGithub[this.Langue]">
+            <img src="/Images/logos/logoGithub.svg" alt="" width="24" height="24" loading="lazy" />
         </a>
     </li>
 </ul>
+
+@code {
+    [CascadingParameter]
+    private Langue Langue { get; set; }
+}

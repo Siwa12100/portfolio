@@ -1,30 +1,80 @@
-﻿@namespace portfolio_siwa
+@namespace portfolio_siwa
+
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
+@inject NavigationManager Navigation
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="@this.LangueCourante.CodeIso()">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @* viewport-fit=cover : sur les écrans à encoche, la page occupe toute la largeur.
+       Les marges de sécurité sont reprises en CSS (env(safe-area-inset-*)). *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <base href="/" />
 
-    <title>Jean Marcillac, développeur</title>
-    <meta name="description" content="Jean Marcillac, étudiant en ingénierie informatique à l'INSA Lyon et data analyste en alternance chez Enedis. Projets web, IA et infrastructure." />
+    <title>@this.Titre</title>
+    <meta name="description" content="@this.Description" />
+    <meta name="author" content="@PlanDuSite.Nom" />
+    <meta name="robots" content="@this.Robots" />
     <meta name="theme-color" content="#13152c" />
+    <meta name="color-scheme" content="dark" />
+    @* Sans ça, iOS transforme les nombres des résumés en liens téléphoniques. *@
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-title" content="@PlanDuSite.Nom" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    @* Le même contenu vit à trois adresses : ces liens disent aux moteurs qu'il s'agit
+       de traductions et non de doublons, et laissent chaque langue se classer seule. *@
+    <link rel="canonical" href="@this.UrlCanonique" />
+    @if (this.PageCourante is not null)
+    {
+        foreach (var autre in Langues.Toutes)
+        {
+            <link rel="alternate" hreflang="@autre.CodeIso()" href="@PlanDuSite.Absolu(autre, this.PageCourante.Value)" />
+        }
+        <link rel="alternate" hreflang="x-default" href="@PlanDuSite.Absolu(Langue.Francais, this.PageCourante.Value)" />
+    }
 
     @* Aperçu des liens partagés (Instagram, messageries, réseaux sociaux). *@
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Jean Marcillac" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:title" content="Jean Marcillac, développeur" />
-    <meta property="og:description" content="Étudiant ingénieur à l'INSA Lyon et data analyste en alternance. Découvrez mes projets web, IA et infrastructure." />
-    <meta property="og:url" content="https://jean-marcillac.dev/" />
-    <meta property="og:image" content="https://jean-marcillac.dev/Images/PhotoProfil.jpg" />
+    <meta property="og:site_name" content="@PlanDuSite.Nom" />
+    <meta property="og:locale" content="@this.LangueCourante.Locale()" />
+    @foreach (var autre in Langues.Toutes.Where(autre => autre != this.LangueCourante))
+    {
+        <meta property="og:locale:alternate" content="@autre.Locale()" />
+    }
+    <meta property="og:title" content="@this.Titre" />
+    <meta property="og:description" content="@this.DescriptionPartage" />
+    <meta property="og:url" content="@this.UrlCanonique" />
+    <meta property="og:image" content="@PlanDuSite.ImagePartage" />
+    <meta property="og:image:secure_url" content="@PlanDuSite.ImagePartage" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="@PlanDuSite.ImagePartageLargeur" />
+    <meta property="og:image:height" content="@PlanDuSite.ImagePartageHauteur" />
+    <meta property="og:image:alt" content="@Traductions.PhotoAlt[this.LangueCourante]" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@this.Titre" />
+    <meta name="twitter:description" content="@this.DescriptionPartage" />
+    <meta name="twitter:image" content="@PlanDuSite.ImagePartage" />
+    <meta name="twitter:image:alt" content="@Traductions.PhotoAlt[this.LangueCourante]" />
+
+    @* Qui écrit, ce que contient la page, dans quelle langue : la même chose que
+       ci-dessus, mais dans la forme que lisent les moteurs et les assistants d'IA. *@
+    @this.DonneesDeLaPage
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Slab:wght@500;600;700&display=swap" />
+
+    @if (this.PageCourante == PageSite.Accueil)
+    {
+        @* Premier élément visible depuis Instagram : le navigateur la demande sans
+           attendre d'avoir fini de lire les feuilles de style. *@
+        <link rel="preload" as="image" href="/Images/PhotoProfil.jpg" fetchpriority="high" />
+    }
 
     @* Trois feuilles liées directement plutôt qu'enchaînées par @@import : elles se téléchargent en parallèle. *@
     <link rel="stylesheet" href="@Assets["css/variables.css"]" />
@@ -42,3 +92,61 @@
 </body>
 
 </html>
+
+@code {
+    [CascadingParameter]
+    private HttpContext? Contexte { get; set; }
+
+    private Langue LangueCourante { get; set; }
+
+    /// <summary>Null quand l'adresse ne correspond à aucune page : erreur 404, page technique.</summary>
+    private PageSite? PageCourante { get; set; }
+
+    private string UrlCanonique { get; set; } = PlanDuSite.Domaine;
+
+    protected override void OnParametersSet()
+    {
+        var chemin = Requete.Chemin(this.Contexte, this.Navigation);
+
+        this.LangueCourante = Langues.Depuis(chemin);
+        this.PageCourante = Langues.PageDe(chemin);
+
+        // Une page inconnue n'a pas d'adresse canonique à elle : elle renvoie vers
+        // l'accueil de sa langue, et sort de l'index par la balise robots.
+        this.UrlCanonique = PlanDuSite.Absolu(
+            this.LangueCourante, this.PageCourante ?? PageSite.Accueil);
+    }
+
+    private string Titre => this.PageCourante switch
+    {
+        PageSite.Accueil => Traductions.TitrePage[this.LangueCourante],
+        PageSite.MentionsLegales => $"{Traductions.MentionsLegales[this.LangueCourante]} | {PlanDuSite.Nom}",
+        _ => $"{Traductions.Erreur[this.LangueCourante]} | {PlanDuSite.Nom}",
+    };
+
+    private string Description => this.PageCourante switch
+    {
+        PageSite.MentionsLegales => Traductions.DescriptionLegales[this.LangueCourante],
+        PageSite.Accueil => Traductions.Description[this.LangueCourante],
+        _ => Traductions.PageIntrouvableTexte[this.LangueCourante],
+    };
+
+    /// <summary>Version courte, faite pour la vignette d'un lien partagé.</summary>
+    private string DescriptionPartage => this.PageCourante == PageSite.Accueil
+        ? Traductions.DescriptionPartage[this.LangueCourante]
+        : this.Description;
+
+    /// <summary>
+    /// La balise entière est écrite d'un bloc : passé par un attribut Razor, le « + »
+    /// de application/ld+json ressortirait encodé, et tous les robots ne le décodent pas.
+    /// Le JSON, lui, échappe ses chevrons : il ne peut pas refermer la balise.
+    /// </summary>
+    private MarkupString DonneesDeLaPage => new(
+        "<script type=\"application/ld+json\">"
+        + DonneesStructurees.Json(this.LangueCourante, this.PageCourante)
+        + "</script>");
+
+    private string Robots => this.PageCourante is null
+        ? "noindex, follow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+}
