@@ -93,7 +93,14 @@ dotnet test portfolio_siwa.sln
 Ils couvrent le catalogue, les adresses et les traductions. Un texte ajouté sans sa version
 anglaise ou occitane fait échouer la suite.
 
-## Déploiement
+## Intégration continue et déploiement
 
-`.drone.yml` construit l'image, la pousse sur la registry privée puis redéploie le
-conteneur sur le VPS via `docker compose`.
+`.drone.yml` porte deux pipelines :
+
+- **verification** construit la solution et lance les tests. Elle part sur chaque poussée,
+  quelle que soit la branche, et sur chaque pull request.
+- **deploiement-main** ne part que sur `main`, et seulement si la vérification est passée.
+  Elle construit l'image, la pousse sur la registry privée, puis redéploie le conteneur sur
+  le VPS via `docker compose`.
+
+Pousser une branche de travail la fait donc valider sans rien déployer.

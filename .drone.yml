@@ -1,6 +1,50 @@
+# Deux pipelines. Le premier valide chaque poussée, sur toutes les branches.
+# Le second ne part que sur main, et seulement si le premier est passé.
+
 kind: pipeline
 type: docker
-name: build-and-deploy-portfolio-siwa-main
+name: verification
+
+trigger:
+  event:
+    - push
+    - pull_request
+
+# Les deux étapes tournent dans des conteneurs séparés : sans ce volume, la seconde
+# repartirait d'un cache vide et ne retrouverait pas les paquets restaurés par la première.
+volumes:
+  - name: nuget
+    temp: {}
+
+steps:
+  - name: "🛠 build"
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    environment:
+      NUGET_PACKAGES: /nuget
+    volumes:
+      - name: nuget
+        path: /nuget
+    commands:
+      - echo "🛠 [INFO] Build de la solution complète..."
+      - dotnet build ./portfolio_siwa.sln -c Release
+      - echo "✅ [SUCCESS] Build terminé."
+
+  - name: "🧪 tests-unitaires"
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    environment:
+      NUGET_PACKAGES: /nuget
+    volumes:
+      - name: nuget
+        path: /nuget
+    commands:
+      - echo "🧪 [INFO] Lancement des tests..."
+      - dotnet test ./portfolio_siwa.sln -c Release --no-build
+      - echo "✅ [SUCCESS] Tests passés."
+
+---
+kind: pipeline
+type: docker
+name: deploiement-main
 
 trigger:
   branch:
@@ -8,89 +52,12 @@ trigger:
   event:
     - push
 
-volumes:
-  - name: shared-volume
-    temp: {}
+depends_on:
+  - verification
 
 steps:
-  # - name: "🛠 build"
-  #   image: mcr.microsoft.com/dotnet/sdk:9.0
-  #   commands:
-  #     - echo "🛠 [INFO] Build du projet portfolio_siwa..."
-  #     - dotnet publish ./portfolio_siwa/portfolio_siwa.csproj -c Release -o out || {
-  #         echo "❌ [ERROR] Le build a échoué.";
-  #         exit 1;
-  #       }
-  #     - echo "✅ [SUCCESS] Build terminé."
-
-  # - name: "🧪 tests-unitaires"
-  #   image: mcr.microsoft.com/dotnet/sdk:9.0
-  #   volumes:
-  #     - name: shared-volume
-  #       path: /coverage
-  #   commands:
-  #     - echo "🧪 [INFO] Lancement des tests avec couverture..."
-  #     - dotnet clean ./portfolio_siwa.sln --configuration Release
-  #     - dotnet test ./portfolio_siwa.sln --configuration Release --no-build --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
-  #     - echo "🔍 [DEBUG] Fichier opencover.xml généré (début) :"
-  #     - COVERAGE_FILE=$(find /coverage -name *.opencover.xml | head -n 1)
-  #     - cat "$COVERAGE_FILE" | head -n 30
-  #     - echo "📦 [INFO] Renommage pour Sonar..."
-  #     - mv "$COVERAGE_FILE" /coverage/opencover.xml
-  #     - echo "✅ [SUCCESS] Tests terminés avec couverture."
-
-  - name: "🛠 build"
-    image: mcr.microsoft.com/dotnet/sdk:9.0
-    commands:
-      - echo "🛠 [INFO] Build de la solution complète..."
-      - dotnet build ./portfolio_siwa.sln -c Release || {
-          echo "❌ [ERROR] Le build a échoué.";
-          exit 1;
-        }
-      - echo "✅ [SUCCESS] Build terminé."
-
-  # - name: "🧪 tests-unitaires"
-  #   image: mcr.microsoft.com/dotnet/sdk:9.0
-  #   volumes:
-  #     - name: shared-volume
-  #       path: /coverage
-  #   commands:
-  #     - echo "🧪 [INFO] Lancement des tests avec couverture..."
-  #     - dotnet test ./portfolio_siwa.sln -c Release --no-build --collect:"XPlat Code Coverage" --results-directory /coverage --logger "console;verbosity=normal" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover || { echo "❌ [ERROR] Les tests ont échoué."; exit 1; }
-  #     - echo "🔍 [DEBUG] Recherche du fichier de couverture..."
-  #     - |
-  #       COVERAGE_FILE=$(find /coverage -name "*.opencover.xml" -type f | head -n 1) && if [ -z "$COVERAGE_FILE" ]; then echo "⚠️ [WARN] Aucun fichier de couverture trouvé"; ls -la /coverage/; exit 1; fi
-  #     - echo "📄 Fichier trouvé : $COVERAGE_FILE"
-  #     - head -n 30 "$COVERAGE_FILE"
-  #     - mv "$COVERAGE_FILE" /coverage/opencover.xml
-  #     - echo "✅ [SUCCESS] Tests terminés avec couverture."
-
-  # - name: "📊 analyse-sonar"
-  #   image: mcr.microsoft.com/dotnet/sdk:9.0
-  #   environment:
-  #     SONAR_HOST_URL: https://sonar.davalada.valorium-mc.fr
-  #     SONAR_TOKEN:
-  #       from_secret: SONAR_TOKEN
-  #   volumes:
-  #     - name: shared-volume
-  #       path: /coverage
-  #   commands:
-  #     - echo "📊 [INFO] Initialisation de l'analyse Sonar..."
-  #     - apt-get update && apt-get install -y openjdk-17-jre
-  #     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && export PATH=$JAVA_HOME/bin:$PATH
-  #     - dotnet tool install --global dotnet-sonarscanner
-  #     - export PATH="$PATH:/root/.dotnet/tools"
-  #     - echo "🔍 [DEBUG] Vérification du fichier opencover.xml avant analyse..."
-  #     - find /coverage -name *.opencover.xml || true
-  #     - head -n 30 /coverage/opencover.xml
-  #     - dotnet-sonarscanner begin /k:portfolio-siwa /d:sonar.host.url=$SONAR_HOST_URL /d:sonar.login=$SONAR_TOKEN /d:sonar.cs.opencover.reportsPaths=/coverage/**/opencover.xml /d:sonar.sources=./portfolio_siwa
-  #     - dotnet build ./portfolio_siwa/portfolio_siwa.csproj --no-incremental
-  #     - dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
-  #     - echo "✅ [SUCCESS] Analyse Sonar terminée."
-
   - name: "🐳 build-et-push-image"
     image: plugins/docker
-    depends_on: [ "🛠 build" ] # "🧪 tests-unitaires"
     settings:
       registry: registry.davalada.valorium-mc.fr
       repo: registry.davalada.valorium-mc.fr/portfolio-siwa-main
