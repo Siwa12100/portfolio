@@ -43,6 +43,21 @@ public class ImagesTests
     }
 
     [Fact]
+    public void Chaque_logo_est_une_tuile_au_bon_format()
+    {
+        // Le CSS et les attributs width et height comptent sur 280 x 160 px (140 x 80 en double
+        // densité) : une tuile d'une autre taille serait déformée ou décalerait la page.
+        foreach (var affiliation in CatalogueAffiliations.Toutes)
+        {
+            var chemin = Fichier(affiliation.Logo);
+
+            Assert.True(File.Exists(chemin), $"{affiliation.Logo} est introuvable");
+            Assert.Equal((Affiliation.LargeurLogo * 2, Affiliation.HauteurLogo * 2), LireDimensionsPng(chemin));
+            Assert.True(new FileInfo(chemin).Length < 60 * 1024, $"{affiliation.Logo} pèse plus de 60 Ko");
+        }
+    }
+
+    [Fact]
     public void Le_srcset_liste_les_variantes_puis_l_original()
     {
         var fiche = CatalogueProjets.Tous[0];
@@ -77,6 +92,22 @@ public class ImagesTests
         Assert.NotNull(dossier);
 
         return Path.Combine(dossier!.FullName, "portfolio_siwa", "wwwroot", cheminWeb.TrimStart('/'));
+    }
+
+    /// <summary>Dimensions d'un PNG : elles sont écrites dans le premier bloc du fichier.</summary>
+    private static (int Largeur, int Hauteur) LireDimensionsPng(string chemin)
+    {
+        var octets = File.ReadAllBytes(chemin);
+
+        // Signature de 8 octets, puis le bloc IHDR : 4 de longueur, 4 de nom, largeur, hauteur.
+        if (octets.Length < 24 || octets[1] != (byte)'P' || octets[2] != (byte)'N' || octets[3] != (byte)'G')
+        {
+            throw new InvalidDataException($"{chemin} n'est pas un PNG");
+        }
+
+        int Lire(int debut) => (octets[debut] << 24) | (octets[debut + 1] << 16) | (octets[debut + 2] << 8) | octets[debut + 3];
+
+        return (Lire(16), Lire(20));
     }
 
     /// <summary>Dimensions d'un JPEG, lues dans son en-tête sans décoder l'image.</summary>

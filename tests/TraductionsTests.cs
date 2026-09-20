@@ -34,6 +34,22 @@ public class TraductionsTests
     }
 
     [Fact]
+    public void Chaque_affiliation_existe_dans_les_trois_langues()
+    {
+        Assert.NotEmpty(CatalogueAffiliations.Toutes);
+
+        foreach (var affiliation in CatalogueAffiliations.Toutes)
+        {
+            foreach (var langue in Langues.Toutes)
+            {
+                Assert.False(string.IsNullOrWhiteSpace(affiliation.Nom[langue]), $"Nom : {langue} manquant");
+                Assert.False(string.IsNullOrWhiteSpace(affiliation.Role[langue]), $"Rôle de {affiliation.Nom.Fr} : {langue} manquant");
+                Assert.False(string.IsNullOrWhiteSpace(affiliation.Presentation[langue]), $"Présentation de {affiliation.Nom.Fr} : {langue} manquant");
+            }
+        }
+    }
+
+    [Fact]
     public void Les_balises_sont_retirees_du_texte_nu()
     {
         var texte = new Texte("Un <strong>essai</strong>", "A <strong>test</strong>", "Un <strong>ensag</strong>");

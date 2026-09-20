@@ -1,0 +1,36 @@
+@namespace portfolio_siwa.Composants.Sections
+
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
+@* Le rôle fait le titre, la présentation dit ce qu'est l'organisation. Tout est lisible d'emblée :
+   pas de survol ni de bulle, donc rien qui dépende du doigt ou de la souris. Chaque carte porte la
+   couleur de sa marque, qui teinte son reflet, sa bordure et son nom. *@
+<ul class="parcours">
+    @foreach (var (affiliation, rang) in CatalogueAffiliations.Toutes.Select((a, i) => (a, i)))
+    {
+        @* L'apparition et le survol sont sur deux éléments : les deux animent transform. *@
+        <li data-reveal style="--retard: @rang">
+            <article class="parcours__carte" style="@Teinte(affiliation)">
+                @* Décoratif : le nom de l'organisation est écrit à côté. *@
+                <img class="parcours__logo @(affiliation.LogoSansFond ? "parcours__logo--libre" : null)"
+                     src="@affiliation.Logo" alt=""
+                     width="@Affiliation.LargeurLogo" height="@Affiliation.HauteurLogo"
+                     loading="lazy" decoding="async" />
+                <div class="parcours__tete">
+                    <p class="parcours__lieu">@affiliation.Nom[this.Langue]</p>
+                    <h3 class="parcours__role">@affiliation.Role[this.Langue]</h3>
+                </div>
+                <p class="parcours__presentation">@affiliation.Presentation[this.Langue]</p>
+            </article>
+        </li>
+    }
+</ul>
+
+@code {
+    [CascadingParameter]
+    private Langue Langue { get; set; }
+
+    private static string Teinte(Affiliation affiliation) =>
+        $"--teinte: {affiliation.Teinte}; --teinte-rvb: {affiliation.TeinteRvb};";
+}

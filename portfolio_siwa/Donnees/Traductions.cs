@@ -220,9 +220,9 @@ namespace portfolio_siwa.Donnees
             "Propriété intellectuelle", "Intellectual property", "Proprietat intellectuala");
 
         public static Texte LegalProprieteTexte { get; } = new(
-            "Les textes et le code de ce site sont l'œuvre de son éditeur. Les captures d'écran présentent des projets réalisés dans un cadre scolaire, professionnel ou associatif, et restent la propriété de leurs commanditaires respectifs. Les logos des technologies appartiennent à leurs détenteurs et ne sont utilisés qu'à des fins d'identification.",
-            "The texts and the code of this site are the work of its publisher. The screenshots show projects carried out in an academic, professional or non-profit setting, and remain the property of their respective owners. Technology logos belong to their holders and are used for identification only.",
-            "Los tèxtes e lo còde d'aqueste sit son l'òbra de son editor. Las capturas d'ecran presentan de projèctes realizats dins un encastre escolar, professional o associatiu, e demòran la proprietat de lors comanditaris. Los logos de las tecnologias apartenon a lors detentors e son pas utilizats que per identificacion.");
+            "Les textes et le code de ce site sont l'œuvre de son éditeur. Les captures d'écran présentent des projets réalisés dans un cadre scolaire, professionnel ou associatif, et restent la propriété de leurs commanditaires respectifs. Les logos des technologies et des organisations citées appartiennent à leurs détenteurs et ne sont utilisés qu'à des fins d'identification.",
+            "The texts and the code of this site are the work of its publisher. The screenshots show projects carried out in an academic, professional or non-profit setting, and remain the property of their respective owners. Technology and organisation logos belong to their holders and are used for identification only.",
+            "Los tèxtes e lo còde d'aqueste sit son l'òbra de son editor. Las capturas d'ecran presentan de projèctes realizats dins un encastre escolar, professional o associatiu, e demòran la proprietat de lors comanditaris. Los logos de las tecnologias e de las organizacions citadas apartenon a lors detentors e son pas utilizats que per identificacion.");
 
         public static Texte LegalDonneesTitre { get; } = new(
             "Données personnelles", "Personal data", "Donadas personalas");

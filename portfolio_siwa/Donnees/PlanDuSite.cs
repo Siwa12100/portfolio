@@ -145,6 +145,14 @@ namespace portfolio_siwa.Donnees
             texte.AppendLine($"- [Legal notice]({Absolu(Langue.Anglais, PageSite.MentionsLegales)}): publisher, hosting and personal data.");
             texte.AppendLine();
 
+            texte.AppendLine("## Affiliations");
+            texte.AppendLine();
+            foreach (var affiliation in CatalogueAffiliations.Toutes)
+            {
+                texte.AppendLine($"- {affiliation.Nom[langue]}: {affiliation.Role[langue]}. {affiliation.Presentation[langue]}");
+            }
+            texte.AppendLine();
+
             texte.AppendLine("## Projects");
             texte.AppendLine();
             foreach (var fiche in CatalogueProjets.Tous)

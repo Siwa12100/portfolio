@@ -44,7 +44,7 @@ namespace portfolio_siwa.Donnees
                     "Realizat sol, una annada de desvolopament"),
                 Image = "/Images/projets/paistv.jpg",
                 ImageLargeur = 1100,
-                ImageHauteur = 589,
+                ImageHauteur = 615,
                 LienSite = "https://ioa-pais.fr",
                 Resume = new Texte(
                     "La plateforme ouvre au public trente ans de collectage occitan : plus de " +

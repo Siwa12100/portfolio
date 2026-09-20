@@ -55,6 +55,40 @@ public class PlanDuSiteTests
     }
 
     [Fact]
+    public void Le_resume_pour_les_modeles_liste_les_affiliations()
+    {
+        var llms = PlanDuSite.Llms();
+
+        foreach (var affiliation in CatalogueAffiliations.Toutes)
+        {
+            Assert.Contains(affiliation.Nom[Langue.Anglais], llms);
+            Assert.Contains(affiliation.Role[Langue.Anglais], llms);
+        }
+    }
+
+    [Fact]
+    public void Les_donnees_structurees_declarent_les_deux_associations()
+    {
+        // La sélection se fait sur le nom français : un renommage la viderait sans rien casser
+        // d'autre, d'où ce test.
+        foreach (var langue in Langues.Toutes)
+        {
+            var json = DonneesStructurees.Json(langue, PageSite.Accueil);
+            var personne = System.Text.Json.JsonDocument.Parse(json).RootElement
+                .GetProperty("@graph").EnumerateArray()
+                .First(noeud => noeud.GetProperty("@type").GetString() == "Person");
+
+            var noms = personne.GetProperty("memberOf").EnumerateArray()
+                .Select(organisation => organisation.GetProperty("name").GetString())
+                .ToList();
+
+            Assert.Equal(2, noms.Count);
+            Assert.Contains("Valorium", noms);
+            Assert.Contains(CatalogueAffiliations.Toutes.Single(a => a.Nom.Fr == "Institut occitan de l'Aveyron").Nom[langue], noms);
+        }
+    }
+
+    [Fact]
     public void Les_donnees_structurees_sont_un_json_valide()
     {
         foreach (var langue in Langues.Toutes)

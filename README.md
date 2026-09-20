@@ -105,6 +105,37 @@ magick x.jpg -resize 800x -quality 78 x-800.jpg
 Un test échoue si une variante manque, ou si `ImageLargeur` et `ImageHauteur` ne correspondent
 pas au fichier.
 
+## Ajouter une organisation
+
+Ajouter une `Affiliation` dans `CatalogueAffiliations.Toutes`, avec son nom, son rôle et une
+présentation dans les trois langues. Son logo est une **tuile PNG de 280 x 160 px** (elle s'affiche
+en 140 x 80, en double densité), à la couleur de fond du logo lui-même : logo rogné, centré, dans un
+cadre de 250 x 120 px. Le logo n'est jamais déformé ni recoloré, les chartes graphiques l'interdisent.
+Avec ImageMagick :
+
+```bash
+magick logo.png -trim +repage -resize 250x120 -background "#ffffff" -gravity center -extent 280x160 tuile.png
+```
+
+Remplacer `#ffffff` par la couleur de fond du logo (`#1322dc` pour Enedis).
+
+**Un logo lumineux sur fond noir** (Valorium) est fourni sans fond, en PNG transparent, avec
+`LogoSansFond: true` : il flotte alors sur la carte au lieu d'être posé sur une plaque, et sa lueur se
+fond dans celle de la carte. Sa tuile est cadrée à gauche, dans 272 x 152 px :
+
+```bash
+magick logo.png -trim +repage -resize 272x152 -background none -gravity west -extent 280x160 tuile.png
+```
+
+Il faut d'abord avoir retiré le fond noir : un simple « noir vers transparent » laisserait une auréole
+sombre. Seul le noir relié aux bords de l'image doit devenir transparent, de plus en plus au fur et à
+mesure qu'il s'assombrit, pour que l'intérieur du logo reste intact.
+
+**Chaque organisation a une `Teinte`**, sa couleur de marque en `#rrggbb`, qui colore le reflet, la
+bordure et le nom de sa carte. Elle doit rester assez claire pour se lire sur le fond bleu nuit du site.
+
+Un test vérifie que chaque tuile existe, fait 280 x 160 px et reste sous 60 Ko.
+
 ## Polices
 
 Inter et Roboto Slab sont hébergées dans `wwwroot/fonts/`, en variables (un fichier couvre

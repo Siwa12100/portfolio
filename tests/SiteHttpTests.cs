@@ -48,6 +48,25 @@ public class SiteHttpTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Theory]
+    [MemberData(nameof(ToutesLesLangues))]
+    public async Task L_accueil_presente_les_affiliations_dans_la_langue_de_la_page(Langue langue)
+    {
+        var client = this.fabrique.CreateClient();
+        var html = await (await client.GetAsync(langue.Accueil())).Content.ReadAsStringAsync();
+        var encodeur = System.Text.Encodings.Web.HtmlEncoder.Default;
+
+        foreach (var affiliation in CatalogueAffiliations.Toutes)
+        {
+            Assert.Contains(encodeur.Encode(affiliation.Role[langue]), html);
+            Assert.Contains(encodeur.Encode(affiliation.Presentation[langue]), html);
+            Assert.Contains(affiliation.Logo, html);
+        }
+    }
+
+    public static IEnumerable<object[]> ToutesLesLangues() =>
+        Langues.Toutes.Select(langue => new object[] { langue });
+
+    [Theory]
     [InlineData("/")]
     [InlineData("/en")]
     [InlineData("/oc")]

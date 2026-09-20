@@ -81,6 +81,15 @@ namespace portfolio_siwa.Donnees
                 ["name"] = "Enedis",
                 ["url"] = "https://www.enedis.fr",
             },
+            // Les associations où j'ai un rôle. L'INSA et Enedis ont leurs propriétés dédiées ci-dessus.
+            ["memberOf"] = CatalogueAffiliations.Toutes
+                .Where(affiliation => affiliation.Nom.Fr is "Valorium" or "Institut occitan de l'Aveyron")
+                .Select(affiliation => new Dictionary<string, object?>
+                {
+                    ["@type"] = "Organization",
+                    ["name"] = affiliation.Nom[langue],
+                })
+                .ToArray(),
             ["sameAs"] = new[] { PlanDuSite.Github, PlanDuSite.Cv },
         };
 
