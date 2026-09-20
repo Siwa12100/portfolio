@@ -16,6 +16,10 @@ Le projet fournit un dev container (.NET 9 SDK, rien d'autre) :
 
 Sans dev container, il suffit du SDK .NET 9 et de la même commande.
 
+Le navigateur s'ouvre **une seule fois** par session dans le dev container, et jamais depuis
+`launchSettings.json` (`launchBrowser` est à `false`) : sinon chaque redémarrage de
+`dotnet watch` rouvrait une fenêtre. Hors dev container, l'adresse s'affiche dans le terminal.
+
 ## Organisation
 
 | Dossier | Contenu |
@@ -25,10 +29,12 @@ Sans dev container, il suffit du SDK .NET 9 et de la même commande.
 | `Donnees/PlanDuSite.cs` | Domaine, contacts, et génération de `robots.txt`, `sitemap.xml` et `llms.txt`. |
 | `Donnees/DonneesStructurees.cs` | Le JSON-LD posé dans le head de chaque page. |
 | `Modeles/` | `FicheProjet`, `TechnoProjet`, `Texte` (un contenu en trois langues), `Langue`, `Requete`. |
+| `Infrastructure/` | `AntiforgerySansFormulaire` : voir « Aucun cookie » plus bas. |
 | `Composants/Sections/` | Hero, carte projet, à propos, contacts. |
-| `Composants/Global/` | Navbar et pied de page. |
+| `Composants/Global/` | Navbar, pied de page et sélecteur de langue (partagé entre le menu et le pied de page). |
 | `wwwroot/css/` | `variables.css` (tokens), `base.css` (reset et typographie), `utilitaires.css` (boutons, sections, animations). |
-| `wwwroot/js/site.js` | Menu mobile, apparition au défilement, copie dans le presse-papier. |
+| `wwwroot/js/site.js` | Menu mobile, bulles des technologies, apparition au défilement, copie dans le presse-papier. |
+| `wwwroot/fonts/` | Les polices, hébergées ici : voir « Polices ». |
 
 ## Les trois langues
 
@@ -65,6 +71,38 @@ projet en avant, il suffit de le remonter dans la liste.
 Les images restent légères, moins de 150 Ko chacune, largeur 1100 px. C'est le premier
 facteur de confort sur mobile. Les chemins d'images commencent tous par `/`.
 
+**Chaque image a deux variantes réduites**, à côté de l'original : pour `x.jpg`, les fichiers
+`x-480.jpg` et `x-800.jpg`. Le navigateur prend la plus légère qui suffit à son écran au lieu de
+télécharger systématiquement les 1100 px. Avec ImageMagick :
+
+```bash
+magick x.jpg -resize 480x -quality 76 x-480.jpg
+magick x.jpg -resize 800x -quality 78 x-800.jpg
+```
+
+Un test échoue si une variante manque, ou si `ImageLargeur` et `ImageHauteur` ne correspondent
+pas au fichier.
+
+## Polices
+
+Inter et Roboto Slab sont hébergées dans `wwwroot/fonts/`, en variables (un fichier couvre
+toutes les graisses) et limitées au sous-ensemble latin, qui contient tous les accents du
+français, de l'anglais et de l'occitan. Licence SIL OFL, redistribution libre.
+
+Ne pas les remplacer par un lien vers Google Fonts : la requête enverrait l'adresse IP de chaque
+visiteur à Google, alors que les mentions légales promettent qu'aucune donnée n'est transmise.
+Un test échoue si une ressource est chargée chez un tiers.
+
+## Aucun cookie
+
+Le moteur Blazor demande un jeton antiforgery à chaque réponse, même sans formulaire. Le service
+par défaut y répondait en posant un cookie sur toutes les pages, et un `Cache-Control: no-store`
+qui empêchait le retour instantané en arrière. `Infrastructure/AntiforgerySansFormulaire` le
+remplace : il ne pose rien et refuse toute validation.
+
+**Ajouter un formulaire demande donc de retirer ce service**, de réactiver `UseAntiforgery()` dans
+`Program.cs`, et de corriger les mentions légales, puisqu'un cookie sera de nouveau posé.
+
 ## Référencement
 
 Le site sert quatre choses aux moteurs et aux assistants d'IA, toutes construites à partir
@@ -90,8 +128,10 @@ domaine bouge.
 dotnet test portfolio_siwa.sln
 ```
 
-Ils couvrent le catalogue, les adresses et les traductions. Un texte ajouté sans sa version
-anglaise ou occitane fait échouer la suite.
+Ils couvrent le catalogue, les adresses, les traductions et les images, et démarrent aussi le site
+pour de bon (`SiteHttpTests`) : chaque page dans chaque langue avec ses balises `hreflang` et son
+adresse canonique, aucun cookie, compression, réponse à `HEAD`, aucune ressource chez un tiers.
+Un texte ajouté sans sa version anglaise ou occitane fait échouer la suite.
 
 ## Intégration continue et déploiement
 
