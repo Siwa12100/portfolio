@@ -1,24 +1,58 @@
 @namespace portfolio_siwa.Composants.Global.NavBar
 
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
+@inject NavigationManager Navigation
+
 @* Le repli du menu est géré en JS (js/site.js) : la page reste en rendu statique,
    donc pas de WebSocket à maintenir depuis un navigateur intégré. *@
 <nav class="nav" id="nav">
     <div class="nav__contenu contenu-limite">
-        <a class="nav__marque" href="#accueil">Jean Marcillac</a>
+        <a class="nav__marque" href="@this.Langue.Accueil()">Jean Marcillac</a>
 
+        @* Les deux libellés partent avec la page : le JS bascule de l'un à l'autre
+           sans avoir à connaître la langue affichée. *@
         <button type="button" class="nav__burger" id="nav-burger"
-                aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+                aria-label="@Traductions.OuvrirMenu[this.Langue]" aria-expanded="false" aria-controls="nav-menu"
+                data-ouvrir="@Traductions.OuvrirMenu[this.Langue]"
+                data-fermer="@Traductions.FermerMenu[this.Langue]">
             <span></span><span></span><span></span>
         </button>
 
         <ul class="nav__menu" id="nav-menu">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#apropos">À propos</a></li>
+            <li><a href="@($"{this.Langue.Accueil()}#accueil")">@Traductions.NavAccueil[this.Langue]</a></li>
+            <li><a href="@($"{this.Langue.Accueil()}#projets")">@Traductions.NavProjets[this.Langue]</a></li>
+            <li><a href="@($"{this.Langue.Accueil()}#apropos")">@Traductions.NavAPropos[this.Langue]</a></li>
             <li>
-                <a class="bouton bouton--plein nav__cv" href="https://cv.jean-marcillac.dev"
+                <a class="bouton bouton--plein nav__cv" href="@PlanDuSite.Cv"
+                   title="@Traductions.NavCvTitre[this.Langue]"
                    target="_blank" rel="noopener noreferrer">CV</a>
             </li>
         </ul>
+
+        <ul class="nav__langues" aria-label="@Traductions.NavLangue[this.Langue]">
+            @foreach (var langue in Langues.Toutes)
+            {
+                <li>
+                    <a class="@(langue == this.Langue ? "actif" : null)"
+                       href="@Langues.Equivalent(this.CheminActuel, langue)"
+                       hreflang="@langue.CodeIso()"
+                       lang="@langue.CodeIso()"
+                       title="@langue.Nom()"
+                       aria-current="@(langue == this.Langue ? "true" : null)">@langue.Etiquette()</a>
+                </li>
+            }
+        </ul>
     </div>
 </nav>
+
+@code {
+    [CascadingParameter]
+    private Langue Langue { get; set; }
+
+    [CascadingParameter]
+    private HttpContext? Contexte { get; set; }
+
+    private string CheminActuel => Requete.Chemin(this.Contexte, this.Navigation);
+}

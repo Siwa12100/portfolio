@@ -8,8 +8,10 @@
 html {
     scroll-behavior: smooth;
     /* La navbar est fixe : sans ça, les ancres arrivent cachées dessous. */
-    scroll-padding-top: calc(var(--hauteur-nav) + 1rem);
+    scroll-padding-top: calc(var(--hauteur-nav-totale) + 1rem);
     -webkit-text-size-adjust: 100%;
+    /* Le voile gris au toucher est remplacé plus bas par un retour visible. */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -78,6 +80,15 @@ a:hover {
 button {
     font: inherit;
     color: inherit;
+}
+
+/* Supprime le délai de 300 ms que gardent encore plusieurs navigateurs intégrés
+   avant de déclencher un appui : le site répond au doigt tout de suite. */
+a,
+button,
+summary,
+[role="button"] {
+    touch-action: manipulation;
 }
 
 strong {

@@ -1,15 +1,23 @@
 @namespace portfolio_siwa.Composants.Global.Footer
 
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
+
 <footer class="pied">
     <div class="pied__contenu contenu-limite">
         <p>
-            Portfolio réalisé par mes soins, en .NET Blazor.
-            <a href="/mentions-legales">Mentions légales</a>
+            @Traductions.PiedPortfolio[this.Langue]
+            <a href="@this.Langue.MentionsLegales()">@Traductions.MentionsLegales[this.Langue]</a>
         </p>
-        <a class="bouton bouton--discret" href="https://github.com/Siwa12100/portfolio"
+        <a class="bouton bouton--discret" href="@PlanDuSite.DepotSite"
            target="_blank" rel="noopener noreferrer">
-            <img src="Images/logoGithub.png" alt="" width="18" height="18" />
-            Code du portfolio
+            <img src="/Images/logoGithub.png" alt="" width="18" height="18" loading="lazy" />
+            @Traductions.CodeDuPortfolio[this.Langue]
         </a>
     </div>
 </footer>
+
+@code {
+    [CascadingParameter]
+    private Langue Langue { get; set; }
+}

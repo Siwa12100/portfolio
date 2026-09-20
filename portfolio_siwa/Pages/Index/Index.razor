@@ -1,13 +1,16 @@
 @page "/"
+@page "/en"
+@page "/oc"
 
 @using portfolio_siwa.Composants.Sections
 @using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
 
 <Hero />
 
 <section id="projets" class="section">
     <div class="contenu-limite">
-        <h2 class="titre-section">Réalisations</h2>
+        <h2 class="titre-section">@Traductions.TitreRealisations[this.Langue]</h2>
 
         @* Les quatre premières fiches du catalogue sont mises en avant, les suivantes
            passent en format compact pour garder la page lisible sur mobile. *@
@@ -21,7 +24,7 @@
 
         @if (CatalogueProjets.Tous.Count > NombreMisEnAvant)
         {
-            <h3 class="titre-sous-section">Autres projets</h3>
+            <h3 class="titre-sous-section">@Traductions.AutresProjets[this.Langue]</h3>
 
             <div class="liste-compacte">
                 @foreach (var fiche in CatalogueProjets.Tous.Skip(NombreMisEnAvant))
@@ -35,11 +38,14 @@
 
 <section id="apropos" class="section">
     <div class="contenu-limite">
-        <h2 class="titre-section">À propos</h2>
+        <h2 class="titre-section">@Traductions.TitreAPropos[this.Langue]</h2>
         <APropos />
     </div>
 </section>
 
 @code {
     private const int NombreMisEnAvant = 4;
+
+    [CascadingParameter]
+    private Langue Langue { get; set; }
 }

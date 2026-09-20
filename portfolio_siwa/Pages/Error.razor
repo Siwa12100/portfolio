@@ -1,19 +1,19 @@
-﻿@page "/Error"
-@using System.Diagnostics
+@page "/Error"
 
-<PageTitle>Erreur | Jean Marcillac</PageTitle>
+@using System.Diagnostics
+@using portfolio_siwa.Donnees
+@using portfolio_siwa.Modeles
 
 <section class="section">
-    <div class="contenu-limite mesure">
-        <h1>Une erreur est survenue</h1>
-        <p>
-            Désolé, la page demandée n'a pas pu être affichée. Vous pouvez
-            <a href="/">revenir à l'accueil</a> ou réessayer dans un instant.
-        </p>
+    <div class="contenu-limite mesure statut">
+        <p class="etiquette">@Traductions.Erreur[this.Langue]</p>
+        <h1>@Traductions.ErreurTitre[this.Langue]</h1>
+        <p>@Traductions.ErreurTexte[this.Langue]</p>
+        <a class="bouton bouton--plein" href="@this.Langue.Accueil()">@Traductions.RetourAccueil[this.Langue]</a>
 
-        @if (ShowRequestId)
+        @if (this.AfficherIdentifiant)
         {
-            <p><strong>Identifiant de la requête :</strong> <code>@RequestId</code></p>
+            <p><strong>@Traductions.ErreurIdentifiant[this.Langue] :</strong> <code>@this.Identifiant</code></p>
         }
     </div>
 </section>
@@ -22,10 +22,13 @@
     [CascadingParameter]
     private HttpContext? HttpContext { get; set; }
 
-    private string? RequestId { get; set; }
+    [CascadingParameter]
+    private Langue Langue { get; set; }
 
-    private bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    private string? Identifiant { get; set; }
+
+    private bool AfficherIdentifiant => !string.IsNullOrEmpty(this.Identifiant);
 
     protected override void OnInitialized() =>
-        RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+        this.Identifiant = Activity.Current?.Id ?? this.HttpContext?.TraceIdentifier;
 }

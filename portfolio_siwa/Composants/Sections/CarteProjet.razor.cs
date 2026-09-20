@@ -13,11 +13,14 @@ namespace portfolio_siwa.Composants.Sections
         [Parameter]
         public bool Inverse { get; set; }
 
+        [CascadingParameter]
+        private Langue Langue { get; set; }
+
         /// <summary>Année, cadre et mode de réalisation, dans l'ordre, sans les valeurs absentes.</summary>
         private IReadOnlyList<string> Contexte =>
             new[] { this.Fiche.Annee, this.Fiche.Cadre, this.Fiche.Realisation }
-                .Where(element => !string.IsNullOrWhiteSpace(element))
-                .Select(element => element!)
+                .Where(element => element is not null)
+                .Select(element => element![this.Langue])
                 .ToList();
     }
 }
