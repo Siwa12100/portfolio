@@ -17,6 +17,12 @@ namespace portfolio_siwa.Donnees
         public const string Github = "https://github.com/Siwa12100";
         public const string DepotSite = "https://github.com/Siwa12100/portfolio";
         public const string Cv = "https://cv.jean-marcillac.dev";
+
+        /// <summary>
+        /// Manifestation occitane vers laquelle mène la croix du menu. Le site est daté (les 17 et
+        /// 18 octobre 2026, à Montségur) : à revoir une fois l'évènement passé.
+        /// </summary>
+        public const string CarrierasOccitanas = "https://www.carrieras-occitanas.eu/";
         public const string Discord = "sioa";
 
         /// <summary>Image d'aperçu des partages, en adresse absolue : les réseaux sociaux n'acceptent que ça.</summary>

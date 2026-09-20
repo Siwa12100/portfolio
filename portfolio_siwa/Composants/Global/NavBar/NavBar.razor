@@ -8,7 +8,18 @@
    donc pas de WebSocket à maintenir depuis un navigateur intégré. *@
 <nav class="nav" id="nav">
     <div class="nav__contenu contenu-limite">
-        <a class="nav__marque" href="@this.Langue.Accueil()">Jean Marcillac</a>
+        <div class="nav__identite">
+            @* La croix occitane, à gauche du nom : un clin d'œil, et un lien vers la manifestation
+               Carrièras Occitanas. Décorative pour les lecteurs d'écran (l'étiquette du lien dit
+               où il mène), et légèrement penchée : voir NavBar.razor.css. *@
+            <a class="nav__croix" href="@PlanDuSite.CarrierasOccitanas" hreflang="oc"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="@Traductions.NavCroixOccitane[this.Langue]"
+               title="@Traductions.NavCroixOccitane[this.Langue]">
+                <img src="/Images/croix-occitane.svg" alt="" width="28" height="28" decoding="async" />
+            </a>
+            <a class="nav__marque" href="@this.Langue.Accueil()">Jean Marcillac</a>
+        </div>
 
         @* Les deux libellés partent avec la page : le JS bascule de l'un à l'autre
            sans avoir à connaître la langue affichée. *@

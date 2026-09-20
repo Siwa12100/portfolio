@@ -79,6 +79,28 @@ public class SiteHttpTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Single(System.Text.RegularExpressions.Regex.Matches(accroche, "<p[ >]"));
     }
 
+    [Theory]
+    [MemberData(nameof(ToutesLesLangues))]
+    public async Task La_croix_occitane_mene_a_la_manifestation_dans_un_nouvel_onglet(Langue langue)
+    {
+        var client = this.fabrique.CreateClient();
+        var html = await (await client.GetAsync(langue.Accueil())).Content.ReadAsStringAsync();
+
+        var debut = html.IndexOf("nav__croix", StringComparison.Ordinal);
+        Assert.True(debut >= 0, "la croix occitane est absente du menu");
+        var balise = html[html.LastIndexOf("<a ", debut, StringComparison.Ordinal)..html.IndexOf('>', debut)];
+
+        Assert.Contains($"href=\"{PlanDuSite.CarrierasOccitanas}\"", balise);
+
+        // Un lien externe ne doit pas donner à l'autre site la main sur cette page.
+        Assert.Contains("target=\"_blank\"", balise);
+        Assert.Contains("rel=\"noopener noreferrer\"", balise);
+
+        // Il annonce où il mène : sans texte visible, c'est son étiquette qui parle au lecteur d'écran.
+        Assert.Contains("aria-label=\"", balise);
+        Assert.Contains("Carri", System.Net.WebUtility.HtmlDecode(balise));
+    }
+
     [Fact]
     public async Task La_barre_de_progression_de_lecture_est_presente_et_masquee_aux_lecteurs_d_ecran()
     {

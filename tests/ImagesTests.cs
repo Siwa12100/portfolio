@@ -58,6 +58,23 @@ public class ImagesTests
     }
 
     [Fact]
+    public void La_croix_occitane_est_un_svg_inoffensif()
+    {
+        var svg = File.ReadAllText(Fichier("/Images/croix-occitane.svg"));
+
+        Assert.StartsWith("<svg", svg.TrimStart(), StringComparison.Ordinal);
+
+        // Un fichier remplacé un jour par un autre ne doit rien exécuter ni rien charger ailleurs.
+        Assert.DoesNotContain("<script", svg, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("onload", svg, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("http://", svg.Replace("http://www.w3.org/2000/svg", ""), StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("https://", svg, StringComparison.OrdinalIgnoreCase);
+
+        // Il doit pouvoir se redimensionner : sans viewBox, width et height figent sa taille.
+        Assert.Contains("viewBox=", svg);
+    }
+
+    [Fact]
     public void Le_srcset_liste_les_variantes_puis_l_original()
     {
         var fiche = CatalogueProjets.Tous[0];

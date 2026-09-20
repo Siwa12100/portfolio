@@ -141,6 +141,22 @@ bordure et le nom de sa carte. Elle doit rester assez claire pour se lire sur le
 
 Un test vérifie que chaque tuile existe, fait 280 x 160 px et reste sous 60 Ko.
 
+## La croix occitane
+
+Le menu porte une croix occitane, à gauche du nom, légèrement penchée, qui tourne encore un peu au
+survol (et à l'appui, sur un écran tactile). Elle mène à la manifestation Carrièras Occitanas,
+`PlanDuSite.CarrierasOccitanas`. **Ce site est daté** (17 et 18 octobre 2026, à Montségur) : à revoir
+une fois l'évènement passé.
+
+Le dessin, `wwwroot/Images/croix-occitane.svg`, est celui du site de l'Institut occitan de l'Aveyron
+(`ioa-pais.fr/Images/croix-occitane.svg`). L'original est un tracé noir au trait fin : il a été
+nettoyé (prologue XML, DOCTYPE et métadonnées retirés), coloré avec le dégradé violet vers orange du
+site, et son trait a été épaissi (`stroke-width`), car un filet aussi fin disparaît à 28 px.
+
+Pour le remplacer, déposer un SVG du même nom, avec un `viewBox` et sans script ni lien externe : un
+test le vérifie. Un SVG noir sur fond transparent ne survit pas à une conversion en image (il devient
+un carré noir), le fournir en texte.
+
 ## Les halos : une règle
 
 Les lueurs colorées font la différence du site, à condition de rester rares. La règle : **un halo

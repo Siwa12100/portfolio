@@ -43,6 +43,12 @@ namespace portfolio_siwa.Donnees
         public static Texte NavAPropos { get; } = new("À propos", "About", "A prepaus");
         public static Texte NavMenu { get; } = new("Menu", "Menu", "Menut");
         public static Texte NavLangue { get; } = new("Langue", "Language", "Lenga");
+        /// <summary>Étiquette de la croix occitane du menu : où elle mène, et que c'est un site externe.</summary>
+        public static Texte NavCroixOccitane { get; } = new(
+            "Carrièras Occitanas, manifestation occitane (site externe, nouvel onglet)",
+            "Carrièras Occitanas, an Occitan cultural gathering (external site, new tab)",
+            "Carrièras Occitanas, manifestacion occitana (sit extèrn, onglet novèl)");
+
         public static Texte NavCvTitre { get; } = new(
             "Mon CV en ligne", "My resume online", "Mon CV en linha");
 
