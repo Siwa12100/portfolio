@@ -71,11 +71,18 @@
 
     // ----- Barre de navigation au défilement + bouton de retour en haut -----
     const retourHaut = document.getElementById("retour-haut");
+    const progression = document.getElementById("progression");
 
     const auDefilement = () => {
         const y = window.scrollY;
         nav?.classList.toggle("nav--posee", y > 12);
         retourHaut?.classList.toggle("visible", y > 700);
+
+        if (progression) {
+            const reste = document.documentElement.scrollHeight - window.innerHeight;
+            const avancement = reste > 0 ? Math.min(1, Math.max(0, y / reste)) : 0;
+            progression.style.transform = `scaleX(${avancement})`;
+        }
     };
 
     // Le calcul est reporté à la prochaine image : sur les navigateurs intégrés,

@@ -13,6 +13,10 @@
        toute la navigation avant d'arriver au contenu. *@
     <a class="lien-evitement" href="#contenu">@Traductions.AllerAuContenu[this.LangueCourante]</a>
 
+    @* Fin filet du dégradé du site en haut de l'écran : il se remplit au fil de la lecture, ce qui
+       situe le visiteur sur une page longue. Purement visuel, donc masqué aux lecteurs d'écran. *@
+    <div class="progression" id="progression" aria-hidden="true"></div>
+
     <NavBar />
 
     <main id="contenu">

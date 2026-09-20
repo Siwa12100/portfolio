@@ -1,3 +1,24 @@
+/* Couleurs de bordure et de fond des cartes de projets, déclarées pour que le navigateur sache les
+   faire passer en douceur de l'une à l'autre : un dégradé, lui, ne s'anime pas. Sans ce support, la
+   bordure change quand même de couleur, simplement sans fondu. */
+@property --bord-a {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgba(255, 255, 255, 0.1);
+}
+
+@property --bord-b {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: rgba(255, 255, 255, 0.1);
+}
+
+@property --fond-carte {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #181b38;
+}
+
 :root {
     /* === Couleurs ===
        Bleu nuit plus profond que l'ancien #25274d : le texte blanc y respire,

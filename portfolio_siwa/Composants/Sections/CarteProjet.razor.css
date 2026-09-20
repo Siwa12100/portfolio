@@ -7,17 +7,30 @@
     align-items: center;
     gap: clamp(1.5rem, 3.5vw, 3rem);
     padding: var(--padding-carte);
-    border: 1px solid var(--bordure);
+    border: 1px solid transparent;
     border-radius: var(--r-l);
-    background: linear-gradient(160deg, var(--surface) 0%, var(--fond-doux) 100%);
+    /* Deux couches : la surface de la carte, et sous elle un dégradé qui ne se voit que dans la
+       bordure. Au repos il est neutre ; il prend les couleurs du site quand la carte est visée. */
+    background:
+        linear-gradient(160deg, var(--surface) 0%, var(--fond-doux) 100%) padding-box,
+        linear-gradient(140deg, var(--bord-a, rgba(255, 255, 255, 0.1)) 0%, var(--bord-b, rgba(255, 255, 255, 0.1)) 100%) border-box;
     box-shadow: var(--ombre-1), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    transition: --bord-a var(--transition), --bord-b var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+/* Elle s'éclaire quand on la vise à la souris, ou qu'on touche un de ses éléments (un bouton,
+   un lien) : la récompense arrive avec l'interaction, rien n'est permanent. */
+.carte:focus-within {
+    --bord-a: var(--violet);
+    --bord-b: var(--accent);
+    box-shadow: 0 26px 52px -28px rgba(255, 153, 19, 0.4), var(--ombre-2);
 }
 
 @media (hover: hover) {
     .carte:hover {
-        border-color: var(--bordure-forte);
-        box-shadow: var(--ombre-2);
+        --bord-a: var(--violet);
+        --bord-b: var(--accent);
+        box-shadow: 0 26px 52px -28px rgba(255, 153, 19, 0.4), var(--ombre-2);
         transform: translateY(-3px);
     }
 }

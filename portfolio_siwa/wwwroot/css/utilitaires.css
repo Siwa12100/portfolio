@@ -305,6 +305,21 @@
     }
 }
 
+/* ========== Progression de lecture ========== */
+.progression {
+    position: fixed;
+    top: var(--marge-haute);
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    height: 3px;
+    background: var(--gradient-accent);
+    /* Mise à l'échelle plutôt que largeur : le navigateur l'anime sans recalculer la mise en page. */
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+}
+
 /* ========== Retour en haut ========== */
 .retour-haut {
     position: fixed;
@@ -364,6 +379,7 @@
     .nav,
     .retour-haut,
     .toast,
+    .progression,
     .lien-evitement {
         display: none !important;
     }

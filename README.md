@@ -141,6 +141,21 @@ bordure et le nom de sa carte. Elle doit rester assez claire pour se lire sur le
 
 Un test vérifie que chaque tuile existe, fait 280 x 160 px et reste sous 60 Ko.
 
+## Les halos : une règle
+
+Les lueurs colorées font la différence du site, à condition de rester rares. La règle : **un halo
+porte un sens, une marque ou une action, jamais un ornement.**
+
+- Une **marque** : chaque carte d'organisation porte la couleur de la sienne (reflet, bordure, nom).
+- Une **action** : la carte « Me contacter » a le seul halo aux couleurs du site (orange et violet),
+  parce que c'est là qu'on veut que le visiteur écrive.
+- Une **interaction** : les cartes de projets ne s'éclairent que quand on les vise, ou qu'on touche un
+  de leurs éléments. Rien n'est permanent.
+
+Pas d'animation en boucle, pas de flou lourd (les navigateurs intégrés le supportent mal), pas de texte
+en dégradé. Avant d'ajouter une lueur, se demander ce qu'elle désigne : si la réponse est « rien, c'est
+joli », elle affaiblit celles qui comptent.
+
 ## Polices
 
 Inter et Roboto Slab sont hébergées dans `wwwroot/fonts/`, en variables (un fichier couvre

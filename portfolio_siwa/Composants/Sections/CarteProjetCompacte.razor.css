@@ -4,16 +4,29 @@
     align-items: start;
     gap: clamp(1rem, 2.5vw, 1.75rem);
     padding: clamp(0.9rem, 2vw, 1.25rem);
-    border: 1px solid var(--bordure);
+    border: 1px solid transparent;
     border-radius: var(--r-m);
-    background: var(--fond-doux);
-    transition: border-color var(--transition), background-color var(--transition);
+    /* Même principe que les grandes cartes : bordure neutre au repos, aux couleurs du site quand
+       la carte est visée. */
+    background:
+        linear-gradient(var(--fond-carte, #181b38), var(--fond-carte, #181b38)) padding-box,
+        linear-gradient(140deg, var(--bord-a, rgba(255, 255, 255, 0.1)) 0%, var(--bord-b, rgba(255, 255, 255, 0.1)) 100%) border-box;
+    transition: --bord-a var(--transition), --bord-b var(--transition), --fond-carte var(--transition), box-shadow var(--transition);
+}
+
+.compacte:focus-within {
+    --bord-a: var(--violet);
+    --bord-b: var(--accent);
+    --fond-carte: var(--surface);
+    box-shadow: 0 20px 44px -28px rgba(255, 153, 19, 0.35);
 }
 
 @media (hover: hover) {
     .compacte:hover {
-        border-color: var(--bordure-forte);
-        background: var(--surface);
+        --bord-a: var(--violet);
+        --bord-b: var(--accent);
+        --fond-carte: var(--surface);
+        box-shadow: 0 20px 44px -28px rgba(255, 153, 19, 0.35);
     }
 }
 

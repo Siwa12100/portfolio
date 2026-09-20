@@ -79,6 +79,15 @@ public class SiteHttpTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Single(System.Text.RegularExpressions.Regex.Matches(accroche, "<p[ >]"));
     }
 
+    [Fact]
+    public async Task La_barre_de_progression_de_lecture_est_presente_et_masquee_aux_lecteurs_d_ecran()
+    {
+        var client = this.fabrique.CreateClient();
+        var html = await (await client.GetAsync("/")).Content.ReadAsStringAsync();
+
+        Assert.Contains("id=\"progression\" aria-hidden=\"true\"", html);
+    }
+
     public static IEnumerable<object[]> ToutesLesLangues() =>
         Langues.Toutes.Select(langue => new object[] { langue });
 

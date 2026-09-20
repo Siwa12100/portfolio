@@ -35,6 +35,16 @@
     order: 1;
 }
 
+/* Un fin anneau du dégradé des boutons : c'est la signature qui relie le haut de page au reste du site.
+   Statique, sans lueur ajoutée : le halo diffus derrière la photo suffit. */
+.hero__photo {
+    width: fit-content;
+    padding: 3px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    box-shadow: 0 26px 50px -26px rgba(255, 153, 19, 0.5), var(--ombre-2);
+}
+
 .hero__photo img {
     width: clamp(11rem, 26vw, 19rem);
     /* Indispensable : sans ça l'attribut height="900" de la balise l'emporte. */
@@ -42,8 +52,8 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid var(--bordure-forte);
-    box-shadow: var(--ombre-2);
+    /* Un liseré de la couleur du fond détache l'anneau de la photo. */
+    border: 3px solid var(--fond);
 }
 
 .hero h1 {
@@ -96,6 +106,11 @@
     }
 
     .hero__actions {
+        justify-content: center;
+    }
+
+    /* Tout le haut de page est centré : les icônes de contact restaient seules à gauche. */
+    .hero__contacts ::deep .contacts {
         justify-content: center;
     }
 }

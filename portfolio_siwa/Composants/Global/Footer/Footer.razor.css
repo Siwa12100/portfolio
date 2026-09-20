@@ -1,5 +1,6 @@
 .pied {
-    margin-top: var(--espace-section);
+    /* Pas de marge haute : la section qui précède a déjà son propre espace en bas. Les deux
+       s'ajoutaient, ce qui laissait un grand vide sous le dernier texte. */
     border-top: 1px solid var(--bordure);
     background: var(--fond-doux);
     padding-block: var(--e5);
